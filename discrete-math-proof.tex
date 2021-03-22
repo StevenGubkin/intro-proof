@@ -1,42 +1,10 @@
-%-----------------------------------------------------------------------
-% Beginning of amstext-l-template.tex
-%-----------------------------------------------------------------------
-%
-%    This is a template file for the AMS book series Pure and Applied
-%    Undergraduate Texts, for use with AMS-LaTeX 2.0.
-%    Separate chapters should be included at the appropriate position.
-%
-%    Templates for various common text, math and figure elements are
-%    given following the \end{document} line.
-%
-%    Remove any commented or uncommented macros you do not use.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%    Use this form if exercise blocks are only at the end of chapters.
-%\documentclass{amstext-l}
-%    If you intersperse blocks of exercises throughout chapters, use
-%    the documentclass with the [multixcb] option.
 \documentclass[multixcb]{amstext-l}
 
-%    For use when working on individual chapters
-%\includeonly{}
-
-%    If you need symbols beyond the basic set, uncomment this command.
 \usepackage{amssymb}
-
-%    If your book includes graphics, uncomment this command.
 \usepackage{graphicx}
-
-%    If you are using the author-year citation style:
 \usepackage{natbib}
-
-%    Include other referenced packages here.
 \usepackage[linguistics]{forest}
 \usepackage{fitch}
-\newcommand{\equivalent}{\Longleftrightarrow}
-\newcommand{\Z}{\mathbb{Z}}
-\newcolumntype{?}{!{\vrule width 1pt}}
 
 \newtheorem{theorem}{Theorem}[chapter]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -52,9 +20,10 @@
 \numberwithin{section}{chapter}
 \numberwithin{equation}{chapter}
 
-%    For a single index; for multiple indexes, see the manual
-%    "AMS Author Handbook, Monograph Classes", included in the
-%    author package).
+\newcommand{\equivalent}{\Longleftrightarrow}
+\newcommand{\Z}{\mathbb{Z}}
+\newcolumntype{?}{!{\vrule width 1pt}}
+
 \makeindex
 
 \begin{document}
@@ -63,27 +32,13 @@
 
 \title{Discrete Mathematics:  An Introduction to Mathematical Reasoning}
 
-%    Remove any unused author tags.
-
-%    author one information
 \author{Steven Gubkin}
 \address{5410 Lockwood Road, Madison, Ohio, 44057}
-%\curraddr{}
-\email{}
-%\thanks{}
+\email{s.gubkin@csuohio.edu}
 
-%    author two information
-%\author{}
-%\address{}
-%\curraddr{}
-%\email{}
-%\thanks{}
+%\subjclass[2020]{Primary }
 
-%    The 2020 edition of the Mathematics Subject Classification is
-%    the current definitive version.
-\subjclass[2020]{Primary }
-
-\keywords{}
+%\keywords{}
 
 \maketitle
 
@@ -105,15 +60,15 @@
 \tableofcontents
 
 %    Include unnumbered chapters (preface, acknowledgments, etc.) here.
-\include{}
+%     \include{}
 
 \mainmatter
 %    Include main chapters here.
 \include{relaxed-fitch}
 
-\appendix
+%\appendix
 %    Include appendix "chapters" here.
-\include{}
+%\include{}
 
 \backmatter
 %    Bibliographies can be prepared with BibTeX using amsplain,

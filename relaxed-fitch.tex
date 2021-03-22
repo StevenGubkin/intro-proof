@@ -1,51 +1,5 @@
-\documentclass{article}
 
-
-\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
-\geometry{letterpaper, margin=0.7in}                   % ... or a4paper or a5paper or ... 
-%\geometry{landscape}                % Activate for for rotated page geometry
-\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
-\usepackage{graphicx}
-\usepackage{amssymb}
-\usepackage{epstopdf}
-\usepackage{pdfpages}
-\usepackage{colortbl}
-\usepackage{amsmath}
-\usepackage[linguistics]{forest}
-\usepackage{fitch}
-\usepackage{amsthm}
-\usepackage{booktabs}
-\newcolumntype{?}{!{\vrule width 1pt}}
-\newtheorem*{Theorem}{Theorem}
-
-
-\usepackage{hyperref}
-
-\usepackage{tikz}
-\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
-  \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
-
-\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
-
-\renewcommand{\arraystretch}{1.75}
-
-\usepackage{lipsum}   % for filler text
-\usepackage{setspace} % for \onehalfspacing and \singlespacing macros
-%\onehalfspacing 
-
-\title{Fitch Style Proof Outlines}
-\author{Steven Gubkin}
-\date{}
-\usepackage{etoolbox}
-
-
-\newcommand{\equivalent}{\Longleftrightarrow}
-\newcommand{\Z}{\mathbb{Z}}
-
-
-\begin{document}
-
-\maketitle
+\chapter{Chapter 1: Logic}
 
 \section{Introduction}
 
@@ -415,9 +369,9 @@ Sometimes statements which are disjunctions are embedded within the scope of som
 
 
 
-\begin{Theorem}[Euclid's Lemma]
+\begin{theorem}[Euclid's Lemma]
 		For any prime number $p$,  and for any integers $a$ and $b$, if $p$ divides $ab$, then $p$ divides $a$ or $p$ divides $b$.
-	\end{Theorem}
+	\end{theorem}
 
 We will definitely not be able to prove that if a prime divides a product, then it must divide the first factor!  
 
@@ -597,7 +551,7 @@ Note:  Existentially quantified sentences are a bit funny.  The construction of 
 \begin{table}[h]
 	\centering
 	\begin{tabular}{c?p{5 cm}?p{4 cm}}
-		Top Level Node & How to use it if it is true & How to prove that it is true	\\ \specialrule{.15em}{.05em}{.05em} 
+		Top Level Node & How to use it if it is true & How to prove that it is true	\\ 
 		$p \wedge q$ & You also know that $p$ is true and $q$ is true.  & Argue $p$ is true.  Then argue $q$ is true. \\ \hline
 		$p \implies q$ & If you also know $p$ is true, then you know $q$ is true. & \begin{fitch*}
 			\textrm{Assume $p$ is true.} \\
@@ -675,9 +629,9 @@ Let's create proof outlines for each of these.  You may or may not be able to fi
 
 \medskip
 
-\begin{Theorem}
+\begin{theorem}
 		If $x$ is a real number then $x^2 = 1$ if and only if $x=1$ or $x=-1$.
-	\end{Theorem}
+	\end{theorem}
 
 \begin{proof}[Proof outline]
 	
@@ -779,9 +733,9 @@ We can now fill in the remaining arguments to have a proof of the theorem:
 
 	\end{proof}
 
-\begin{Theorem}
+\begin{theorem}
 	If $a$ is odd, and $b$ is odd, then $a+b$ is even.
-	\end{Theorem}
+	\end{theorem}
 
 \begin{proof}[Proof Outline]
 	We can translate this statement into symbolic logic as follows:
@@ -917,9 +871,9 @@ This proof could also be condensed for readability:
 
 We will not be so methodical with the last two theorems.  We will just present the proof outlines with some brief commentary.
 
-\begin{Theorem}
+\begin{theorem}
 		Let $p$, $a$, $b$ be integers.  If $p$ is prime, and $p$ is a factor of $ab$, then either $p$ is a factor of $a$ or $p$ is a factor of $b$.
-	\end{Theorem}
+	\end{theorem}
 
 \begin{center}
 		\begin{forest}
@@ -949,9 +903,9 @@ This is a full proof outline!  Actually completing this proof might be difficult
 
  \medskip
  
-\begin{Theorem}	
+\begin{theorem}	
 	For every positive real number $x$, there is another real number $y$ so that if $t$ is another real number and $0<t<y$ then $0<t^2<x$.
-	\end{Theorem}
+	\end{theorem}
 
 
 
@@ -993,23 +947,6 @@ Each of the logical connectives and quantifiers has ways to use it, and ways to 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-\end{document}
 
 
 

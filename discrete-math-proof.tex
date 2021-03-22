@@ -32,6 +32,11 @@
 \usepackage{natbib}
 
 %    Include other referenced packages here.
+\usepackage[linguistics]{forest}
+\usepackage{fitch}
+\newcommand{\equivalent}{\Longleftrightarrow}
+\newcommand{\Z}{\mathbb{Z}}
+\newcolumntype{?}{!{\vrule width 1pt}}
 
 \newtheorem{theorem}{Theorem}[chapter]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -104,7 +109,7 @@
 
 \mainmatter
 %    Include main chapters here.
-\include{}
+\include{relaxed-fitch}
 
 \appendix
 %    Include appendix "chapters" here.

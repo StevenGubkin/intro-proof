@@ -1,0 +1,315 @@
+\chapter{Logical Connectives}
+
+\section{Introduction}
+
+In the last chapter we learned three tools for building new predicates and propositions out of old propositions:  substitution of a variable with another variable or value, universal quantification of a variable, and existential quantification of a variable.
+
+We can also create new predicates from old ones by using the logical connectives ``and'' ($\wedge$),``implies'' ($\implies$), ``if and only if'' ($\iff$), ``not'' ($\neg$), and ``or'' ($\vee$).
+
+For instance if $P$ is the proposition ``It is raining'' and $Q$ is the proposition ``I have no umbrella'', then we can form the compound sentence $P \wedge Q$ which says ``It is raining and I have no umbrella''.
+
+These logical connectives are used in our everyday language, but we do not use them with the precision which is required for mathematics or computer science.  For instance consider the following sentence:
+
+\begin{quote}
+		``I will go out for pizza or I will go out for ice cream''
+\end{quote}
+
+This sentence is ambiguous.  It is unclear whether the person saying this sentence is allowing for the possibility that they will get both pizza and ice cream, or if they are claiming that they will only get one and not the other.
+
+The other connectives suffer some similar ambiguities in natural language.  We will define each of these connectives precisely by describing how they interact with the truth values of the propositions or predicates which they connect.
+
+To see the importance of resolving such ambiguities consider the following theorem:
+
+\begin{theorem}[Euclid's Lemma]
+		Let $p$ be a prime number.  Let $a$ and $b$ be integers. If $p$ divides $ab$, then $p$ divides $a$ or $p$ divides $b$
+\end{theorem}
+
+In order to understand what this theorem is saying we need to understand what ``If ...., then...'' means precisely.  Is the theorem making any claim about what happens if $p$ does not divide $ab$?  We also need to understand what the ``or'' means precisely.  Is the theorem claiming that $p$ must divide only one of $a$ or $b$, but not both?  Or does it leave open the possibility that $p$ divides both of them?
+
+You can see that having a precise and consistent meaning for these logical connectives is important for communicating mathematical ideas. 
+
+Another major goal of this chapter is to integrate an understanding of how to both \textbf{use} (eliminate) and \textbf{prove} (introduce) statements involving each of the connectives.  We will learn the elimination and introduction rules associated with each connective.  These will show us how to start building Fitch style proof outlines for statements involving these connectives.
+
+In writing computer programs we run into similar issues.  We often want the computer to execute some command depending on whether a set of different conditions are satisfied.  Consider the simple problem of instructing a computer to sum all of the numbers between $1$ and $100$ which are divisible by $2$ or $3$ but not both.
+
+In psuedocode, we might write
+
+\begin{lstlisting}[language=Python]
+set SUM = 0
+for k in the set {1, 2, 3, ..., 100}:
+	If ((k%2 == 0) OR (k%3 ==0)) AND (NOT((k%2 == 0) AND (k%3 ==0))) :
+		SUM := SUM+k 
+return SUM
+\end{lstlisting}
+
+We cannot write functional code like this without understanding the precise behaviour of the connectives OR, AND, and NOT.
+
+
+
+\section{Conjunction}
+
+Given two propositions or predicates $L$ and $R$, we can form a new proposition or predicate called the \index{Conjunction}\textbf{conjunction} of $L$ and $R$.  We will write $L \wedge R$ for this new statement.  We read $L \wedge R$ as ``$L$ and $R$''.  We will also sometimes refer to $L$ as the \index{conjunct} \textbf{left conjunct} and $R$ as the \textbf{right conjunct}.
+
+We will define conjunction by explicitly showing how the truth value of the conjunction can be obtained from the truth value of each conjunct.
+
+\begin{definition}
+		Let $L$ and $R$ be two propositions or predicates.  We define the new proposition or predicate $L \wedge R$ as a sentence whose truth value is determined by the following table:
+		
+		
+		\begin{table}[h!]
+			\begin{center}
+				\caption{Truth Table for Conjunction}
+				\begin{tabular}{c|c|c} 
+					$L$ & $R$ & $L \wedge R$ \\
+					\hline
+					$\F$ & $\F$ & $\F$ \\ 
+					$\F$ & $\T$ & $\F$ \\ 
+					$\T$ & $\F$ & $\F$ \\ 
+					$\T$ & $\T$ & $\T$ \\ 
+				\end{tabular}
+			\end{center}
+		\end{table}
+	
+	\end{definition}
+
+This truth table makes it explicitly clear that a conjunction is only true when both of its conjuncts are true, and is false otherwise.
+
+\subsection{Using a conjunction}  If we know that the conjunction $L \wedge R$ is true, then we know (from looking at the truth table) that both $L$ and $R$ are each true individually.  So if we know that a conjunction is true, we can use that each of its conjuncts are also true.
+
+In a proof, if we know that $L \wedge R$ is true, then we may cite that fact that $L$ is true or that $R$ is true whenever we want in our argument.  This is called \textbf{conjunction elimination} because it takes a hypothesis which includes a $\wedge$ and ``eliminates'' it to obtain a new hypothesis without the $\wedge$.
+
+\subsection{Proving a conjunction}  To show that a conjunction is true, we need to demonstrate that both $L$ is true and $R$ is true.  We will do this in our proof outline as follows:
+
+To prove $p \wedge q$:
+
+\begin{fitch*}
+	\textrm{(Need to show $L \wedge R$ is true)}\\
+	\textrm{Put a proof of $L$ here.}\\
+	\textrm{Put a proof of $R$ here.}\\
+	\textrm{Conclude that $L \wedge R$ is true.}\\
+\end{fitch*}
+
+This is also called ``conjunction introduction'', because it allows us to introduce $L \wedge R$ as a known statement in our arguments.
+
+\begin{xca}
+		If the sentence is a proposition, evaluate its truth value with justify your answer.  If the sentence is a predicate identify its free variables, try to find some values for the free variables which make it true, and some which make it false (if possible).
+		
+		\begin{enumerate}
+				\item $(6 < 7 ) \wedge (6| 18)$
+				\item $(2+2=4) \wedge 9|3$
+				\item $6 \textrm{ is even } \wedge 7 \textrm{ is odd}$
+				\item $[(1+1=2) \wedge (2+2 = 4)] \wedge (4+4 =8)$
+				\item $(x|y) \wedge (y|x)$
+				\item $x \textrm{ is even } \wedge y \textrm{ is odd}$ 
+				\item $\forall x: (x \cdot 0 = 0 \wedge x \cdot 1 = x)$
+				\item $\exists x: [(2x+1 = 5) \wedge (3x+3 = 5)]$
+				\item $[\exists x: (2x+1 = 5)] \wedge [\exists x: (3x+3 = 5)]$
+			\end{enumerate}
+	\end{xca}
+
+\begin{solutions}
+	
+	\begin{enumerate}
+		\item $(6 < 7 ) \wedge (6| 18)$ - True proposition. Both conjuncts are true, so the conjunction is true.  Note the ``recursive'' nature of the evaluation of the truth value here:  to be explicit, I would need to verify that $6|18$ is true by demonstrating the witness $k= 3$ for the existentially quantified statement $\exists k : 18 = 6k$.
+		\item $(2+2=4) \wedge 9|3$ - False proposition.  The right conjunct is false.
+		\item $6 \textrm{ is even } \wedge 7 \textrm{ is odd}$ - True proposition.  Both conjuncts are true.
+		\item $[(1+1=2) \wedge (2+2 = 4)] \wedge (4+4 =8)$ - True proposition.  We need to evaluate this in stages:
+		
+		\begin{align*}
+		[(1+1=2) \wedge (2+2 = 4)] \wedge (4+4 =8) &= [T \wedge T] \wedge T\\
+		&= T \wedge T\\
+		& = T
+		\end{align*}
+		
+		\item $(x|y) \wedge (y|x)$ - This is a predicate with free variables $x$ and $y$.  It is true if we set $(x,y) = (4,-4)$.  It is false if we set $(x,y) = (2,4)$, since in that case the right conjunct is false.
+		\item $x \textrm{ is even } \wedge y \textrm{ is odd}$  - This is a predicate with free variables $x$ and $y$. It is true if we set $(x,y) = (2,7)$.  It is false if we set $(x,y) = (3,3)$, since in that case the left conjunct is false.
+		\item $\forall x \in \mathbb{R}: (x\cdot 0 = 0 \wedge x \cdot 1 = x)$ - This is a true proposition. 
+		
+		\begin{fitch*}
+			\textrm{Let $x_1  \in \mathbb{R}$ be arbitrary.}\\
+			\textrm{$x_1 \cdot 0 = 0$ is true, since any number multiplied by $0$ is $0$. }\\
+			\textrm{$x_1 \cdot 1 = 1$ is true, since any the product of any number with $1$ is  itself.}\\
+			\textrm{Since both conjuncts are true, the conjunction $(x_1 \cdot 0 = 0) \wedge (x_1 \cdot 1 = x_1)$ is true}\\
+			\textrm{Since $x_1$ was chosen arbitrarily, the universally quantified statement}\\
+			 \textrm{ \hphantom{dsada} $\forall x \in \mathbb{R} [(x \cdot 0 = 0) \wedge (x \cdot 1 = x) ]$ is true.} 
+			\end{fitch*}
+		\item $\exists x \in \mathbb{R}: [(2x+1 = 5) \wedge (3x+3 = 5)]$ - This is a false proposition.  There is no number $x$ which will make $2x+1 = 5$ and $3x+3 = 5$ both true statements.  The reason is that if $2x+1  = 5$, then $x$ must be $2$.   However if $3x+3 = 5$, then $x$ must be $\frac{2}{3}$.  There is no number which is both equal to $2$ and $\frac{2}{3}$, since $2 \neq \frac{2}{3}$.
+		\item $[\exists x \in \mathbb{R}: (2x+1 = 5)] \wedge [\exists x \in \mathbb{R}: (3x+3 = 5)]$ - This is a true proposition. $[\exists x: (2x+1 = 5)] $ is true since $x=2$ witnesses the truth of it.   $[\exists x: (3x+3 = 5)]$ is true since $x= \frac{2}{3}$ witness the truth of it. Since both conjuncts are true, the conjunction is true.
+	\end{enumerate}
+
+
+
+\end{solutions}
+
+
+\section{Implication}
+
+Implication is one of the hardest logical connectives to internalize the meaning of.  Most people find it to be extremely unintuitive. However, it is also one of the most important logical connectives.
+
+\subsection{Intuition for implication}
+
+The contents of this subsection are intuitive rather than rigorous.  We need some idea of what we are trying to accomplish with the implication connective before we give a rigorous definition.  So understand everything in this subsection with that caveat in mind.
+
+Let $H$ and $C$ be two propositions or predicates. Let us call $H$ the ``hypothesis'' and $C$ the ``conclusion''.
+
+We want to define a new proposition or predicate $H \implies C$ (read: ``H implies C'') which asserts that we can start from the hypothesis $H$ and produce a valid argument for the conclusion $C$.  If we can produce such an argument, the implication should be true.  If it is impossible produce such an argument, the implication should be false.
+
+Lets consider some examples.
+
+Should $(1+1 = 2) \implies 2+2 = 4$ be true or false?  If we assume that $1+1 = 2$, then we could multiply both sides by $2$ to obtain $2+2 = 4$.  So it seems that we have a valid argument that if $1+1 = 2$, then $2+2 = 4$.  So the implication $(1+1 = 2) \implies 2+2 = 4$ should be true.
+
+Should $(1+1 = 0) \implies (1+1 = 1)$ be true or false?  This is less straightforward.  Notice that we are not making any claim that either the hypothesis or conclusion is true.  We only want to see if we could make a valid argument which starts from the hypothesis and leads to the conclusion.
+
+In this case, I think I can make an argument:
+
+\begin{align*}
+&\textrm{If } 	1+1 =0\\
+&\textrm{then } 	2(1) = 0\\
+&\textrm{so }	1 =0\\ 
+\end{align*}
+
+but then
+
+\begin{align*}
+	1+ 1 & = 0+ 0 \textrm{ since $1=0$}\\
+	&= 0 \textrm{ since $0+0 =0$}\\
+	&= 1 \textrm{ since $0 = 1$}
+\end{align*}
+
+So the claim that ``$(1+1 = 0)$ implies $(1+1 = 1)$'' should be true.
+
+Should $(1+1 = 0) \implies (0 = 0)$ be true or false? I think we can make a valid argument:
+
+\begin{align*}
+	&\textrm{If } 1+1 = 0 \\
+	&\textrm{then } 0(1+1)  = 0(0) \textrm{ since we can multiply both sides by $0$}\\
+	&\textrm{so } 0=0 
+\end{align*}
+
+Thus, $(1+1 = 0) \implies (0 = 0)$ is true.
+
+Should $(1+1 = 2) \implies (1 = 0)$ be true or false?  This should be false.  No matter how clever I am, there will be no valid argument which starts from a true hypothesis and leads to a false conclusion.
+
+To steal from philosopher Bertrand Russel, should  $(1+1 = 1) \implies \textrm{``Bertrand Russel is the pope''}$ be true or false?  This is more difficult.  It is hard to say whether we could come up with an argument which starts from the hypothesis that $1+1 = 1$ and arrives at the conclusion that Bertrand Russel is the pope, but it is also difficult to say that such an argument is impossible to make.  Here is Bertrand's solution:
+
+\begin{quote}
+		Assume that $1+1 = 1$.
+		The pope is one person, and I am another.
+		Since $1+1 = 1$, then I and the pope together are one.
+		Thus I am the pope.
+	\end{quote}
+
+This was a very tricky argument.  It might be even harder to decide whether we could come up with a valid argument in other circumstances.  For instance, can you come up with an argument that if $E = mc^3$ then cows are made of diamonds?  I wouldn't know how to make such an argument, but I also wouldn't rule out such an argument existing.  This would put us in the awkward situation of being unable to evaluate the truth value of this statement unless someone comes around who is clever enough to make the argument.  It would also leave open the possibility that this argument is impossible to make, but for reasons of content, rather than the logical form of the statements.
+
+The only thing we can really be sure of with implications (used in this intuitive sense) is that we can often produce a valid argument which starts with a false hypothesis and leads to either true or false conclusions.  However, when we start with a true premise then a valid argument will only ever lead to true conclusions, not false ones.
+
+\subsection{Rigorous definition of implication}
+
+The intuitive idea of implication which we covered in the last subsection is appealing, and conforms well to our standard English usage of the words ``If ...., then ....''.
+
+However, as we saw, our intuitive view of implication is not well equipped to handle implications where the hypothesis is false.
+
+We will sweep these issues  under the rug by providing a definition of implication which is less intuitive but is easier to work with.  Namely, we will define implication by explicitly showing how the truth value of the implication can be obtained from the truth value of the hypothesis and conclusion.
+
+\begin{definition}
+	Let $H$ and $C$ be two propositions or predicates.  We define the new proposition or predicate $H \implies C$ as a sentence whose truth value is determined by the following table:
+	
+	
+	\begin{table}[h!]
+		\begin{center}
+			\caption{Truth Table for Conjunction}
+			\begin{tabular}{c|c|c} 
+				$H$ & $C$ & $H \implies  C$ \\
+				\hline
+				$\F$ & $\F$ & $\T$ \\ 
+				$\F$ & $\T$ & $\T$ \\ 
+				$\T$ & $\F$ & $\F$ \\ 
+				$\T$ & $\T$ & $\T$ \\ 
+			\end{tabular}
+		\end{center}
+	\end{table}
+\end{definition}
+
+Notice that with this convention, always make a valid argument to establish any conclusion if we start with a false hypothesis.  These implications (recorded in the first two rows of the truth table) are called \index{vacuous truth}\textbf{vacuously true}.  These two rows of the truth table are extremely unintuitive for most people.  You will need to do serious internal work to integrate these ideas into your being.
+
+However, if the implication is true, then a true hypothesis can only ever establish a true conclusion.
+
+If you think that you have derived a false conclusion from a true hypothesis, then you are wrong.  Your argument is not valid, and the implication must be false.
+
+\subsection{Some further justification for this strange definition}
+
+Another motivation for defining the truth table for implication in this way stems from how nicely it interacts with quantifiers.
+
+We want to be able to say that if a real number is even, then that number plus one is odd:
+
+\[
+ \forall x \in \mathbb{Z}: \textrm{$x$ is even} \implies \textrm{$x+1$ is odd}
+\]
+
+If we want universal elimination to work nicely with implication, then we should get a true statement when we substitute any integer in for $x$.  Substituting $x = 7$ gives the statement:
+
+\[
+\textrm{$7$ is even} \implies \textrm{$7+1$ is odd}
+\]
+
+Both the hypothesis and conclusion are false, but we want the implication to be true!  This justifies the first row in the truth table.  It also agrees with our intuitive perspective.  If $7$ \textit{were} even, then since an even number plus $1$ is odd, we would have that $7+1 = 8$ is odd.  The argument is valid even though both the hypothesis and conclusion are false.
+
+Similarly we want to be able to say that if a real number is less than $6$, then it is less than $8$.
+
+\[
+\forall x \in \mathbb{R}: (x< 6) \implies (x<8)}
+\]
+
+If this statement is true, then it should be true when we substitute any real value for $x$ that we wish.  Substituting $x  = 7$ gives
+
+\[
+(7< 6) \implies (7 < 8)
+\]
+
+Here the hypothesis is false, but conclusion is true, and we want the implication to be true!  This justifies the first row in the truth table.  It also makes sense from our intuitive perspective:  if $7$ \textit{were} less than $6$, surely it would also be less than $8$.  The argument is valid, even though the hypothesis is false.  We reached a correct conclusion ``by accident''.
+
+In short, if we want universal elimination to work with implication then we need to have the first two rows of the truth table for implication be the way they are.
+
+
+\begin{xcb}{Exercises}
+	
+	\begin{enumerate}
+		\item Which of the following implications are true?  If the implication is true, try to find an ``argument'' which starts with the hypothesis and leads to the conclusion.  If the implication is false, explain how the implication leads to a contradiction.
+		\begin{enumerate}
+			\item If $1<2$ then $6<5$.
+			\item If $2<1$ then $6<5$.
+			\item If $2 = 1$ then $0 = 0$.
+			\item If $2 = 2$ then $4 = 4$.
+			\item If $1$ is odd then $2$ is even.
+			\item If $1$ is even then $2$ is odd.
+			\item If $1$ is odd then $2$ is odd.
+			\item If $1$ is even then $2$ is even. 
+		\end{enumerate}
+		\item Evaluate the truth values of the following expressions.
+		\begin{enumerate}
+			\item $(F \implies F) \implies T$
+			\item $T \implies (T \implies F)$
+			\item $T \implies (T \implies T)$
+			\item $(T \implies F) \implies (F \implies T)$
+			\item $F \implies (F \implies F)$
+			\item $T \implies (T \implies F)$
+		\end{enumerate}
+	\end{enumerate}
+	
+\end{xcb}
+
+\section{Biconditional}
+
+
+\section{Negation}
+
+rewrw
+\section{Disjunction}
+
+
+
+
+erwwre
+
+
+

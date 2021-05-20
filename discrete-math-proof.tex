@@ -1,18 +1,24 @@
 \documentclass[multixcb]{amstext-l}
 
 \usepackage{amssymb}
+\usepackage{imakeidx}
 \usepackage{graphicx}
 \usepackage{natbib}
+
 \usepackage[linguistics]{forest}
 \usepackage{fitch}
+\usepackage{listings}
+
 
 \newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{conjecture}{Conjecture}
 \newtheorem{lemma}[theorem]{Lemma}
 
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{xca}[theorem]{Exercise}
+\newtheorem{solutions}[theorem]{Solutions}
 
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
@@ -22,6 +28,8 @@
 
 \newcommand{\equivalent}{\Longleftrightarrow}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\T}{\textbf{\textrm{T}}}
+\newcommand{\F}{\textbf{\textrm{F}}}
 \newcolumntype{?}{!{\vrule width 1pt}}
 
 \makeindex
@@ -64,7 +72,14 @@
 
 \mainmatter
 %    Include main chapters here.
-\include{relaxed-fitch}
+%\include{quantifiers}
+\include{connectives}
+%\include{fitch}
+%\include{induction}
+%\include{sets}
+%\include{counting}
+%\include{graphs}
+%\include{number}
 
 %\appendix
 %    Include appendix "chapters" here.

@@ -1,5 +1,141 @@
 
-\chapter{Chapter 1: Logic}
+\chapter{Proving more complex statements}
+
+
+\section{trees}
+
+	In exercise 1.3, the last two exercises were
+
+\begin{enumerate}
+	\setcounter{enumi}{7}
+	
+	\item $\exists x \in \mathbb{R}: [(2x+1 = 5) \wedge (3x+3 = 5)]$
+	
+	\item $[\exists x \in \mathbb{R}: (2x+1 = 5)] \wedge [\exists x: (3x+3 = 5)]$
+\end{enumerate}
+
+Understanding the difference between these two statements may have been difficult for you.  Here we will introduce another way to record the logical structure of these sentences called a \textbf{syntax tree} which might be a little easier to understand (once you get the hang of it).
+
+Statement (8) is existentially quantifying the predicate $[(2x+1 = 5) \wedge (3x+3 = 5)]$ in the variable $x$.  I will record this by having the \textbf{top level node} or \textbf{root} of the syntax tree be $\exists x \in \mathbb{R}$, drawing a single vertical \textbf{branch down} from that node and then putting the syntax tree for the predicate $[(2x+1 = 5) \wedge (3x+3 = 5)]$ below it:
+
+\begin{center}
+	\begin{forest}
+		[\(\exists x \in \mathbb{R}\)[Tree for ``\({(2x+1 = 5) \wedge (3x+3 = 5)}\)'']]
+	\end{forest}
+\end{center}
+
+Since the predicate $[(2x+1 = 5) \wedge (3x+3 = 5)]$ is a conjunction of the two predicates $2x+1 = 5$ and $3x+3 = 5$, the tree for this predicate will have a top level node of $\wedge$, two branches, with $2x+1 = 5$ on the left and $3x+3 = 5$ on the right:
+
+\begin{center}
+	\begin{forest}
+		[\(\exists x \in \mathbb{R}\)[\(\wedge\)[\({2x+1 = 5}\)][\({3x+3 = 5}\)]]]
+	\end{forest}
+\end{center}
+
+The  final \textbf{leaves} at the bottom of this tree do not contain any logical connectives or quantifiers.  Each variable appearing in the leaves can be traced back to a single quantifier which introduces the variable.
+
+However, the syntax tree for (9) would look like:
+
+\begin{center}
+	\begin{forest}
+		[\(\wedge\)[\(\exists x \in \mathbb{R}\)[\( {2x+1 = 5}\)]][\(\exists x \in \mathbb{R}\)[\( {3x+3 = 5}\)]]]
+	\end{forest}
+\end{center}
+
+Note that the ``tree'' analogy is a bit strange since it is upside down!  The root is at the top, and the leaves are at the bottom!  The reason for this strange convention is that we usually like to work from top to bottom when writing on a page in English.
+
+\includegraphics[scale = 0.4]{trees}
+
+Here the root is circled, the branches are colored brown, and the leaves are colored green.
+
+Comparing these two we see that in (8) the existential quantification of $x$ applies to both statements $2x+1 = 5$ and $3x+3  = 5$.  We would say that both instances of $x$ are within the \index{scope}\textbf{scope} of this existential quantifier.  However, in (9) the scope of the exitential quantifier on the left branch only includes the $x$ in $2x+1  = 5$, while the scope of the existential quantifier on the right branch only includes the $x$ in $3x+3 = 5$.
+
+\begin{example}
+	Assume that $P$, $Q$, and $R$ are propositions and $A$, $B$, and $C$ are predicates. The syntax tree for 
+	
+	\[
+	\exists x :[( P \wedge A(x)) \wedge ( \forall y( B(x) \wedge C(x,y) ))]
+	\]
+	
+	is
+	
+	\begin{center}
+		\begin{forest}
+			[\(\exists x\)[\(\wedge\)[\(\wedge\)[\(P\)][\(A(x)\)]][\(\forall y \)[\(\wedge\)[\(B(x)\)][\({C(x,y)}\)]]]]]
+		\end{forest}
+	\end{center}
+	
+	The two dimensional layout of the tree makes some features of the expression easier to parse than when we leave it as a one dimensional written expression.
+\end{example}
+
+
+\begin{xca}
+	Build a syntax tree for each of the following statements.  Assume that $P$, $Q$, and $R$ are propositions and $A$, $B$, and $C$ are predicates.  Matching parenthesis can be a struggle:  this is part of the reason why the trees are a superior way of writing these expressions.
+	
+	\begin{enumerate}
+		\item $\forall x:  (P \wedge \exists y (A(x,y) \wedge B(x)))$
+		\item $P \wedge (Q \wedge \exists t (B(t,t)) )$
+		\item $\forall x: ( \exists y (A(x,y)) \wedge \forall y (C(x,y)))$
+	\end{enumerate}
+\end{xca}
+
+
+\begin{solutions}
+	\begin{enumerate}
+		\item $\forall x:  (P \wedge \exists y (A(x,y) \wedge B(x)))$
+		
+		\begin{center}
+			\begin{forest}
+				[\(\forall x\)[\(\wedge\)[\(P\)][\(\exists y\)[\(\wedge\)[\({A(x,y)}\)][\(B(x)\)]]]]]
+			\end{forest}
+		\end{center}
+		\item $P \wedge (Q \wedge \exists t (B(t,t)) )$
+		
+		\begin{center}
+			\begin{forest}
+				[\(\wedge\)[\(P\)][\(\wedge\)[\(Q\)][\(\exists t\)[\({B(t,t)}\)]]]]
+			\end{forest}
+		\end{center}
+		\item $\forall x: ( \exists y (A(x,y)) \wedge \forall y (C(x,y)))$
+		
+		\begin{center}
+			\begin{forest}
+				[\(\forall x\)[\(\wedge\)[\(\exists y\)[\({A(x,y)}\)]][\(\forall y\)[\({C(x,y)}\)]]]]
+			\end{forest}
+		\end{center}
+		
+	\end{enumerate}
+\end{solutions}
+
+\begin{xca}
+	Consider the syntax tree
+	
+	\begin{center}
+		\begin{forest}
+			[$\forall x$[$\wedge$[$\exists y$[${A(x,y)}$]][$\forall y$[$\wedge$[$P$][${B(x,y)}$]]]]]
+		\end{forest}
+	\end{center}
+	
+	Indicate all variables which are in the scope of $\forall y$.  Then convert this syntax tree to a linear string with appropriate parentheses. 
+	
+\end{xca}
+
+\begin{xca}
+	The only variable within the scope of $\forall y$ is the $y$ in $B(x,y)$.
+	
+	We can write this proposition on one line as
+	
+	\[
+	\forall x: (  (\exists y: ( A(x,y)))  \wedge (\forall y: ( P \wedge  B(x,y)))  )
+	\]
+	
+\end{xca}
+
+\subsection{Fitch style proof outlines for statements involving only quantifiers and conjunctions}
+
+Since we already know how to make Fitch style proof outlines for existentially quantified statements, universally quantified statements, and conjunctions, we can put these together to make more complicated Fitch style proof outlines.
+
+
 
 \section{Introduction}
 
@@ -490,7 +626,7 @@ Finally, we must replace ``Argue $\neg s$" with its proof outline.
 
 If you know (somehow) that the sentence $\forall x \in \mathcal{U}, P(x)$ is true then if you have a particular element $a$ of your universe of discourse $\mathcal{U}$, then you also know that $P(a)$ is true.  This is sometimes called by the fancy name of ``Universal Elimination".
 
-For example, if you know that ``For every integer $x$, $2x$ is even'', and at some point in your argument you need that $2*101$ is even, you can  quote the theorem using $x = 101$ to support your argument.
+For example, if you know that ``For every integer $x$, $6x$ is even'', and at some point in your argument you need that $6*101$ is even, you can  quote the theorem using $x = 101$ to support your argument.
 
 \subsection{Proving a universally quantified sentence}
 

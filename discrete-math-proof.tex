@@ -5,9 +5,11 @@
 \usepackage{graphicx}
 \usepackage{natbib}
 
+
 \usepackage[linguistics]{forest}
 \usepackage{fitch}
 \usepackage{listings}
+\usepackage{url}
 
 
 \newtheorem{theorem}{Theorem}[chapter]
@@ -26,10 +28,16 @@
 \numberwithin{section}{chapter}
 \numberwithin{equation}{chapter}
 
-\newcommand{\equivalent}{\Longleftrightarrow}
+\newcommand{\bi}{\Longleftrightarrow}
+\newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\divides}{\triangleleft}
 \newcommand{\T}{\textbf{\textrm{T}}}
 \newcommand{\F}{\textbf{\textrm{F}}}
+
 \newcolumntype{?}{!{\vrule width 1pt}}
 
 \makeindex
@@ -41,7 +49,7 @@
 \title{Discrete Mathematics:  An Introduction to Mathematical Reasoning}
 
 \author{Steven Gubkin}
-\address{5410 Lockwood Road, Madison, Ohio, 44057}
+\address{Rhodes Tower 1555, Cleveland State University }
 \email{s.gubkin@csuohio.edu}
 
 %\subjclass[2020]{Primary }
@@ -72,11 +80,12 @@
 
 \mainmatter
 %    Include main chapters here.
-%\include{quantifiers}
+\include{quantifiers}
 \include{connectives}
-%\include{fitch}
-%\include{induction}
+\include{fitch}
+\include{equivalence}
 %\include{sets}
+%\include{induction}
 %\include{counting}
 %\include{graphs}
 %\include{number}
@@ -93,6 +102,9 @@
 
 %    See note above about multiple indexes.
 \printindex
+
+
+
 
 \end{document}
 

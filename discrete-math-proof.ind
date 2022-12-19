@@ -1,10 +1,95 @@
 \begin{theindex}
 
-  \item conjunct, 2
-  \item Conjunction, 2
+  \item ``modus ponens'', 39
 
   \indexspace
 
-  \item vacuous truth, 6
+  \item bound variable, 16
+
+  \indexspace
+
+  \item classical, 79
+  \item Complex Numbers, 3
+  \item Conditionally True, 77
+  \item conjunct, 32
+  \item Conjunction, 32
+  \item Contradiction, 77
+  \item Contrapositive, 82
+  \item Converse, 82
+
+  \indexspace
+
+  \item disjunction, 45
+  \item disjunction elimination, 46
+  \item divide, 23
+
+  \indexspace
+
+  \item Element of a Set, 2
+  \item Even Integer, 21
+  \item Exclusive Or, 45
+  \item Existential Quantifier, 16
+
+  \indexspace
+
+  \item free variable, 16
+
+  \indexspace
+
+  \item Inclusive Or, 45
+  \item Integers, 3
+  \item intuitionist, 79
+  \item Inverse, 82
+
+  \indexspace
+
+  \item Logically Equivalent, 77
+
+  \indexspace
+
+  \item Natural Numbers, 3
+  \item Negation, 48
+  \item Nested Quantifiers, 18
+
+  \indexspace
+
+  \item Odd Integer, 22
+
+  \indexspace
+
+  \item parity, 21
+  \item predicate, 7
+  \item Proof by Contradiction, 83
+  \item proposition, 5
+
+  \indexspace
+
+  \item Rational Numbers, 3
+  \item Real Numbers, 3
+
+  \indexspace
+
+  \item scope, 54
+  \item Set, 2
+  \item substitution, 10
+
+  \indexspace
+
+  \item Tautology, 77
+  \item Truth Functionally Equivalent, 77
+  \item type, 7
+
+  \indexspace
+
+  \item Universal Quantifier, 16
+
+  \indexspace
+
+  \item vacuous truth, 36
+  \item variable, 7
+
+  \indexspace
+
+  \item Witness, 16
 
 \end{theindex}

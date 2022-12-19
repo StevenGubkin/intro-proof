@@ -1,6 +1,6 @@
-This is makeindex, version 2.15 [TeX Live 2016] (kpathsea + Thai support).
-Scanning input file discrete-math-proof.idx....done (3 entries accepted, 0 rejected).
-Sorting entries....done (4 comparisons).
-Generating output file discrete-math-proof.ind....done (10 lines written, 0 warnings).
+This is makeindex, version 2.15 [TeX Live 2021] (kpathsea + Thai support).
+Scanning input file discrete-math-proof.idx....done (43 entries accepted, 0 rejected).
+Sorting entries....done (244 comparisons).
+Generating output file discrete-math-proof.ind....done (95 lines written, 0 warnings).
 Output written in discrete-math-proof.ind.
 Transcript written in discrete-math-proof.ilg.

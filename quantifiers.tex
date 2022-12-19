@@ -2,9 +2,9 @@
 
 \section{Introduction}
 
-This text is largely concerned with learning to critique and create logical arguments for mathematical statements.  We will need to develop extremely precise vocabulary, since our ordinary language is not sufficiently precise to be suitable for our purposes.  So this text is, in addition to being a mathematics text, also a kind of foreign language text.  We will learn to distinguish special kinds of sentences called \textbf{propositions} (which are assertions which are either true or false ) from other sentences.  For instance the sentence ``6 is larger than 8'' is a proposition (a false one), while the sentence ``Please sum 6 with 8'' is not a proposition.   We will learn how to handle sentences which contain variables (these are called \textbf{predicates}).  A predicate might be true or false depending on the value of its variables.  For instance, ``$2x$  is less than $y$'' is a predicate which is true when $(x,y) = (1,20)$, but is false when $(x,y) = (4,7)$.  When we make a claim about the quantity of variables which make a predicate true we are \textbf{quantifying} the predicate.  In the sentence ``there is at least one value of $x$ which makes $x^2  = 9$'', the predicate ``$x^2 =9$'' has been quantified with the statement that ``At least one value of $x$ makes the predicate true''.  
+The main goal of this text is to help you create and critique logical arguments in mathematics.  We will need to develop extremely precise vocabulary since ordinary language is not sufficiently precise to be suitable for our purposes.  So this text is, in addition to being a mathematics text, also a kind of foreign language text.  We will learn to distinguish special kinds of sentences called \textbf{propositions} ( assertions which are either true or false ) from other sentences.  The sentence ``6 is larger than 8'' is a proposition (a false one), while the sentence ``Please sum 6 with 8'' is not a proposition.   We will learn how to handle sentences which contain variables (these are called \textbf{predicates}).  A predicate might be true or false depending on the value of its variables. ``$2x$  is less than $y$'' is a predicate which is true when $(x,y) = (1,20)$, but is false when $(x,y) = (4,7)$.  When we make a claim about the quantity of variables which make a predicate true we are \textbf{quantifying} the predicate.  In the sentence ``there is at least one value of $x$ which makes $x^2  = 9$'', the predicate ``$x^2 =9$'' has been quantified with the statement that ``At least one value of $x$ makes the predicate true''.  
 
-Towards the end of the chapter we will also learn the rules for \textbf{using} and \textbf{proving} quantified statements.  Eventually we will want to be able to analyze the logical structure of any statement we want to prove and create a \textbf{Fitch style proof outline} for our argument.  This is basically a sketch of what is required to argue a statement, not based on its content but exclusively on its logical form.  We will learn how to start a Fitch style outline for quantified sentences.
+Towards the end of the chapter we will also learn the rules for \textbf{using} and \textbf{proving} quantified statements.  Eventually we will want to be able to analyze the logical structure of any statement we want to prove and create a \textbf{natural deduction outline} for our argument.  This is basically a sketch of what is required to argue a statement based exclusively on its logical form (not its content).  We will learn how to start a natural deduction outline for quantified sentences.
 
 In addition to being essential for making mathematical arguments, the material in this chapter will also be essential to anyone who needs to program computers.  Computers follow instructions literally, and we often need these instructions to vary depending on whether some predicate is true or false given the value of a variable.  Consider the simple problem of instructing a computer to sum all of the numbers between $1$ and $100$ which are divisible by $6$.
 
@@ -12,9 +12,9 @@ In psuedocode, we might write
 
 \begin{lstlisting}[language=Python]
 	set SUM = 0
-	for k in the set {1, 2, 3, ..., 100}:
+	for k in {1, 2, 3, ..., 100}:
 		If (k%6 == 0):
-			SUM := SUM+k 
+			SUM := SUM + k 
 	return SUM
 \end{lstlisting}
 
@@ -24,10 +24,10 @@ For this reason, having a very detailed understanding of propositions, predicate
 
 \section{A short note on Sets}
 
-In this chapter we will not need to know very much about sets, but we will need a few very brief essentials.  We will conduct a more in depth study of sets, including operations on sets, in a later chapter.
+In this chapter we will not need to know very much about sets, but we will need a few   essentials.  We will conduct a more in depth study of sets, including operations on sets, in a later chapter.
 
 \begin{definition}
-		A \index{Set}\textbf{set} is a collection of objects (which we also call \index{Element of a Set}) \textbf{elements}.  If $x$ is an element of $S$ we write $x \in S$ and say ``$x$ is an element of the set $S$''.  We consider two sets $A$ and $B$ to be equal if every element of $A$ is also in $B$, and every element of $B$ is also in $A$. 
+		A \index{Set}\textbf{set} is a collection of objects which we  call \index{Element of a Set} \textbf{elements}.  If $x$ is an element of $S$ we write $x \in S$ and say ``$x$ is an element of the set $S$''.  We consider two sets $A$ and $B$ to be equal if every element of $A$ is also in $B$, and every element of $B$ is also in $A$. 
 	\end{definition}
 
 To specify a set, we write its elements separated by commas between curly braces.  For instance, to specify the set of siblings in my family I would write:
@@ -42,14 +42,14 @@ When we defined set equality, we said ``We consider two sets $A$ and $B$ to be e
 
 Let us explore the consequences of this definition.
 
-Should we consider the set $\{4,3,2\}$ to be the same as the set $\{3,2,4\}$?  Ask yourself:  is every element of one set also an element of the other?  The answer is yes:  we should consider these sets to be equivalent to each other.  We sometimes shorthand this observation by saying that ``sets do not care about the order of their elements''.
+Should we consider the set $\{4,3,2\}$ to be the same as the set $\{3,2,4\}$?  Ask yourself:  is every element of one set also an element of the other?  The answer is yes:  we should consider these sets to be equivalent to each other.  We sometimes shorthand this observation by saying that ``sets do not care about the order in which their elements are listed''.  In other words, the ordering of the elements in the written expression ``$\{4,3,2\}$'' is a feature of the written representation, not a feature of the set itself.  This is similar to how  ``Steven Gubkin'' and ``\textit{Steve Gubkin}'' refer to the same person despite typographical differences.
 
 Should we consider the set $\{4,5,6,5\}$ to be the same as the set $\{6,5,4\}$?  Again ask yourself:  is every element of one set also present in the other?  Again the answer is yes, so by definition these two sets should be considered equal to each other.  The fact that $5$ is listed twice in our written representation of the set does not change this fact.  We sometimes shorthand this by saying ``Sets do not have repeated elements''.
 
 There are a few special sets which you should know the names and notation for:
 
 \begin{itemize}
-		\item The set of \index{Natural Numbers}\textbf{natural numbers} is the set
+		\item The set of \index{Natural Numbers}\textbf{natural numbers}\footnote{Some mathematicians prefer to exclude $0$ from their definition of the natural numbers.  This is a matter of taste, and people have very heartfelt reasons for their choice.  This text chooses to include $0$ in the set of natural numbers.}  is the set
 		
 		\[
 		\mathbb{N} = \{0,1,2,3,4, \dots \}
@@ -128,7 +128,7 @@ There are a few special sets which you should know the names and notation for:
 		
 		\begin{enumerate}
 				\item $S = \{\textrm{a, c, e, g, i, k, m, o, q, s, u, w, y}\}$
-				\item The set $\mathcal{P}$ of all living people.
+				\item The set $\mathcal{P}$ of humans who have ever lived.
 				\item  $\{-11,-10, -9,  \dots, 10, 11, 12\}$
 				\item $\mathbb{N}$
 				\item $\mathbb{Z}$
@@ -215,7 +215,7 @@ In this particular case, we might also write $P = \F$ to indicate that $P$ is a 
 
 We will often use $P$, $Q$, and $R$ as letters representing propositions.
 
-Note that equations and inequalities are also examples of propositions. For instance we can write
+Note that equations and inequalities are also examples of propositions. We can write
 
 \begin{enumerate}
 \item \(P = \textrm{``\(2 \cdot 3 = 6\)''}\).  This is a true proposition. The proposition is not the number $6$, but the claim that ``$2$ times $3$ is equal to $6$''.  Note that we are using the equals sign in two subtly different ways here:  the first equals sign is declaring that $P$ \textbf{is} the proposition which follows.  The second equals sign is asserting that $2 \cdot 3$ \textbf{is} the number 6.
@@ -237,7 +237,7 @@ This is not a proposition because we cannot tell if it is true or false until we
 A \index{predicate}\textbf{predicate} is a statement which has variables.  
 \end{definition}
 
-Just as we use upper case letters to stand for propositions, we also use upper case letters to stand for predicates.  For instance we might write
+Just as we use upper case letters to stand for propositions, we also use upper case letters to stand for predicates.   We might write
 
 \[
 P(x,y) =  \textrm{``$x+ y$ is greater than $y$''} 
@@ -259,13 +259,15 @@ P(x,y) =  \textrm{``$x+ y > y$ '', where $x,y \in \mathbb{R}$}
 
 if we wanted to clarify.
 
-It is also possible to have a predicate whose variables have different types.  For instance the predicate
+It is also possible to have a predicate whose variables have different types.  Consider the predicate
 
 \begin{align*}
 M(f,x) &=  \textrm{``$f$ achieves its maximum value at input $x$'',}\\ 
 	&  \textrm{ \hphantom{fdsfdsds} where $x\in \mathbb{R}$ and $f: \mathbb{R} \to \mathbb{R}$ is a function} \\
 	& \textrm{ \hphantom{fdsfdsds} which takes real inputs and returns real outputs.}
 \end{align*}
+
+The first argument of $M$ is a function, while the second argument is a real number.
 
 
 \begin{xca} In this exercise, allow the variables to stand for people who are currently living.  For each of the following statements, decide which are predicates.  For those which are predicates find some assignments of the variables which yield a true statement and some assignments of the variables which yield a false statement.  You may need to conduct an internet search to find examples of people satisfying the criteria.
@@ -425,7 +427,7 @@ It is valid to write all of the following equations:
 	\end{itemize}
 
 \begin{xca}
- Let $P$ be the two variable predicate defined by $P(a,b) = \textrm{``\(a^2b < 10\)''}$.  We can obtain other predicates by substitution.  For instance, $Q(x) = P(x,2x)$ is the predicate $\textrm{``\(x^2(2x) < 10\)''}$ which is equivalent to $x^3 < 5$.  Find inequalities which are equivalent to each of the following predicates.  If the inequality is a proposition, decide its truth value.  If the inequality is a predicate, find at least one assignment of the variables which makes the predicate true.
+ Let $P$ be the two variable predicate defined by $P(a,b) = \textrm{``\(a^2b < 10\)''}$.  We can obtain other predicates by substitution.  For example $Q(x) = P(x,2x)$ is the predicate $\textrm{``\(x^2(2x) < 10\)''}$ which is equivalent to $x^3 < 5$.  Find inequalities which are equivalent to each of the following predicates.  If the inequality is a proposition, decide its truth value.  If the inequality is a predicate, find at least one assignment of the variables which makes the predicate true.
 		\begin{enumerate}
 				\item $Q(a) = P(a,5)$.  
 				\item $Q = P(2,1)$.  
@@ -438,7 +440,7 @@ It is valid to write all of the following equations:
 	\end{xca}
 
 \begin{solutions}
-	Let $P$ be the two variable predicate defined by $P(a,b) = \textrm{``\(a^2b < 10\)''}$.  We can obtain other predicates by substitution.  For instance, $Q(x) = P(x,2x)$ is the predicate $\textrm{``\(x^2(2x) < 10\)''}$ which is equivalent to $x^3 < 5$.  Find inequalities which are equivalent to each of the following predicates.  If the inequality is a proposition, decide its truth value.  If the inequality is a predicate, find at least one assignment of the variables which makes the predicate true.
+	Let $P$ be the two variable predicate defined by $P(a,b) = \textrm{``\(a^2b < 10\)''}$.  We can obtain other predicates by substitution.  For example, $Q(x) = P(x,2x)$ is the predicate $\textrm{``\(x^2(2x) < 10\)''}$ which is equivalent to $x^3 < 5$.  Find inequalities which are equivalent to each of the following predicates.  If the inequality is a proposition, decide its truth value.  If the inequality is a predicate, find at least one assignment of the variables which makes the predicate true.
 	\begin{enumerate}
 		\item $Q(a) = P(a,5) = \textrm{``\(a^2b < 10\)''} = \textrm{``\((a)^2\cdot 5 < 10\)''} = \textrm{``\(a^2 < 2\)''}  $.  
 		
@@ -477,7 +479,7 @@ Consider the following ``mystery'' predicate.  We do not have access to the ``me
 	\end{center}
 \end{table}
 
-There are many predicates which could generate this same table.  For instance we could have
+There are many predicates which could generate this same table.  For example we could have
 
 \begin{itemize}
 	\item \(P_1(x) = \textrm{`` $x \geq 4$''}\)\\
@@ -625,7 +627,7 @@ We will find that these tables of ``input/output'' values for predicates are all
 						\hline
 						1 & $P(2,1) = \F$ \\ 
 						2 & $P(2,2) = \T$ \\
-						3 & $P(2,3) = \T$ \\
+						3 & $P(2,3) = \F$ \\
 					\end{tabular}
 				\end{center}
 			\end{table}
@@ -678,18 +680,18 @@ We will find that these tables of ``input/output'' values for predicates are all
 			\end{table}
 			
 			
-			\item $Q(a,b) = P(a,2)$
+			\item $Q(a,b) = P(a,a)$
 			
 								\begin{table}[h!]
 				\begin{center}
 					\begin{tabular}{c|c|c|c|}
 						$ Q(a,b)$        &$a=1$ & $a=2$ & $a=3$  \\
 						\hline
-						$b=1$ &    $P(1,2) = \F$      &     $P(2,2) = \T$      & $P(3,2) = \T$        \\
+						$b=1$ &    $P(1,2) = \T$      &     $P(2,2) = \T$      & $P(3,2) = \T$        \\
 						\hline
-						$b=2$ &    $P(1,2) = \F$      &     $P(2,2) = \T$      & $P(3,2) = \T$        \\
+						$b=2$ &    $P(1,2) = \T$      &     $P(2,2) = \T$      & $P(3,2) = \T$        \\
 						\hline
-						$b=3$ &    $P(1,2) = \F$      &     $P(2,2) = \T$      & $P(3,2) = \T$        \\
+						$b=3$ &    $P(1,2) = \T$      &     $P(2,2) = \T$      & $P(3,2) = \T$        \\
 						\hline
 					\end{tabular}
 				\end{center}
@@ -710,7 +712,7 @@ Consider the predicate (defined over the real numbers)
 A(x,y) = \textrm{``xy = 10y''}
 \]
 
-Things are going to get a little weird!  We are going to have some sentences which talk about $A(x,y)$.  Some of these sentences will be predicates, and some will not.  These will be kind of ``meta-level'' predicates.  Decide which of the following are predicates and which are propositions. Identify what the variables of the predicates are, and see if you can find any assignments for their variables which make the predicate true or false.  Decide the truth value of the propositions.
+Things are going to get a little weird!  We are going to have some sentences which talk about $A(x,y)$.  Some of these sentences will be predicates, and some will not.  These will be ``meta-level'' predicates.  Decide which of the following are predicates and which are propositions. Identify what the variables of the predicates are, and see if you can find any assignments for their variables which make the predicate true or false.  Decide the truth value of the propositions.
 
 \begin{enumerate}
 		\item ``There real numbers $x$ and $y$ so that $A(x,y)$ is true.''
@@ -724,13 +726,13 @@ Things are going to get a little weird!  We are going to have some sentences whi
 
 \begin{solutions}
 		\begin{enumerate}
-			\item ``There real numbers $x$ and $y$ so that $A(x,y)$ is true.'' - This is a true proposition.  When $x = 10$ and $y = 4$, $A(10,4)$ is the true statement that $10 \cdot 4 = 10 \cdot 4$.  Note that, although this sentence as variables, it is still a proposition:  we could decide its truth value.
+			\item ``There real numbers $x$ and $y$ so that $A(x,y)$ is true.'' - This is a true proposition.  When $x = 10$ and $y = 4$, $A(10,4)$ is the true statement that $10 \cdot 4 = 10 \cdot 4$.  Note that, although this sentence has variables, it is still a proposition:  we could decide its truth value.
 			\item ``$A(x,y)$ is always true, no matter what values are substituted for the variables.'' - This is a false proposition.  When $x = 1$ and $y = 1$, we have $1 \cdot 1 = 10 \cdot 1$, which is false.  So it isn't true that $A(x,y)$ is true for all values of $x$ and $y$.
 			\item  ``For every value of  $y$,  $A(x,y)$ is true.'' - This is a predicate with $x$ as a variable.  
 			
 			When $x = 10$, we have ``For every value of  $y$,  $A(10,y)$ is true.'', which says that $10y = 10y$ for every value of $y$.  This is a true statement.
 			
-			When $x = 10$, we have ``For every value of  $y$,  $A(1,y)$ is true.'', which says that $1y = 10y$ for every value of $y$.  This is a false statement.  Choosing $y = 5$ yields a false statement.
+			When $x = 1$, we have ``For every value of  $y$,  $A(1,y)$ is true.'', which says that $1y = 10y$ for every value of $y$.  This is a false statement.  Choosing $y = 5$ yields a false statement.
 			\item ``There is a value of $x$ so that $A(x,y)$ is true.'' - This is a predicate with $y$ as a variable.  When $y = 3$ it is true, since setting $x = 10$ makes $x \cdot 3 = 10 \cdot 3$ true.  Actually, this is true no matter what $y$ is, since we could always choose $x=10$.  It is interesting to note that it is still true (but for potentially different reasons) when $y = 0$.
 			\item ``There is a value of $x$ so that $A(x,y)$ would be true no matter what $y$ is.'' - This is a true proposition, as noted above. 
 			\item ``There is a value of $t$ so that $A(t,t)$ is true.''  This is a true proposition.  When $t = 0$ we obtain the true statement $0 \cdot 0 = 10 \cdot 0$, for instance.
@@ -739,7 +741,7 @@ Things are going to get a little weird!  We are going to have some sentences whi
 
 Each of these is an example of a \textbf{quantified} statement.  When sentence asserts something about the number of variable assignments which make a predicate true, that is quantification.  For instance saying ``There is at least one value of $x$ which makes the proposition true'', or ``Every value of $x$ makes the proposition true'', or ``There are exactly two values of $y$ which make the proposition true''.  We will focus on only two types of quantification, universal and existential quantification, since all other quantifiers can be ``built'' out of these two quantifiers together with the logical connectives we will study in the next chapter.
 
-When we make a new predicate $Q$ which declares that a predicate $P$ is true for all values of a given variable we are \textbf{universally quantifying} $P$ in that variable.   When we make a new predicate $Q$ which declares that a predicate $P$ is true for at least one value of a given variable we are \textbf{existentially quantifying} the predicate $P$ in that variable.  For instance, in the first problem above we have existentially quantified the predicate in both variables, while in the second problem we have universally quantified the predicate in both variables.  When a variable has been quantified we say that it is \index{bound variable}\textbf{bound} by the quantifier.  If a variable in a predicate has not been bound by a quantifier then we say the variable is \index{free variable}\textbf{free}.
+When we make a new predicate $Q$ which declares that a predicate $P$ is true for all values of a given variable we are \textbf{universally quantifying} $P$ in that variable.   When we make a new predicate $Q$ which declares that a predicate $P$ is true for at least one value of a given variable we are \textbf{existentially quantifying} the predicate $P$ in that variable.  In the first problem above we have existentially quantified the predicate in both variables, while in the second problem we have universally quantified the predicate in both variables.  When a variable has been quantified we say that it is \index{bound variable}\textbf{bound} by the quantifier.  If a variable in a predicate has not been bound by a quantifier then we say the variable is \index{free variable}\textbf{free}.
 
 \begin{definition}
 	Let $P$ be a predicate with $n$ free variables $x_1,x_2,x_3, \dots, x_n$.  
@@ -756,6 +758,8 @@ When we make a new predicate $Q$ which declares that a predicate $P$ is true for
 ``We can find at least one element of $a \in \mathcal{U}_i$ which makes $P(x_1,x_2,x_3, \dots, x_n)$ true when we substitute $x_i = a$ .
 
 The symbol $\exists$ is called the \index{Existential Quantifier}\textbf{existential quantifier}.
+
+The element $a$ making the predicate true is called a \index{Witness}\textbf{witness} for the existential quantifier. 
 		\end{itemize}  
 	
 	\end{definition}
@@ -837,7 +841,7 @@ The symbol $\exists$ is called the \index{Existential Quantifier}\textbf{existen
 
 		\begin{enumerate}
 	\item $P(4,1) = \T$
-	\item $P(4,3) = \F $
+	\item $P(4,2) = \T $
 	\item $\exists y \in \{1,2,3\}: P(3,y) = \F$.  $P(3,1)$, $P(3,2)$, and $P(3,3)$ are all false.  So there is no value of $y$ from the set $\{1,2,3\}$ which makes $P(3,y)$ true.
 	\item $\exists y  \in \{1,2,3\}: P(4,y) = \T$.  Setting $y=2$ gives $P(4,2) = \T$, so there is at least one value of $y$ from the set $\{1,2,3\}$ which makes $P(4,y)$ true.
 	\item $\forall y  \in \{1,2,3\}: P(4,y) = \F$. Setting  $y = 3$ gives $P(4,3) = \F$, so $P(4,y)$ is not true for every value of $y$ in $\{1,2,3\}$ (even though it is true for some of them).
@@ -891,7 +895,7 @@ Translate each of the following into English sentences which have the same meani
 	All of these solutions are accurate as of 05/17/2021, but fortunes are subject to change.
 	\begin{enumerate}
 		\item $R(\textrm{Lebron James}, \textrm{PeeWee Herman})$ - This proposition claims that Lebron James is as rich or richer than PeeWee Herman, which can be verified as true through an internet search.
-		\item $\exists x: R(x,\textrm{Lebron James})$ - This proposition claims that someone is as rich or richer than Lebron James.  This is true.  For instance, Bill Gates is richer than Lebron James (at the time of this writing).  A more canonical choice here might be to let $x$ be Lebron James!  Certainly Lebron James is as rich or richer than Lebron James.  This also verifies the proposition.
+		\item $\exists x: R(x,\textrm{Lebron James})$ - This proposition claims that someone is as rich or richer than Lebron James.  This is true.  Bill Gates is richer than Lebron James (at the time of this writing).  A more canonical choice here might be to let $x$ be Lebron James!  Certainly Lebron James is as rich or richer than Lebron James.  This also verifies the proposition.
 		\item $\forall t: R(\textrm{Jeff Bezos}, t )$ - This proposition claims that Jeff Bezos is as rich or richer than everyone.  This is true.
 		\item $\forall t: R(t,t)$ -  This proposition claims that everyone is as rich or richer than themselves, which is true.
 		\item $\exists x: \left( \forall y : R(x,y)\right)$ - This proposition claims that someone is as rich or richer than everyone.  This is true, one choice that works for $x$ is Jeff Bezos.
@@ -918,11 +922,11 @@ Translate each of the following into English sentences which have the same meani
 
 \begin{solutions}
 			\begin{enumerate}
-			\item $\exists t \in \mathbb{R}^+: P(t,t)$ - This is true.  For instance, when $t = \frac{1}{2}$, $\frac{1}{2} > (\frac{1}{2})^2  =\frac{1}{4}$.
+			\item $\exists t \in \mathbb{R}^+: P(t,t)$ - This is true.   $t = \frac{1}{2}$ is a witness since $\frac{1}{2} > (\frac{1}{2})^2  =\frac{1}{4}$.
 			\item $\forall t \in \mathbb{R}^+: P(t,t)$ - This is false.  For instance, when $ t= 1$, $P(1,1) = $ ``$1 > 1^2$'', which is false.  
 			\item$\exists x \in \mathbb{R}^+: \exists y\in \mathbb{R}^+: P(x,y)$ - This is true.  When $x = 1$, we are trying to find a $y$ so that $y > 1^2$.  $y = 2$ yields a true statement.
 			\item $\exists x \in \mathbb{R}^+: \forall y \in \mathbb{R}^+: P(x,y)$ - This is false.  No matter what $x$ is, $x^2$ will be greater or equal to $0$.  So it cannot be true that all $y \in \mathbb{R}^+$ are greater than $x^2$, since $y = 0$ is not strictly greater than $0$.
-			\item $\forall y \in \mathbb{R}^+: \exists x \in \mathbb{R}^+: P(x,y)$ - This is true.  No matter what $y \in \mathbb{R}^+$ is, we could always choose $x = 0$ and we would have $y > x^2 = 0$.
+			\item $\forall y \in \mathbb{R}^+: \exists x \in \mathbb{R}^+: P(x,y)$ - This is false.  Taking $y=0$, there is no $x$ for which $0>x^2$.
 			\item $\exists y \in \mathbb{R}^+: \forall x \in \mathbb{R}^+: P(x,y)$ - This is false.  No matter what $y$ is, if we choose $x$ to be larger than $\sqrt{y}$, we would have $x^2 > y$.
 			\item $\forall x \in \mathbb{R}^+: \exists y \in \mathbb{R}^+: P(x,y)$ - This is true.  No matter what $x$ is, we could choose $y = x^2+1$ and $P(x,y)$ would be $P(x,x^2+1)$ which is the true statement ``$x^2+1 > x^2$''.
 		\end{enumerate}
@@ -963,7 +967,7 @@ Translate each of the following into English sentences which have the same meani
 
 \begin{solutions}
 		\begin{enumerate}
-		\item $\exists t: P(t,t)$ - This is a true.  For instance, setting $t = 2$, $P(2,2) = \T$
+		\item $\exists t: P(t,t)$ - This is a true.  $t = 2$ is a witness since $P(2,2) = \T$
 		\item $\forall t: P(t,t)$ - This is false.  For instance, setting $t =1$, $P(1,1) = \F$.
 		\item $\exists a: \forall b: P(a,b)$ - This is true.  When $a = 1$, we have the statement $\forall b: P(1,b)$.  This is a true statement since $P(1,1)$, $P(1,2)$, and $P(1,3)$ are all true.
 		\item $\exists a: \forall b: P(b,a)$ - This is a false statement.  
@@ -1003,7 +1007,7 @@ $$
 \dots,  -5, -3, -1, 1, 3, 5, \dots
 $$
 
-The \index{parity}\textbf{parity} of an integer is whether it is even or odd.  For instance, we could say that the parity of 8 is even, while the parity of 9 is odd.
+The \index{parity}\textbf{parity} of an integer is whether it is even or odd.  The parity of 8 is even, while the parity of 9 is odd.
 
 If we want to reason about the parity of integers, we will need precise definitions:
 
@@ -1021,12 +1025,12 @@ If we want to reason about the parity of integers, we will need precise definiti
 
 It is important to realize that, in mathematics, we have to be very careful to argue exclusively from our definitions.  You might know many other things about even and odd numbers.  Since you have this background knowledge, you might be tempted to give arguments like ``$13$ is odd because its last digit is odd'' or ``$13$ is odd because it isn't even''.  Those are both valid reasons, but they are not justifications which follow from the definitions.
 
-In mathematics, we start with our definitions and carefully prove a web of interconnected theorems about the objects we are studying.  So the justification ``$13$ is odd because its last digit is odd'' is only valid after we have already proved the theorem ``A number is off if its last digit is odd'' and the theorem that ``$3$ is an odd number''.
+In mathematics, we start with our definitions and carefully prove a web of interconnected theorems about the objects we are studying.  So the justification ``$13$ is odd because its last digit is odd'' is only valid after we have already proved the theorem ``A number is odd if its last digit is odd'' and the theorem that ``$13$ is an odd number''.
 
-In the famous words of Humpty Dumpty
+In the famous words of Humpty Dumpty \cite{SV}
 
 \begin{quote}
-	``When I use a word," Humpty Dumpty said, in rather a scornful tone, ``it means just what I choose it to mean - neither more nor less."
+	``When \textit{I} use a word," Humpty Dumpty said, in rather a scornful tone, ``it means just what I choose it to mean - neither more nor less."
 \end{quote}
 
 We must also be this careful. When we give a definition, that is what the word means:  neither more nor less.  The word might have more meanings for you in a different context, but in the context of the mathematical work we are doing we must practice good logical hygiene.
@@ -1059,7 +1063,7 @@ We must also be this careful. When we give a definition, that is what the word m
 
 \subsection{Divisibility}
 
-You probably have some prior knowledge of what it means for one integer to be a \textbf{factor} of another integer.  For instance, $3$ is a factor of $15$ because $15 = 3(5)$, and $10$ is a factor of $-60$ because $-60 = 10(-6)$.  
+You probably have some prior knowledge of what it means for one integer to be a \textbf{factor} of another integer.  $3$ is a factor of $15$ because $15 = 3(5)$, and $10$ is a factor of $-60$ because $-60 = 10(-6)$.  
 
 You may be less familiar with the word \textbf{divides}.  Intuitively, $a$ divides $b$ if $a$ is a factor of $b$.  So we could rephrase the above examples by saying $3$ divides $15$ and $10$ divides $-60$.  You might be more comfortable if you mentally insert the words ``into'' and ``evenly'' when you read these.  Read:  ``$3$ divides (into) $15$ (evenly)''.  Although these two extra words do clarify what is meant, it is the habit of mathematicians to omit them when speaking and writing, so you should also practice this convention if you want to speak with mathematicians.
 
@@ -1070,7 +1074,7 @@ In fact, there are a large number of different phrases expressing the same conce
 	\item $a$ is a factor of $b$.
 	\item $b$ is a multiple of $a$.
 	\item $b$ is divisible by $a$.
-	\item Symbolically we will write $a|b$ for all of these equivalent statements.  It is typical to read this as ``$a$ divides $b$'', but you could also read it as any of the other statements above.
+	\item Symbolically we will write $a \divides b$ for all of these equivalent statements.  It is typical to read this as ``$a$ divides $b$'', but you could also read it as any of the other statements above. This symbol is designed to be similar to the inequality symbol, since when both $a$ and $b$ are positive  if $a \divides b$ then $a \leq b$.  This should help you remember that $4 \divides 12$ and not the other way around.  Our use of $\divides$ is not standard:  most authors use the symbol $|$ where we use $\divides$.  The more standard symbol $|$ is visually symmetric, and this causes students to frequently forget which order is intended.  I hope the choice of $\divides$ for this symbol is helpful to you.
 \end{itemize}
 
 We can generalize from these examples to give a formal definition:
@@ -1084,7 +1088,7 @@ We can generalize from these examples to give a formal definition:
 	b = ak
 	$$
 	
-	Symbolically we write  $a|b$ if 
+	Symbolically we write  $a \divides b$ if 
 	
 	$$
 	\exists k \in \Z: b=ak
@@ -1179,8 +1183,8 @@ To see what this looks like, let's try playing with the first question:  how doe
 Let's play:
 
 \begin{itemize}
-	\item $3|21$ and $3|15$.  Does $3|(21+15)$? Yes!  $21+15 = 36 = 3(13)$, so $3|(21+15)$.
-	\item $7|7$ and $7|7$.  Does $7|(7+7)$?   Yes!  $7+7  =14 = 7(2)$, so $7|(7+7)$.
+	\item $3 \divides 21$ and $3 \divides 15$.  Does $3 \divides (21+15)$? Yes!  $21+15 = 36 = 3(13)$, so $3 \divides (21+15)$.
+	\item $7 \divides 7$ and $7 \divides 7$.  Does $7 \divides (7+7)$?   Yes!  $7+7  =14 = 7(2)$, so $7 \divides (7+7)$.
 	\item Try your own examples here.  Include some weird ones, especially involving $0$.
 \end{itemize}
 
@@ -1191,91 +1195,91 @@ Did your play always lead to the same conclusion?  If so we can make a conjectur
 	Let $a,b$ and $c$ be integers.  If $a$ divides $b$ and $a$ divides $c$, then $a$ divides $b+c$.
 \end{conjecture}
 
-We will learn how to prove conjectures like this one in the next chapter.
+We will learn how to prove conjectures like this one in the next two chapters.
 
-\subsection{Bounds}
-
-The three definitions we met so far all involved a single existential quantifier.  We diversify our buffet of definitions a bit by giving some definitions involving universal quantifiers and nested quantifiers.
-
-\begin{definition}
-		A real number $x$ is said to be an \index{Upper Bound}\textbf{upper bound} for a set of real numbers $S$ if $x$ is greater than or equal to every element of $S$.  Symbolically:
-		
-		\[
-		\forall y \in S: y \leq x
-		\]
-		
-		Similarly $x$ is a \index{Lower Bound}\textbf{lower bound} if
-		
-		\[
-		\forall y \in S: x \leq y
-		\]
-		
-		A set $S$ is said to be \index{bounded}\textbf{bounded} if it has an upper bound and a lower bound.
-\end{definition}
-
-\begin{xca}
-		\begin{enumerate}
-				\item Let $S = \{1,3,7,11,21\}$.  Give two different upper bounds for $S$, and justify that they are upper bounds.
-				\item Let $X = [-2,6]$.  Give two different lower bounds for $S$, and justify that they are lower bounds.
-				\item Invent your own set $S$ which has no upper bound but does have a lower bound.
-				\item Invent your own set $S$ which has no lower bound but does have an upper bound.
-				\item Does $\mathbb{N} = \{0,1,2,3,4,\dots\}$ have an upper bound? A lower bound?
-				\item Invent your own set $B$ which is bounded.
-			\end{enumerate}
-	\end{xca}
-
-\begin{solutions}
-		\begin{enumerate}
-				\item Both $21$ and $100$ are upper bounds for $S$.  We can see that each element of $S$ is less or equal to both $21$ and $100$.
-				\item Both $-2$ and $-100$ are lower bounds of $X$.  We can see that every element of $X$ is greater than or equal to  both $-2$ and $-100$.
-				\item $S = [0,\infty]$ has no upper bound, but does have $0$ as a lower bound.
-				\item $S = (-\infty,0]$ has no lower bound, but does have $0$ as an upper bound.
-				\item $\mathbb{N}$ has no upper bound, but is bounded below by $4$ (for instance).
-				\item $B = \{0,2,3\}$ is bounded, since $0$ is a lower bound and $3$ is an upper bound.
-			\end{enumerate}
-	\end{solutions}
-
-\begin{definition}
-		A set $S$ of real numbers is said to be \index{Unbounded From Above}\textbf{unbounded from above} if 
-		
-		\[
-		\forall L \in \mathbb{R}: \exists x \in S: x \geq L
-		\]
-		
-		Similarly 
-		
-				A set $S$ of real numbers is said to be \index{Unbounded From Below}\textbf{unbounded from below} if 
-		
-		\[
-		\forall L \in \mathbb{R}: \exists x \in S: x \leq L
-		\]
-	\end{definition}
-
-\begin{xca}
-		\begin{enumerate}
-				\item Argue that $\mathbb{N}$ is unbounded from above.
-				\item Argue that $\mathbb{Z}$ is unbounded from below.
-				\item Give an example of a set of real numbers which is unbounded from below, but not from above.
-			\end{enumerate}
-	\end{xca}
-
-\begin{solutions}
-	\begin{enumerate}
-		\item Given any real number $L$, we can always find a natural number $x$ which is larger than $L$.  In particular, we can just round $L+1$ up to the next integer, and take that as our choice of $X$.
-		\item Given any real number $L$, we can always find an integer $x$ which is less than $L$.  In particular, we can just round $L-1$ down to the next lowest integer, and take that as our choice of $x$.
-		\item An example of a set which is unbounded from below, but not from above, is the set \{\dots, -4,-3,-2,-1\} of negative integers. 
-	\end{enumerate}
-\end{solutions}
+%\subsection{Bounds}
+%
+%The three definitions we met so far all involved a single existential quantifier.  We diversify our buffet of definitions a bit by giving some definitions involving universal quantifiers and nested quantifiers.
+%
+%\begin{definition}
+%		A real number $x$ is said to be an \index{Upper Bound}\textbf{upper bound} for a set of real numbers $S$ if $x$ is greater than or equal to every element of $S$.  Symbolically:
+%		
+%		\[
+%		\forall y \in S: y \leq x
+%		\]
+%		
+%		Similarly $x$ is a \index{Lower Bound}\textbf{lower bound} if
+%		
+%		\[
+%		\forall y \in S: x \leq y
+%		\]
+%		
+%		A set $S$ is said to be \index{bounded}\textbf{bounded} if it has an upper bound and a lower bound.
+%\end{definition}
+%
+%\begin{xca}
+%		\begin{enumerate}
+%				\item Let $S = \{1,3,7,11,21\}$.  Give two different upper bounds for $S$, and justify that they are upper bounds.
+%				\item Let $X = [-2,6]$.  Give two different lower bounds for $S$, and justify that they are lower bounds.
+%				\item Invent your own set $S$ which has no upper bound but does have a lower bound.
+%				\item Invent your own set $S$ which has no lower bound but does have an upper bound.
+%				\item Does $\mathbb{N} = \{0,1,2,3,4,\dots\}$ have an upper bound? A lower bound?
+%				\item Invent your own set $B$ which is bounded.
+%			\end{enumerate}
+%	\end{xca}
+%
+%\begin{solutions}
+%		\begin{enumerate}
+%				\item Both $21$ and $100$ are upper bounds for $S$.  We can see that each element of $S$ is less or equal to both $21$ and $100$.
+%				\item Both $-2$ and $-100$ are lower bounds of $X$.  We can see that every element of $X$ is greater than or equal to  both $-2$ and $-100$.
+%				\item $S = [0,\infty]$ has no upper bound, but does have $0$ as a lower bound.
+%				\item $S = (-\infty,0]$ has no lower bound, but does have $0$ as an upper bound.
+%				\item $\mathbb{N}$ has no upper bound, but is bounded below by $4$ (for instance).
+%				\item $B = \{0,2,3\}$ is bounded, since $0$ is a lower bound and $3$ is an upper bound.
+%			\end{enumerate}
+%	\end{solutions}
+%
+%\begin{definition}
+%		A set $S$ of real numbers is said to be \index{Unbounded From Above}\textbf{unbounded from above} if 
+%		
+%		\[
+%		\forall L \in \mathbb{R}: \exists x \in S: x \geq L
+%		\]
+%		
+%		Similarly 
+%		
+%				A set $S$ of real numbers is said to be \index{Unbounded From Below}\textbf{unbounded from below} if 
+%		
+%		\[
+%		\forall L \in \mathbb{R}: \exists x \in S: x \leq L
+%		\]
+%	\end{definition}
+%
+%\begin{xca}
+%		\begin{enumerate}
+%				\item Argue that $\mathbb{N}$ is unbounded from above.
+%				\item Argue that $\mathbb{Z}$ is unbounded from below.
+%				\item Give an example of a set of real numbers which is unbounded from below, but not from above.
+%			\end{enumerate}
+%	\end{xca}
+%
+%\begin{solutions}
+%	\begin{enumerate}
+%		\item Given any real number $L$, we can always find a natural number $x$ which is larger than $L$.  In particular, we can just round $L+1$ up to the next integer, and take that as our choice of $X$.
+%		\item Given any real number $L$, we can always find an integer $x$ which is less than $L$.  In particular, we can just round $L-1$ down to the next lowest integer, and take that as our choice of $x$.
+%		\item An example of a set which is unbounded from below, but not from above, is the set \{\dots, -4,-3,-2,-1\} of negative integers. 
+%	\end{enumerate}
+%\end{solutions}
 
 \section{Using and proving quantified propositions}
 
 The primary goal of this text is to give you a precise understanding of the logic and reasoning used in mathematical arguments.  
 
-In a mathematical argument we will often have some collection of propositions which we already know to be true, and some statements which we believe to be true and would like to prove (i.e. to argue that that are true).
+In a mathematical argument we will often have some collection of propositions which we already know to be true, and some statements which we believe to be true and would like to prove (i.e. to argue that they are true).
 
 In this section we will learn both how to \textbf{use} quantified statements which we already know to be true in our arguments and how to \textbf{prove} quantified statements whose truth we wish to establish.
 
-Throughout this text we will be using ``Fitch Style Proof Outlines'' to help us craft our arguments.  The creation of these proof outlines is a somewhat involved algorithm.  In this section we will learn the parts of this algorithm which are needed for proving quantified propositions. 
+Throughout this text we will be using ``Natural Deduction Outlines'' to help us craft our arguments.  The creation of these outlines is a somewhat involved algorithm.  In this section we will learn the parts of this algorithm which are needed for proving quantified propositions. 
 
 \subsection{Using a universally quantified sentence}
 
@@ -1293,7 +1297,7 @@ What we do is to choose a ``generic'' or ``arbitrary'' element of our universe o
 
 Say you want to prove that ``Everyone who has a beard gets crumbs in it sometimes''.  This could be argued by saying ``Imagine someone who has a beard. Let's just call them Bob.  Then [arguments].  So we can conclude that Bob sometimes gets crumbs in their beard.  There was nothing special about Bob.  Therefore everyone with a beard sometimes gets crumbs in it''.
 
-The ``Fitch style proof outline'' for the universally quantified sentence  $\forall x: P(x)$ is:
+The natural deduction outline for the universally quantified sentence  $\forall x: P(x)$ is:
 
 \begin{fitch*}
 	\textrm{Let $a$ be an arbitrary element of the universe of discourse.}\\
@@ -1301,17 +1305,19 @@ The ``Fitch style proof outline'' for the universally quantified sentence  $\for
 	\textrm{Conclude $\forall x P(x)$.}
 \end{fitch*}
 
-Note:  it is important to avoid variable name conflicts!  If you have already named a variable $a$ earlier in the argument, and that name is still ``in use'', then reusing it can cause real confusion.  Imagine you were telling a story about your friends and you said
+Note:  it is important to avoid variable name conflicts!  If you have already named the variable $a$ earlier in the argument, and that name is still ``in use'', then reusing it is confusing.  Imagine you were telling a story about your friends and you said
 
-``My one friend, lets just call him Joe, started going out with my other friend, lets just call him Keith.  What Joe didn't know is that Keith was going out with my other friend.  Let's just call this other friend Joe.  So Joe found out about Joe, and you can imagine the kind of upset that caused''.
+\begin{quote}
+``My one friend, lets just call them Joe, started going out with my other friend, lets just call them Keith.  What Joe didn't know is that Keith was going out with my other friend.  Let's just call this other friend Joe.  So Joe found out about Joe, and you can imagine the kind of upset that caused!''
+\end{quote}
 
-Accidentally calling two different friends by the same name has caused the potential for real confusion in your story.
+Accidentally calling two different friends by the same name has caused the potential for real confusion in your story.  Similar dangers are possible in the mathematical stories you try to tell.  Calling two different mathematical objects the same name can lead you to make logical errors.
 
 \subsection{Using Existentially Quantified Sentences}
 
-If you know (somehow) that the sentence $\exists x \in \mathcal{U}, P(x)$ is true, then you know there is at least one value which makes the predicate true, but you do not know which one.  So you can choose one of the things which makes it true, and give it a name (like $a$) so you can refer to it later, but you may not make any other assumptions about the nature of $a$.  This form of argument is called ``Existential Elimination''
+If you know (somehow) that the sentence $\exists x : \in \mathcal{U}, P(x)$ is true, then you know there is at least one value which makes the predicate true, but you do not know which one.  So you can choose one of the things which makes it true, and give it a name (like $a$) so you can refer to it later, but you may not make any other assumptions about the nature of $a$.  This form of argument is called ``Existential Elimination''
 
-A typical example of this is that if you know that $a$ is odd, that means (by definition) that $\exists k \in \mathbb{Z}, a=2k+1$.  So you can choose such an element, and call it (say) $m$.  Then you know that $a=2m+1$, but you do not know anything else about $m$.  
+A typical example of this is that if you know that $a$ is odd, that means (by definition) that $\exists k \in \mathbb{Z}: a=2k+1$.  So you can choose such an element, and call it (say) $k_1$.  Then you know that $a=2k_1+1$, but you do not know anything else about $k_1$.  
 
 Similar remarks about variable conflicts apply here:  do not choose a variable name which is already is use.  If $b$ is an even number, and you already know $a=2m+1$, do not say $b = 2m$, because you are using the same variable $m$ to reference two potentially different constants.  Instead choose a variable name you have not used yet, like $n$.  So if we know $a$ is odd and $b$ is even, we can declare integers $m$ and $n$ so that $a=2m+1$ and $b = 2n$.
 
@@ -1319,20 +1325,20 @@ Similar remarks about variable conflicts apply here:  do not choose a variable n
 
 To prove an existentially quantified sentence you need to find a candidate element $a$ of the universe of discourse for which you believe that $P(a)$ is true, and then supply a proof that $P(a)$ is actually true.  This argument form is called ``Existential Introduction''.  We only need to find a single such $a$.  A choice of $a$ is sometimes called a ``witness'' of the existentially quantified statement.
 
-The Fitch style proof outline for $\exists x P(x)$ looks like this:
+The natural deduction style proof outline for $\exists x:  P(x)$ looks like this:
 
 \begin{fitch*}
 	\textrm{(To prove $\exists x: P(x)$)}\\
 	\textrm{Construct a candidate $a$ in the universe of discourse.}\\
 	\textrm{Give a proof that $P(a)$ is true.}\\
-	\textrm{Conclude $\exists x P(x)$.}
+	\textrm{Conclude $\exists x: P(x)$.}
 \end{fitch*} 
 
-Note:  Existentially quantified sentences are a bit funny.  The construction of $a$ is often more important than the statement that $a$ exists.  It is much more useful to know that $1729$ is an integer which is expressible as sum of two cubes in two different ways ($1729 = 1^3+12^3 = 9^3+10^3$ ) than it is to merely know that there is some integer which is expressible as a sum of two cubes in two different ways.
+Note:  Existentially quantified sentences are a bit funny.  The construction of a witness is often more important than the statement that the witness exists.  It is much more useful to know that $1729$ is an integer which is expressible as sum of two cubes in two different ways ($1729 = 1^3+12^3 = 9^3+10^3$ ) than it is to merely know that there is \textit{some} integer which is expressible as a sum of two cubes in two different ways. \footnote{ See \url{https://www.bbc.com/news/magazine-24459279} for some interesting anecdotes about this fact.}
 
 \subsection{Using and Proving Statements With Nested Quantifiers}
 
-To use and prove statements with nested quantifiers, you just apply the rules we have already introduced recursively.  For instance, to prove $\forall x \in \mathcal{U}: \exists y \in \mathcal{V}: P(x,y)$ we would:
+To use and prove statements with nested quantifiers, you just apply the rules we have already introduced recursively.  To prove $\forall x \in \mathcal{U}: \exists y \in \mathcal{V}: P(x,y)$ we would:
 
 \begin{fitch*}
 	\textrm{Let $x_1 \in \mathcal{U}$ be arbitrary.}\\
@@ -1355,24 +1361,31 @@ Note that since we are trying to find a $y_1 \in \mathcal{V}$ for which $P(x_1,y
 
 \begin{xca}	
 	\begin{enumerate}
-		\item Use that $\forall n \in \mathbb{N}: 6 | (7^n-1)$ to argue that $6 | 342$.
-		\item Use that $\exists n  \in \{2,3,4, \dots \}: n |  1581$ to argue that $1581$ is not prime.
-		\item Argue that $\forall n \in \mathbb{Z}:  4 | (12n)$.
-		\item Argue that $\exists n \in \mathbb{Z}: (n-3)|n$.
+		\item It is true that $\forall n \in \mathbb{N}: 6 \divides (7^n-1)$.  Use this fact to argue that $6 \divides 342$.
+		\item It is true that there is a nonzero function $f: \mathbb{R} \to \mathbb{R}$ which satisfies $ f''(x) = f'(x)+f(x)$ for all $x$.  Use this fact to argue that there are infinitely many functions different functions satisfying the same differential equation.
+		\item Argue that $\forall n \in \mathbb{Z}:  4 \divides (12n)$.
+		\item Argue that $\exists n \in \mathbb{Z}: (n-3) \divides n$.
+		\item Say you know (somehow) that $x$ is an even number.  Argue that $3x$ is also even.
+		\item Say you know (somehow) that both $12|x$ and $15|y$.  Argue that $3|(x+y)$.
 		\item Argue that $\forall \epsilon \in (0,1) \exists \delta \in (0,1): 4(3+\delta)-4(3) < \epsilon$.
-		\item Argue that $\exists x \in \mathbb{Z}: \forall y \in \mathbb{Z}:  y|x$.
+		\item Argue that $\exists x \in \mathbb{Z}: \forall y \in \mathbb{Z}:  y \divides x$.
 		\end{enumerate}
 	\end{xca}
 
 \begin{solutions}	
 	\begin{enumerate}
-		\item Since we know $\forall n \in \mathbb{N}: 6 | (7^n-1)$ is true (we were told to assume this), we also know that $6|(7^3-1)$ is true. Since $7^3-1 = 342$, we know that $6$ divides $342$ without even needing to check!  We could check that in fact $342 = 6 \cdot 57$, but this check is not necessary if we believe the theorem that$\forall n \in \mathbb{N}: 6 | (7^n-1)$. 
+		\item Since we know $\forall n \in \mathbb{N}: 6 \divides (7^n-1)$ is true (we were told to assume this), we also know that $6 \divides (7^3-1)$ is true. Since $7^3-1 = 342$, we know that $6$ divides $342$ without even needing to check!  We could check that in fact $342 = 6 \cdot 57$, but this check is not necessary if we believe the theorem that$\forall n \in \mathbb{N}: 6  \divides  (7^n-1)$. 
 		
-		\item Since $\exists n  \in \{2,3,4, \dots, 1580 \}: n |  1581$, then we know that there are some integers which are larger than $1$, less than $1581$, and which divide $1581$.  Choose one and call it $n_1$.  Then $n_1$ is a positive factor of $1581$ other than $1$ and $1581$, demonstrating that $1581$ is not prime.  We do not need to know what $n_1$ is to make this argument, but we can check that $1581 = 31 \cdot 51$, so either factor would work as a choice of $n_1$.
+		\item Since we know there is such a function, pick one and call it $f$.  Then for any constant $c \in \mathbb{R}$, you can check that the function $g(x) = cf(x)$ satisfies $g''(x) = g'(x)+g(x)$.  We don't need to know what $f$ is for this argument to be valid:  we just need to know that such an $f$ exists.
 		
-		\item Choose an integer arbitrarily and call it $n_1$.  We want to argue that $4|(12n_1)$.  In other words, we need to find an integer $k_1$ for which $12n_1 = 4k_1$.  We can check that $k_1 = 3n_1$ works:  $12n_1 = 4(3n_1) = 4k_1$.
+		\item Choose an integer arbitrarily and call it $n_1$.  We want to argue that $4 \divides (12n_1)$.  In other words, we need to find an integer $k_1$ for which $12n_1 = 4k_1$.  We can check that $k_1 = 3n_1$ works:  $12n_1 = 4(3n_1) = 4k_1$.
 
-		\item We just need to find an $n_1$ which works.  Choosing $n_1 = 4$, we see that $n_1 - 3 = 1$, and it is clear that $1 | 4$.  We could have also verified this using $6$  to witness the proposition.  You might enjoy trying to find all of the solutions to this equation, and trying to justify that you have them all!
+		\item We just need to find an $n_1$ which works.  Choosing $n_1 = 4$, we see that $n_1 - 3 = 1$, and it is clear that $1 \divides  4$.  We could have also verified this using $6$  to witness the proposition.  You might enjoy trying to find all of the solutions to this equation, and trying to justify that you have them all!
+		
+		\item Since $x$ is even we know that there is an integer $n$ with $x =2n$.  Use existential elimination to produce a particular $n_1 \in \mathbb{Z}$ with $x =2n_1$.  Then $3x  =3(2n_1) = 2(3n_1)$.  Since $3n_1$ is an integer, then $3x$ is even.  Notice that we are using existential introduction here:  we have argued that $3x$ is even (which means $\exists k \in \Z : x = 2k$) by constructing a candidate $k=3n_1$ and arguing that $x=2k$ is actually true for this choice.
+		
+		\item Since $12|x$ and $15|y$ we know that there exist integers $j$ and $k$ so that $x = 12j$ and $y=15k$.  Use existential elimination to produce particular $j_1 \in \Z$ and $k_1 \in \Z$ with $x = 12j_1$ and $y=15k_1$.  Then $x+y = 12j_1+15k_1 = 3(4j_1+5k_1)$.  Since $(4j_1+5k_1)$ is an integer, we have shown that $3|(x+y)$.  Notice that we are using existential introduction here:  we have argued that $3|(x+y)$ (which means $\exists t \in \Z: x+y = 3t$) by constructing a candidate $t = 4j_1+5k_1$ and showing that $x+y = 3t$ is actually true for this choice.
+		 
 		\item Let $\epsilon_1 \in (0,1)$ be arbitrary.  We are trying to construct a $\delta \in (0,1)$ for which $4(3+\delta)-4(3) < \epsilon$.  This inequality is equivalent to the inequality $4\delta < \epsilon$.  So we just need to choose a $\delta$ which is less than $\epsilon_1/4$.  To be explicit about it, lets choose $\delta_1 = \epsilon_1/8$.  Then 
 		\begin{align*}
 			4(3+\delta_1)-4(3) &= 4\delta_1 \\
@@ -1382,7 +1395,7 @@ Note that since we are trying to find a $y_1 \in \mathcal{V}$ for which $P(x_1,y
 		\end{align*}
 		
 		Note the logic here:  for an arbitrarily chosen $\epsilon$, we were able to cook up a $\delta$ (dependent on $\epsilon$) which satisfied the inequality.
-		\item We need a witness for this existentially quantified statement.  I will choose $x=0$.  So we are trying to argue that $\forall y \in \mathbb{Z}:  y|0$.  Let $y_1$ be an arbitrary integer.  We want to show that $y_1 | 0$.  So we need to find an integer $k$ for which $0 = y_1 \cdot k$.  $k=0$ works!  Thus there is an integer (namely zero) which is divisible by all other integers.
+		\item We need a witness for this existentially quantified statement.  I will choose $x=0$.  So we are trying to argue that $\forall y \in \mathbb{Z}:  y \divides 0$.  Let $y_1$ be an arbitrary integer.  We want to show that $y_1 \divides 0$.  So we need to find an integer $k$ for which $0 = y_1 \cdot k$.  $k=0$ works!  Thus there is an integer (namely zero) which is divisible by all other integers.
 	\end{enumerate}
 \end{solutions}
 

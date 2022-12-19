@@ -4,11 +4,11 @@
 
 In the last chapter we learned three tools for building new predicates and propositions out of old propositions:  substitution of a variable with another variable or value, universal quantification of a variable, and existential quantification of a variable.
 
-We can also create new predicates from old ones by using the logical connectives ``and'' ($\wedge$),``implies'' ($\implies$), ``if and only if'' ($\iff$), ``not'' ($\neg$), and ``or'' ($\vee$).
+We can also create new predicates from old ones by using the logical connectives ``and'' ($\wedge$),``implies'' ($\implies$), ``if and only if'' ($\iff$), ``or'' ($\vee$), and ``not'' ($\neg$).
 
 For instance if $P$ is the proposition ``It is raining'' and $Q$ is the proposition ``I have no umbrella'', then we can form the compound sentence $P \wedge Q$ which says ``It is raining and I have no umbrella''.
 
-These logical connectives are used in our everyday language, but we do not use them with the precision which is required for mathematics or computer science.  For instance consider the following sentence:
+These logical connectives are used in our everyday language, but we do not use them with the precision which is required for mathematics or computer science.  Consider the following sentence:
 
 \begin{quote}
 		``I will go out for pizza or I will go out for ice cream''
@@ -16,7 +16,7 @@ These logical connectives are used in our everyday language, but we do not use t
 
 This sentence is ambiguous.  It is unclear whether the person saying this sentence is allowing for the possibility that they will get both pizza and ice cream, or if they are claiming that they will only get one and not the other.
 
-The other connectives suffer some similar ambiguities in natural language.  We will define each of these connectives precisely by describing how they interact with the truth values of the propositions or predicates which they connect.
+The other connectives suffer from similar ambiguities in natural language.  We will define each of these connectives precisely by describing how they interact with the truth values of the statements which they connect.
 
 To see the importance of resolving such ambiguities consider the following theorem:
 
@@ -28,7 +28,7 @@ In order to understand what this theorem is saying we need to understand what ``
 
 You can see that having a precise and consistent meaning for these logical connectives is important for communicating mathematical ideas. 
 
-Another major goal of this chapter is to integrate an understanding of how to both \textbf{use} (eliminate) and \textbf{prove} (introduce) statements involving each of the connectives.  We will learn the elimination and introduction rules associated with each connective.  These will show us how to start building Fitch style proof outlines for statements involving these connectives.
+Another major goal of this chapter is to integrate an understanding of how to both \textbf{use} (eliminate) and \textbf{prove} (introduce) statements involving each of the connectives.  We will learn the elimination and introduction rules associated with each connective.  These will show us how to start building natural deduction proof outlines for statements involving these connectives.
 
 In writing computer programs we run into similar issues.  We often want the computer to execute some command depending on whether a set of different conditions are satisfied.  Consider the simple problem of instructing a computer to sum all of the numbers between $1$ and $100$ which are divisible by $2$ or $3$ but not both.
 
@@ -36,9 +36,9 @@ In psuedocode, we might write
 
 \begin{lstlisting}[language=Python]
 set SUM = 0
-for k in the set {1, 2, 3, ..., 100}:
-	If ((k%2 == 0) OR (k%3 ==0)) AND (NOT((k%2 == 0) AND (k%3 ==0))) :
-		SUM := SUM+k 
+for k in {1, 2, 3, ..., 100}:
+ If ((k%2==0) OR (k%3==0)) AND (NOT((k%2==0) AND (k%3==0))):
+  SUM := SUM + k 
 return SUM
 \end{lstlisting}
 
@@ -48,12 +48,12 @@ We cannot write functional code like this without understanding the precise beha
 
 \section{Conjunction}
 
-Given two propositions or predicates $L$ and $R$, we can form a new proposition or predicate called the \index{Conjunction}\textbf{conjunction} of $L$ and $R$.  We will write $L \wedge R$ for this new statement.  We read $L \wedge R$ as ``$L$ and $R$''.  We will also sometimes refer to $L$ as the \index{conjunct} \textbf{left conjunct} and $R$ as the \textbf{right conjunct}.
+Given two statements $L$ and $R$, we can form a new  statement called the \index{Conjunction}\textbf{conjunction} of $L$ and $R$.  We will write $L \wedge R$ for this new statement.  We read $L \wedge R$ as ``$L$ and $R$''.  We will also sometimes refer to $L$ as the \index{conjunct} \textbf{left conjunct} and $R$ as the \textbf{right conjunct}.
 
 We will define conjunction by explicitly showing how the truth value of the conjunction can be obtained from the truth value of each conjunct.
 
 \begin{definition}
-		Let $L$ and $R$ be two propositions or predicates.  We define the new proposition or predicate $L \wedge R$ as a sentence whose truth value is determined by the following table:
+		Let $L$ and $R$ be two statements.  We define  $L \wedge R$ as a sentence whose truth value is determined by the following table:
 		
 		
 		\begin{table}[h!]
@@ -95,13 +95,13 @@ This is also called ``conjunction introduction'', because it allows us to introd
 		If the sentence is a proposition, evaluate its truth value with justify your answer.  If the sentence is a predicate identify its free variables, try to find some values for the free variables which make it true, and some which make it false (if possible).
 		
 		\begin{enumerate}
-				\item $(6 < 7 ) \wedge (6| 18)$
-				\item $(2+2=4) \wedge 9|3$
-				\item $6 \textrm{ is even } \wedge 7 \textrm{ is odd}$
+				\item $(6 < 7 ) \wedge (6\divides 18)$
+				\item $(2+2=4) \wedge (9 \divides 3)$
+				\item $(6 \textrm{ is even }) \wedge (7 \textrm{ is odd})$
 				\item $[(1+1=2) \wedge (2+2 = 4)] \wedge (4+4 =8)$
-				\item $(x|y) \wedge (y|x)$
-				\item $x \textrm{ is even } \wedge y \textrm{ is odd}$ 
-				\item $\forall x: (x \cdot 0 = 0 \wedge x \cdot 1 = x)$
+				\item $(x \divides y) \wedge (y \divides x)$
+				\item $(x \textrm{ is even }) \wedge (y \textrm{ is odd})$ 
+				\item $\forall x: [(x \cdot 0 = 0) \wedge (x \cdot 1 = x)]$
 				\item $\exists x: [(2x+1 = 5) \wedge (3x+3 = 5)]$
 				\item $[\exists x: (2x+1 = 5)] \wedge [\exists x: (3x+3 = 5)]$
 			\end{enumerate}
@@ -110,25 +110,25 @@ This is also called ``conjunction introduction'', because it allows us to introd
 \begin{solutions}
 	
 	\begin{enumerate}
-		\item $(6 < 7 ) \wedge (6| 18)$ - True proposition. Both conjuncts are true, so the conjunction is true.  Note the ``recursive'' nature of the evaluation of the truth value here:  to be explicit, I would need to verify that $6|18$ is true by demonstrating the witness $k= 3$ for the existentially quantified statement $\exists k : 18 = 6k$.
-		\item $(2+2=4) \wedge 9|3$ - False proposition.  The right conjunct is false.
-		\item $6 \textrm{ is even } \wedge 7 \textrm{ is odd}$ - True proposition.  Both conjuncts are true.
+		\item $(6 < 7 ) \wedge (6 \divides 18)$ - True proposition. Both conjuncts are true, so the conjunction is true.  Note the ``recursive'' nature of the evaluation of the truth value here:  to be explicit, I would need to verify that $6\divides 18$ is true by demonstrating the witness $k= 3$ for the existentially quantified statement $\exists k : 18 = 6k$.
+		\item $(2+2=4) \wedge (9\divides3)$ - False proposition.  The right conjunct is false.
+		\item $(6 \textrm{ is even }) \wedge (7 \textrm{ is odd})$ - True proposition.  Both conjuncts are true.
 		\item $[(1+1=2) \wedge (2+2 = 4)] \wedge (4+4 =8)$ - True proposition.  We need to evaluate this in stages:
 		
 		\begin{align*}
-		[(1+1=2) \wedge (2+2 = 4)] \wedge (4+4 =8) &= [T \wedge T] \wedge T\\
-		&= T \wedge T\\
-		& = T
+		[(1+1=2) \wedge (2+2 = 4)] \wedge (4+4 =8) &= [\T \wedge \T] \wedge \T\\
+		&= \T \wedge \T\\
+		& = \T
 		\end{align*}
 		
-		\item $(x|y) \wedge (y|x)$ - This is a predicate with free variables $x$ and $y$.  It is true if we set $(x,y) = (4,-4)$.  It is false if we set $(x,y) = (2,4)$, since in that case the right conjunct is false.
-		\item $x \textrm{ is even } \wedge y \textrm{ is odd}$  - This is a predicate with free variables $x$ and $y$. It is true if we set $(x,y) = (2,7)$.  It is false if we set $(x,y) = (3,3)$, since in that case the left conjunct is false.
-		\item $\forall x \in \mathbb{R}: (x\cdot 0 = 0 \wedge x \cdot 1 = x)$ - This is a true proposition. 
+		\item $(x\divides y) \wedge (y \divides x)$ - This is a predicate with free variables $x$ and $y$.  It is true if we set $(x,y) = (4,-4)$.  It is false if we set $(x,y) = (2,4)$, since in that case the right conjunct is false.
+		\item $(x \textrm{ is even }) \wedge (y \textrm{ is odd})$   - This is a predicate with free variables $x$ and $y$. It is true if we set $(x,y) = (2,7)$.  It is false if we set $(x,y) = (3,3)$, since in that case the left conjunct is false.
+		\item $\forall x: [(x \cdot 0 = 0) \wedge (x \cdot 1 = x)]$ - This is a true proposition. 
 		
 		\begin{fitch*}
 			\textrm{Let $x_1  \in \mathbb{R}$ be arbitrary.}\\
 			\textrm{$x_1 \cdot 0 = 0$ is true, since any number multiplied by $0$ is $0$. }\\
-			\textrm{$x_1 \cdot 1 = 1$ is true, since any the product of any number with $1$ is  itself.}\\
+			\textrm{$x_1 \cdot 1 = x_1$ is true, since any the product of any number with $1$ is  itself.}\\
 			\textrm{Since both conjuncts are true, the conjunction $(x_1 \cdot 0 = 0) \wedge (x_1 \cdot 1 = x_1)$ is true}\\
 			\textrm{Since $x_1$ was chosen arbitrarily, the universally quantified statement}\\
 			 \textrm{ \hphantom{dsada} $\forall x \in \mathbb{R} [(x \cdot 0 = 0) \wedge (x \cdot 1 = x) ]$ is true.} 
@@ -150,9 +150,15 @@ Implication is one of the hardest logical connectives to internalize the meaning
 
 The contents of this subsection are intuitive rather than rigorous.  We need some idea of what we are trying to accomplish with the implication connective before we give a rigorous definition.  So understand everything in this subsection with that caveat in mind.
 
-Let $H$ and $C$ be two propositions or predicates. Let us call $H$ the ``hypothesis'' and $C$ the ``conclusion''.
+Let $H$ and $C$ be two statements. Let us call $H$ the ``hypothesis'' and $C$ the ``conclusion''.
 
-We want to define a new proposition or predicate $H \implies C$ (read: ``H implies C'') which asserts that we can start from the hypothesis $H$ and produce a valid argument for the conclusion $C$.  If we can produce such an argument, the implication should be true.  If it is impossible produce such an argument, the implication should be false.
+We want to define $H \implies C$ (read: ``H implies C'') as the sentence
+
+
+	``There is a valid argument allows us to conclude $C$ from a hypothesis of $H$.''
+
+
+ If we can produce such an argument, the implication should be true.  If it is impossible produce such an argument, the implication should be false.
 
 Lets consider some examples.
 
@@ -190,18 +196,21 @@ Thus, $(1+1 = 0) \implies (0 = 0)$ is true.
 
 Should $(1+1 = 2) \implies (1 = 0)$ be true or false?  This should be false.  No matter how clever I am, there will be no valid argument which starts from a true hypothesis and leads to a false conclusion.
 
-To steal from philosopher Bertrand Russel, should  $(1+1 = 1) \implies \textrm{``Bertrand Russel is the pope''}$ be true or false?  This is more difficult.  It is hard to say whether we could come up with an argument which starts from the hypothesis that $1+1 = 1$ and arrives at the conclusion that Bertrand Russel is the pope, but it is also difficult to say that such an argument is impossible to make.  Here is Bertrand's solution:
+To steal from philosopher Bertrand Russel \footnote{\url{http://ceadserv1.nku.edu/longa//classes/mat385_resources/docs/russellpope.html}}, should  $$(1+1 = 1) \implies \textrm{``Bertrand Russel is the pope''}$$ be true or false?  This is more difficult.  It is hard to say whether we could come up with an argument which starts from the hypothesis that $1+1 = 1$ and arrives at the conclusion that Bertrand Russel is the pope, but it is also difficult to say that such an argument is impossible to make.  Here is Bertrand's solution:
 
 \begin{quote}
 		Assume that $1+1 = 1$.
+		
 		The pope is one person, and I am another.
+		
 		Since $1+1 = 1$, then I and the pope together are one.
+		
 		Thus I am the pope.
 	\end{quote}
 
 This was a very tricky argument.  It might be even harder to decide whether we could come up with a valid argument in other circumstances.  For instance, can you come up with an argument that if $E = mc^3$ then cows are made of diamonds?  I wouldn't know how to make such an argument, but I also wouldn't rule out such an argument existing.  This would put us in the awkward situation of being unable to evaluate the truth value of this statement unless someone comes around who is clever enough to make the argument.  It would also leave open the possibility that this argument is impossible to make, but for reasons of content, rather than the logical form of the statements.
 
-The only thing we can really be sure of with implications (used in this intuitive sense) is that we can often produce a valid argument which starts with a false hypothesis and leads to either true or false conclusions.  However, when we start with a true premise then a valid argument will only ever lead to true conclusions, not false ones.
+The only thing we can really be sure of with implications (used in this intuitive sense) is that if a hypothesis is false, then a valid argument can sometimes lead us to true conclusions, and can sometimes lead us to false conclusions.  However, when we start with a true premise then a valid argument will only ever lead to true conclusions, not false ones.
 
 \subsection{Rigorous definition of implication}
 
@@ -212,7 +221,7 @@ However, as we saw, our intuitive view of implication is not well equipped to ha
 We will sweep these issues  under the rug by providing a definition of implication which is less intuitive but is easier to work with.  Namely, we will define implication by explicitly showing how the truth value of the implication can be obtained from the truth value of the hypothesis and conclusion.
 
 \begin{definition}
-	Let $H$ and $C$ be two propositions or predicates.  We define the new proposition or predicate $H \implies C$ as a sentence whose truth value is determined by the following table:
+	Let $H$ and $C$ be two statements.  We define the new  $H \implies C$ as a sentence whose truth value is determined by the following table:
 	
 	
 	\begin{table}[h!]
@@ -230,7 +239,7 @@ We will sweep these issues  under the rug by providing a definition of implicati
 	\end{table}
 \end{definition}
 
-Notice that with this convention, always make a valid argument to establish any conclusion if we start with a false hypothesis.  These implications (recorded in the first two rows of the truth table) are called \index{vacuous truth}\textbf{vacuously true}.  These two rows of the truth table are extremely unintuitive for most people.  You will need to do serious internal work to integrate these ideas into your being.
+Notice that with this convention, we can always make a valid argument to establish any conclusion if we start with a false hypothesis.  These implications (recorded in the first two rows of the truth table) are called \index{vacuous truth}\textbf{vacuously true}.  These two rows of the truth table are extremely unintuitive for most people.  You will need to do serious internal work to integrate these ideas into your being.
 
 However, if the implication is true, then a true hypothesis can only ever establish a true conclusion.
 
@@ -257,7 +266,7 @@ Both the hypothesis and conclusion are false, but we want the implication to be 
 Similarly we want to be able to say that if a real number is less than $6$, then it is less than $8$.
 
 \[
-\forall x \in \mathbb{R}: (x< 6) \implies (x<8)}
+\forall x \in \mathbb{R}: (x< 6) \implies (x<8)
 \]
 
 If this statement is true, then it should be true when we substitute any real value for $x$ that we wish.  Substituting $x  = 7$ gives
@@ -266,15 +275,13 @@ If this statement is true, then it should be true when we substitute any real va
 (7< 6) \implies (7 < 8)
 \]
 
-Here the hypothesis is false, but conclusion is true, and we want the implication to be true!  This justifies the first row in the truth table.  It also makes sense from our intuitive perspective:  if $7$ \textit{were} less than $6$, surely it would also be less than $8$.  The argument is valid, even though the hypothesis is false.  We reached a correct conclusion ``by accident''.
+Here the hypothesis is false, but conclusion is true, and we want the implication to be true!  This justifies the second row in the truth table.  It also makes sense from our intuitive perspective:  if $7$ \textit{were} less than $6$, surely it would also be less than $8$.  The argument is valid, even though the hypothesis is false.  We reached a correct conclusion ``by accident''.
 
 In short, if we want universal elimination to work with implication then we need to have the first two rows of the truth table for implication be the way they are.
 
 
-\begin{xcb}{Exercises}
-	
-	\begin{enumerate}
-		\item Which of the following implications are true?  If the implication is true, try to find an ``argument'' which starts with the hypothesis and leads to the conclusion.  If the implication is false, explain how the implication leads to a contradiction.
+\begin{xca}
+	Which of the following implications are true?  If the implication is true, try to find an ``argument'' which starts with the hypothesis and leads to the conclusion.  If the implication is false, explain why such an ``argument'' must be impossible to find.
 		\begin{enumerate}
 			\item If $1<2$ then $6<5$.
 			\item If $2<1$ then $6<5$.
@@ -285,31 +292,659 @@ In short, if we want universal elimination to work with implication then we need
 			\item If $1$ is odd then $2$ is odd.
 			\item If $1$ is even then $2$ is even. 
 		\end{enumerate}
-		\item Evaluate the truth values of the following expressions.
-		\begin{enumerate}
-			\item $(F \implies F) \implies T$
-			\item $T \implies (T \implies F)$
-			\item $T \implies (T \implies T)$
-			\item $(T \implies F) \implies (F \implies T)$
-			\item $F \implies (F \implies F)$
-			\item $T \implies (T \implies F)$
-		\end{enumerate}
+\end{xca}
+
+\begin{solutions}
+	\begin{enumerate}
+		\item If $1<2$ then $6<5$. - The hypothesis is true while the conclusion is false.  Thus there cannot be a valid argument starting with the hypothesis and ending with the conclusion.  Hence this implication is false.
+		\item If $2<1$ then $6<5$.  - Since the hypothesis is false, this implication is vacuously true.  While it is not logically necessary to make an argument (this is really part of our definition of valid argument), it is psychologically comforting to do so.  We can start with the premise that $2<1$, add $4$ to both sides, and conclude that $6<5$.
+		\item If $2 = 1$ then $0 = 0$. - Since the hypothesis is false, this implication is vacuously true. If we assume $2 = 1$, then multiplying both sides by $0$ yields the statement $0=0$.
+		\item If $2 = 2$ then $4 = 4$. - Both hypothesis and conclusion are true, so the implication is true.  A valid argument is to multiply both sides of $2=2$ by $2$.
+		\item If $1$ is odd then $2$ is even.  - Both hypothesis and conclusion are true, so the implication is true.  A valid argument is to say that since one more than an odd number is even, and $1$ is odd, then $2$ is even.
+		\item If $1$ is even then $2$ is odd. - The hypothesis is false, so this implication is vacuously true. A valid argument is to say that since one more than an odd number is even, if $1$ is even, then $2$ is odd.
+		\item If $1$ is odd then $2$ is odd. - The hypothesis is true and the conclusion is false, so this implication is false.  There is no valid argument which can conclude false statements from true premises.
+		\item If $1$ is even then $2$ is even.  - The hypothesis is false, so this statement is vacuously true.  A valid argument might not even cite that $1$ is even.  Assume $1$ is even, and then just argue that since $2 = 2(1)$, then by definition $2$ is even.
 	\end{enumerate}
-	
-\end{xcb}
+\end{solutions}
+
+\begin{xca}
+Evaluate the truth values of the following expressions.
+		\begin{enumerate}
+			\item $(\F \implies \F) \implies \T$
+			\item $\T \implies (\T \implies \F)$
+			\item $\T \implies (\T \implies \T)$
+			\item $(\T \implies \F) \implies (\F \implies \T)$
+			\item $\F \implies (\F \implies \F)$
+			\item $\T \implies (\T \implies \F)$
+		\end{enumerate}	
+\end{xca}
+
+\begin{solutions}
+	Evaluate the truth values of the following expressions.
+
+		\begin{enumerate}
+	\item \begin{align*}(\F \implies \F) &\implies \T \\  \T &\implies \T \\ &  \hphantom{ds}\T\end{align*}
+	\item \begin{align*}\T &\implies (\T \implies \F) \\ \T &\implies \F \\  & \hphantom{ds}\F \end{align*}
+	\item \begin{align*}\T &\implies (\T \implies \T) \\  \T &\implies \T  \\  &\hphantom{ds}\T\end{align*}
+	\item \begin{align*}(\T \implies \F) &\implies (\F \implies \T) \\ \F &\implies \T \\ &\hphantom{ds}\T\end{align*}
+	\item \begin{align*}\F &\implies (\F \implies \F) \\ \F &\implies \T \\ &\hphantom{ds}\T\end{align*}
+	\item \begin{align*}\T &\implies (\T \implies \F) \\ \T &\implies \F \\ &\hphantom{ds}\F\end{align*}
+\end{enumerate}	
+
+\end{solutions}
+
+
+\subsection{Using an implication}
+
+Knowing that the implication $H \implies C$ is true does not tell us whether $H$ is true or $C$ is true.  It only tells us that \textbf{if} $H$ is true, \textbf{then} $C$ must be true as well.
+
+If we know both that $H$ is true and $H \implies C$ is true, then we can conclude that $C$ is true.  This kind of reasoning is also called \textbf{implication elimination} or \index{``modus ponens''}\textbf{modus ponens} (from ``modus ponendo ponens'' which is Latin for "mode that by affirming affirms"). There is only one row of the truth table where both $H$ and $H \implies C$ are both true, and in that row $C$ is also true.
+
+
+What happens if we know an implication $H \implies C$ is true, and we know that $H$ is false?  This is a sad situation to be in, because the implication is useless for making arguments.  We can see that in this case, $H$ could be true or false, so we gain no information about $C$ in this case.  Similarly, knowing that $C$ is true gives us no information about $H$.
+
+\begin{example}
+		Here is a theorem which should be familiar to you form high school:
+		
+		\begin{theorem}[Linear Factors Theorem]
+			Let $p(x)$ be a polynomial with real coefficients and let $a$ be a real number.  If $p(a) = 0$, then there exists another polynmial $g(x)$ with real coefficients such that $p(x) = (x-a)g(x)$. 
+		\end{theorem}
+		
+		Maybe I am interested in the behaviour of the rational function $f(x) = \frac{x^7+x-2}{x-1}$ near $x=1$ as either a standalone problem in a Calculus course, or as a small part of some real mathematical work I am doing.
+		
+		Let $p(x) = x^7+x-2$ The linear factors theorem says that the implication $(p(1) = 0) \implies \exists g: [p(x) = (x-1)g(x)]$ is true.  $p(1) = 0$ is actually true because $p(1) = 1^7+1-2 = 0$.  So, by Modus Ponens we know that there is a polynomial $g$ with $p(x) = (x-1)g(x)$.
+		
+		The theorem doesn't actually tell me how to find $g$ (there is an algorithm called ``polynomial long division'' which lets you find $g$), but that might not be necessary for my problem.  The very fact that $g$ exists allows me to conclude that
+		
+		$$f(x) = \frac{(x-1)g(x)}{x-1} = g(x)$$
+		
+		when $x \neq 1$, and so we can tell that $f$ has a removable discontinuity at $x=1$.
+		
+	\end{example}
+
+\subsection{Proving an implication}
+
+If we want to convince someone that an implication $H \implies C$ is true, what do we need to do?
+
+If the hypothesis $H$ is false, then the implication is automatically true (no matter whether the conclusion $q$ is true or false).  Remember that we call this kind of implication ``vacuously true''.  
+
+So to convince someone that an implication $H \implies C$ is true, we do not need to ever consider the case when $H$ is false.  We only have to consider what happens when $H$ is true.  If $H$ is true, then for the implication to be true we need to show that $C$ is also true.
+
+In other words, to prove an implication $H \implies C$ we should \textbf{assume} (or pretend) that $H$ is true, and try to argue that $C$ must be true relative to that assumption.
+
+In our proof outline, we will record the fact that we have made an \textbf{assumption} by initiating a vertical bar with an indent.  Every part of the argument within the scope of that vertical bar is made relative to the assumption (so we can always pretend that the assumption is true for those parts of the argument).  We cannot assume that the assumption is true in other places of our argument!  When we have finished proving the implication, we end the vertical bar, and unindent.
+
+So our proof outline looks like this:
+
+\begin{fitch*}
+	\textrm{(Need to show $H \implies C$ is true)}\\
+	\textrm{Assume $H$ is true.}\\
+	\fa \textrm{ Argue that $C$ is true, assuming that $H$ is true}\\
+	\fa \textrm{ Continue arguing that $C$ is true, still under the assumption that $H$ is true.}\\
+	\fa \textrm{ Conclude that $C$ is true.}\\
+	\textrm{Conclude that $H \implies C$ is true.}\\
+\end{fitch*}
+
+Note:  you \textbf{cannot} use that either $H$ or $C$ are true.  We only proved that if $H$ is true, then $C$ is.  We didn't actually argue that either one was true.
+
+\begin{example}
+		Let's prove that if $n$ is an odd integer, then $n+7$ is an even integer.
+		
+		Symbolically, we are saying
+		
+		\[
+		 \forall n \in \mathbb{Z}: (\textrm{$n$ is odd}) \implies (\textrm{$n+7$ is even})
+		\]
+		
+		\begin{fitch}
+				\textrm{Let $n_1$ be an arbitrary integer.}\\
+				\textrm{Assume $n_1$ is odd.}\\
+				\fa \textrm{There is an integer $k$ so that $n_1  = 2k+1$.  Choose one such $k$ and call it $k_1$. }\\
+				\fa \textrm{Then $n_1+7 = (2k_1+1)+7$}\\
+				\fa \textrm{So $n_1+ 7 = 2k_1 +8$}\\
+				\fa \textrm{So $n_1+ 7 = 2(k_1+4)$}\\
+				\fa \textrm{So $n_1 + 7$ is even.}
+			\end{fitch}
+		
+		Commentary:
+		
+		\begin{enumerate}
+			\item We are introducing an arbitrarily chosen integer to introduce the universal quantifier.  If we can argue that the theorem is true for this  ``totally random'' integer $n_1$, then we can be sure it is true of all integers.
+			\item If $n_1$ is not odd, then the theorem is vacuously true.  So we only need to consider the case that $n_1$ is odd, and try to prove that $n_1+7$ is even in that case.  This is implication introduction.
+			\item Here we are using the definition of even.  Since the definition of even is an existentially quantified statement, when we use it (eliminate the existential quantifier) we obtain a witness $k_1$ which we know nothing about except for the fact that it is a witness.
+			\item Algebra
+			\item Algebra
+			\item Algebra
+			\item Since we have demonstrated that $n_1+7 = 2(k_1+4)$, we have shown that $m_1 = k_1+4$ is a witness for the existentially quantified statement $\exists m : (n_1+7) = 2m $.  This is a proof that $n_1+7$ is even.
+			\end{enumerate}
+	\end{example}
+
+\subsection{The Principle of Explosion}
+
+One consequence of our definition of implication is that if you derive an absurdity (if you give an argument for $F$), then you can derive any other statement.  
+
+Since $\F \implies P$ for any proposition $P$, then if we derive $\F$ somehow, we can conclude via Modus Ponens that $P$ must be true.
+
+This formalizes Bertrand Russel's intuition that if $1+1 = 2$, then he is the pope.
+
+This is actually a common sort of expression in our everyday use of language as well.  You have probably heard someone say something like ``Oh ya?  If that is a real Lamborghini, then I'm the king of England''.  This expression indicates that if one thing is false (this case is a Lamborghini) then we could argue any other statement from that, no matter how absurd.
+
+This principle is kind of a technicality, but it is a useful one.  We will see that it allows us to have uniform arguments for case analysis, even when one of the cases leads to a contradiction.
 
 \section{Biconditional}
+
+Consider the following three sentences:
+
+\begin{enumerate}
+
+\item ``If you do your homework, then you will get a good grade in the course.''
+
+\item  ``You can only get a good grade in the course if you do your homework.''
+
+\item ``You will get a good grade in the course if and only if you do your homework.''
+
+\end{enumerate}
+
+Let $H(x)$ be the predicate ``$x$ does their homework'' and $G(x)$ be the predicate ``$x$ will get a good grade in the course''.
+
+Then these sentences correspond to the following symbolic propositions:
+
+\begin{enumerate}
+		\item $\forall x: H(x) \implies G(x)$
+		\item $\forall x: G(x) \implies H(x)$
+		\item $\forall x: [(H(x) \implies G(x)) \wedge (G(x) \implies H(x))]$
+	\end{enumerate}
+
+\begin{xca}
+		Kira is a student in the class.  For each of the following statements, determine whether they are consistent with (1), (2), or (3) being true.  Explain.
+		
+		\begin{enumerate}
+			\renewcommand{\theenumi}{\alph{enumi}}
+			\item ``Kira did their homework and got a good grade.''
+			\item ``Kira did their homework and didn't get a good grade.''
+			\item ``Kira didn't do their homework and got a good grade.''
+			\item ``Kira didn't do their homework and they didn't get a good grade.''
+			\end{enumerate}
+	\end{xca}
+
+\begin{solutions}
+			\begin{enumerate}
+		\renewcommand{\theenumi}{\alph{enumi}}
+		\item ``Kira did their homework and got a good grade.'' - This is consistent with all three sentences.
+		\item ``Kira did their homework and didn't get a good grade.'' - This is consistent with sentence (2) since (2) only tells you what happens if you do get a good grade.  It doesn't say anything about what happens if you do not get a good grade.  It is inconsistent with both (1) and (3), which both claim that if someone does their homework then they must get a good grade.
+		\item ``Kira didn't do their homework and got a good grade.'' - This is consistent with sentence (1) since (1) only tells you what happens if you do your homework.  It doesn't say anything about what happens if you do not do your homework. It is inconsistent with both (2) and (3), which both claim that if someone gets a good grade, then they must have done their homework.
+		\item ``Kira didn't do their homework and they didn't get a good grade.''  - This is consistent with all three propositions.
+	\end{enumerate}
+	\end{solutions}
+
+The third sentence is an example of a \textbf{biconditional} statement.  It makes two conditional claims  (implications) at the same time. 
+
+\begin{definition}
+	 	Let $P$ and $Q$ be two statements.  We define the biconditional of $P$ and $Q$ by the following formula:
+	 	
+	 	\[
+	 	P \bi Q = (P \implies Q) \wedge (Q \implies P)
+	 	\]
+	\end{definition}
+
+\begin{xca}
+	Fill out the following table with $\T$ or $\F$.
+
+
+	\begin{table}[h!]
+	\begin{center}
+		\caption{Truth Table for Biconditional}
+		\begin{tabular}{c|c|c|c|c|c} 
+			$P$ & $Q$ & $P \implies Q$ & $Q \implies P$ & $(P \implies Q) \wedge (Q \implies P)$ & $P \bi Q$ \\
+						\hline
+			$\F$ & $\F$ &  & &  & \\
+						\hline
+			$\F$ & $\T$ &  & &  & \\
+						\hline
+			$\T$ & $\F$ &  & &  & \\
+						\hline
+			$\T$ & $\T$ &  & &  & \\
+		\end{tabular}
+	\end{center}
+\end{table}
+\end{xca}
+
+\subsection{Using a biconditional} 
+
+If we know (somehow) that the biconditional $P \bi Q$ is true, then by definition we also know that $(P \implies Q) \wedge (Q \implies P)$ is true.  So we can use that $P \implies Q$ is true, and that $Q \implies P$ is true.  
+
+\begin{example}
+		The Pythagorean theorem is one of the most famous theorems in the world:
+		
+		\begin{theorem}[Pythagorean Theorem]
+			A triangle with side lengths $a$, $b$, $c$ satisfies $a^2+b^2 = c^2$ if and only if one of the interior angles of the triangle is a right angle.
+			\end{theorem}
+		
+		Since we know that this biconditional statement is true for any triangle, we can use both the forwards and backwards implications freely in our reasoning.  In forwards direction we can say that if a triangle has side lengths $5$, $12$, and $13$, then since $5^2 + 12^2 = 25+144 = 169$ and $13^2 = 169$, then we can be sure that this triangle is a right triangle.  This is useful if you want to make a right angle but do not have a square tool available:  take a long nonstretchy rope of length $5+12+13 = 30$ feet.  Tie it in a loop.  Mark off $5'$, $12'$, and $13'$ distances around the loop.  When you pull this tight at the markings to make a triangle, you can be sure that the angle opposite the longest side is a right angle.
+		
+		In the backwards direction, if you are cutting a $2''$ by $4''$ piece of lumber along a diagonal, and you need the diagonal to be $5''$ long, then the you know that you will need to cut $3''$ off of one side.  The reason is that if we let $x$ be the number of inches to be cut, then the backwards implication of the theorem tells us that $x^2+4^2  =5^2$.  We can solve this equation to see that $x=3$.
+	\end{example}
+
+\subsection{Proving a biconditional}
+
+Since we have defined $P \bi Q$ as  $(P \implies Q) \wedge (Q \implies P)$, the proof outline for biconditional statements is just to prove $P \implies Q$ and then prove $Q \implies P$.
+
+\begin{fitch}
+	\textrm{Assume $P$}\\
+	\fa \textrm{Prove $Q$}\\
+	\textrm{Assume $Q$}\\
+	\fa \textrm{Prove $P$}
+	\end{fitch}
+
+
+Note:  Sometimes mathematicians will refer to lines 1 and 2 as the ``forward" or ``only if" part of the argument, and lines 3 and 4 as the ``backward'' or ``if'' part of the argument.  These names make sense because the implication arrows are either pointing forward from $P$ to $Q$, or backwards from $Q$ to $P$.  If we write ``$P$ if and only if $Q$'', then ``$P$ only if $Q$'' represents $P \implies Q$ and ``$P$ if $Q$'' represents $Q \implies P$.
+
+It is a very common mistake for students to forget the backward part of the argument when proving a biconditional. 
+
+\begin{example}
+		Lets prove that $0$ divides an integer if and only if that integer is $0$.
+		
+		Symbolically we are trying to show
+		
+		\[
+		\forall n \in \mathbb{Z}: [ (0 \divides n) \bi (n=0)]
+		\]
+		
+		\begin{fitch}
+				\textrm{Choose an arbitrary integer and call it $n_1$}\\
+				\textrm{ Assume $(0 \divides n)$}\\
+				\fa \textrm{Then $n_1 = 0k$ for at least one integer $k$.  Call one such integer $k_1$.}\\
+				\fa \textrm{Then $n_1= 0k_1$.}\\
+				\fa \textrm{So $n_1=0$}\\
+				\textrm{Assume $n_1=0$}\\
+				\fa \textrm{Then $n_1 = 0 \cdot 1$}\\
+				\fa \textrm{So $0 \divides n_1$}
+		\end{fitch}
+	
+	Commentary:
+	
+	\begin{enumerate}
+			\item Universal introduction.
+			\item This line starts the proof of the ``forwards half''.
+			\item Definition of divisibility.
+			\item We used existential elimination to produce the witness $k_1$.
+			\item We used algebra to conclude $n_1 = 0$.  This is the conclusion we want to reach, so the ``forwards half'' of the argument is now complete.
+			\item This line starts the proof of the ``backwards half''.
+			\item This is a true fact.
+			\item We are using $1$ as a witness to introduce the existential quantifier $\exists k: n_1 = 0 \cdot k$, which is the definition of $0 \divides n_1$.
+		\end{enumerate}
+	\end{example}
+
+
+
+\section{Disjunction}
+
+We remarked in the introduction that our ordinary language use of the work ``or'' is ambiguous.  
+
+Consider the following sentence:
+
+\begin{quote}
+	``I will go out for pizza or I will go out for ice cream''
+\end{quote}
+
+This sentence is ambiguous.  It is unclear whether the person saying this sentence is allowing for the possibility that they will get both pizza and ice cream, or if they are claiming that they will only get one and not the other.
+
+In mathematics and computer science whenever we use the word ``or'' without clarifying we always mean the \index{Inclusive Or}\textbf{``inclusive or''}, which permits both constituent statements to be true.  There is a notion of \index{Exclusive Or}\textbf{``exclusive or''} which is false when both constituent statements are true.  This exclusive version is also called XOR.  We will not have further need of XOR in this text since XOR can be defined in terms of other logical connectives.
+
+\begin{definition}
+		Let $L$ and $R$ be two predicates or quantifiers.  We define the \index{disjunction}\textbf{disjunction} of $L$ with $R$ by the following truth table.  We read the symbol $L \vee R$ as ``$L$ or $R$''.  We call $L$ the ``left disjunct'' and $R$ the ``right disjunct''.
+		
+				\begin{table}[h!]
+			\begin{center}
+				\caption{Truth Table for Disjunction}
+				\begin{tabular}{c|c|c} 
+					$L$ & $R$ & $L \vee R$ \\
+					\hline
+					$\F$ & $\F$ & $\F$ \\ 
+					$\F$ & $\T$ & $\T$ \\ 
+					$\T$ & $\F$ & $\T$ \\ 
+					$\T$ & $\T$ & $\T$ \\ 
+				\end{tabular}
+			\end{center}
+		\end{table}
+	\end{definition}
+
+\subsection{Using a Disjunction}
+
+If I want to argue that $C$ is true, and I know $L \vee R$ is true, how should we proceed?  An example might help:
+
+\begin{xca}
+		Imagine you are playing a game with your friend.  They have a health score of $3/20$.  You have two cards in your hand, one of which deals $5$ points of damage and the other deals $7$ points of damage.  You know you will be playing at least one card this turn.  You want to convince your friend that they are about to lose the game.  What argument do you make?
+\end{xca}
+
+\begin{solutions}
+		To convince your friend that they are about to lose, you should look at both cases.  \textbf{If} you play the first card, \textbf{then} they will sustain $5$ points of damage and lose the game.  \textbf{If} you play the second card, \textbf{then} they will sustain $7$ points of damage and lose the game.  Since they will lose the game in either case, and at least one card will be played, then they will certainly lose this turn.
+	\end{solutions}
+
+Let us model this argument symbolically.  Say $L$ is the statement ``I play the first card'', $R$ is the statement ``I play the second card'' and $C$ is the statement ``My friend loses the game''.  We know $L \vee R$ is true and we are trying to argue $C$.  We did so by arguing that $L \implies C$ \textbf{and} $R \implies C$!
+
+This is the idea behind the argument form called \index{disjunction elimination}\textbf{disjunction elimination} or \textbf{proof by cases}:
+
+If we know that $L \vee R$ is true, and we want to argue $C$ is true, then we need to argue $(L \implies C) \wedge (R \implies C)$.   We do that by following the natural deduction proof outline for conjugation and implication.  We often label these two implications as ``cases'', and call this kind of argument a ``case analysis''.
+
+\begin{fitch*}
+		\textrm{Given $L \vee R$.}\\
+		\textrm{Case 1:  Assume $L$}\\
+		\fa \textrm{Argue $C$}\\
+		\textrm{Case 2:  Assume $R$}\\
+		\fa \textrm{Argue $C$}\\
+		\textrm{Conclude that $C$ is true}
+	\end{fitch*}
+
+
+\begin{example}
+		Lets prove that if $x<-4$ or $x>5$, then $x^2 > 9$.
+		
+		Symbolically, we are trying to show
+		
+		\[
+		\forall x \in \mathbb{R}: [(x< -4) \vee (x>5)] \implies (x^2 >9)
+		\] 
+		
+		\begin{fitch}
+				\textrm{Let $x_1 \in \mathbb{R}$ be arbitrary.}\\
+				\textrm{Assume $(x< -4) \vee (x>5)$.}\\
+				\fa \textrm{Case 1:  Assume $x< -4$.}\\
+				\fa \fa \textrm{Then $x^2 > 16$, so $x^2 > 9$.}\\
+				\fa \textrm{Case 2:  Assume $x>5$.}\\
+				\fa \fa \textrm{Then $x^2> 25$, so $x^2 > 9$.}
+			\end{fitch}
+		
+		Commentary:
+		
+		\begin{itemize}
+				\item In line 1 we are using Universal introduction.
+				\item In line 2 we are using Implication introduction.  We are assuming the hypothesis of the implication.
+				\item In the remaining lines we are performing a case analysis.  In both cases, we conclude that $x^2>9$.
+			\end{itemize}
+	\end{example}
+
+
+\subsection{Proving a disjunction}
+
+To prove a disjunction it is sufficient to prove just one of the disjuncts.  This is called \textbf{disjunction introduction}.  Since there are two disjuncts, there are two proof outlines (one for the left disjunct, and one for the right disjunct).
+
+
+Disjunction Introduction (left)
+
+\begin{fitch*}
+	\textrm{Argue $L$}\\
+	\textrm{Conclude $L \vee R$}
+\end{fitch*}
+
+Disjunction Introduction (right)
+
+\begin{fitch*}
+	\textrm{Argue  $L$}\\
+	\textrm{Conclude $L \vee R$}
+\end{fitch*}
+
+Many theorems in mathematics have disjunctions in both the hypothesis and the conclusion.  In these cases, it is frequently true that in some cases we would prove one disjunct of the conclusion, and in other cases we would prove the other.
+
+\begin{example}
+	Lets start with a really basic example and prove that the following sentence is true:
+	
+	\[
+	(\textrm{$6$ is odd}) \vee (\textrm{$6$ is even})
+	\]
+	
+	\begin{proof}
+$6$ is even because $6 = 2 \cdot 3$. 
+	\end{proof}
+	
+	This is a complete proof!  To prove a disjunction, you need only prove one of the disjuncts.
+	\end{example}
+
+\begin{example}
+		Now for a more complicated example.  Lets prove that if $10$ or $15$ divides $n$, then $2$ or $3$ divides $n$. Symbolically 
+		
+		\[
+		\forall n \in \mathbb{Z}: [(10 \divides n) \vee (15 \divides n)] \implies [(2 \divides n) \vee (3 \divides n)]
+		\]
+		
+		\begin{fitch}
+				\textrm{Let $n_1 \in \Z$ be arbitrary}\\
+				\textrm{Assume  $[(10 \divides n_1) \vee (15 \divides n_1)]$}\\
+				\fa \textrm{Case 1:  Assume $10 \divides n_1$}\\
+				\fa \fa \textrm{Then $n_1 = 10k$ for some integer $k$.  Choose one such and name it $k_1$}\\
+				\fa \fa \textrm{So $n_1 = 10k_1$}\\
+				\fa \fa \textrm{So $n_1 = 2(5k_1)$}\\
+				\fa \fa \textrm{So $2 \divides n_1$}\\
+				\fa \fa \textrm{So $[(2 \divides n) \vee (3 \divides n)]$}\\
+				\fa \textrm{Case 2:  Assume $15 \divides n_1$}\\
+				\fa \fa \textrm{Then $n_1 = 15k$ for some integer $k$.  Choose one such and name it $k_2$}\\
+				\fa \fa \textrm{So $n_1 = 15k_2$}\\
+				\fa \fa \textrm{So $n_1 = 3(5k_2)$}\\
+				\fa \fa \textrm{So $3 \divides n_1$}\\
+				\fa \fa \textrm{So $[(2 \divides n) \vee (3 \divides n)]$}\\
+			\end{fitch}
+	\end{example}
+
+	Commentary:
+	
+	\begin{itemize}
+			\item In line 1 we are using universal introduction.  We need to argue using a generic element.
+			\item In line 2 we are using implication introduction.  We need to assume our hypothesis and try to argue our conclusion.
+			\item In lines 3 and 9 we are breaking our argument into cases.  This is disjunction elimination.  We need to reach the same conclusion that  $[(2 \divides n) \vee (3 \divides n)]$ in both cases.
+			\item We are able to move from line $7$ to line $8$, and from line $13$ to line $14$, by using disjunction introduction.  Since we proved one disjunct, we proved the disjunction.
+		\end{itemize}
 
 
 \section{Negation}
 
-rewrw
-\section{Disjunction}
+\begin{xca}
+	Which of these sentences are true and which are false?
+	
+	\begin{enumerate}
+			\item ``The moon is made of cheese''
+			\item ``The sentence `the moon is made of cheese' is true. ''
+			\item ``The sentence `the moon is made of cheese' is false. ''
+			\item ``The moon is in orbit around the Earth''
+			\item ``The sentence `The moon is in orbit around the Earth' is true. ''
+			\item ``The sentence `The moon is in orbit around the Earth' is false. ''
+		\end{enumerate}
+	\end{xca}
+
+\begin{solutions}
+	
+	\begin{enumerate}
+	\item ``The moon is made of cheese'' - False.
+	\item ``The sentence `the moon is made of cheese' is true. '' - False.  The sentence ``The moon is made of cheese'' is false, not true.
+	\item ``The sentence `the moon is made of cheese' is false. '' - True!  Then sentence ``The moon is made of cheese'' is false as claimed.
+	\item ``The moon is in orbit around the Earth''  - True.
+	\item ``The sentence `The moon is in orbit around the Earth' is true. '' -True.  Then sentence ``The moon is in orbit around the Earth'' is true.
+	\item ``The sentence `The moon is in orbit around the Earth' is false. '' - False.  The sentence ``The moon is in orbit around the Earth'' is true, not false.
+\end{enumerate}
+\end{solutions}
+
+The idea of negation is that the negation of a statement $P$ is a new statement $\neg P$ which says ``$P$ is false''.
+
+However, this is inconvenient as a definition of negation.  Instead, we will use the following definition:
+
+\begin{definition} Let $P$ be a sentence.  We define the \index{Negation}\textbf{negation} of $P$ by the following symbolic formula
+	
+	\[
+	\neg P = (P \implies \F)
+	\]
+	
+\end{definition}
+
+This definition agrees with the idea we had above.  If $P$ is true, then the statement ``$P$ is false'' is false, which agrees with  $(T \implies F) = F$.  If $P$ is false, then the statement ``$P$ is false'' is true, which agrees with $(F \implies F) = T$.
+
+Our definition of negation might seem more familiar when you think about how you argue a negation.  It is normal, in our everyday experience, to show that a claim is false by arguing that it leads to absurd conclusions.  For instance if someone claims that they ate $100$ pounds of food yesterday, I would argue the negation of that statement by saying ``If you did eat $100$ pounds of food, your stomach would explode and you would die.  However, you are alive before me.  Thus you must not have eaten $100$ pounds of food.''
+
+When we want to argue a negation of a statement, we naturally assume the statement and then make a valid argument to reach a conclusion which we know to be false.  This is the intuition which is captured by our definition.
+
+Since negation is defined in terms of implication, we use and prove it according to those same rules for implication.  Let's spell that out a bit, and see some examples.
+
+\subsection{Using negations}
+
+We already know that modus ponens is elimination rule for implication.   What does modus ponens look like when applied to $\neg P = P \implies \F$?  It says that if we know $P$ and $\neg P$, then we can derive $F$.  
+
+%Consider the following abstract situation.  Say we know $\neg P$, $P \vee Q$, and $Q \implies C$ are all true.  We want to argue that $C$ is unconditionally true.  We will argue via case analysis on $P \vee Q$.
+%
+%\begin{fitch}
+%		\textrm{Given $\neg P$, $P \vee Q$, $Q \implies C$.}
+%		\textrm{Case 1:  Assume $P$}\\
+%		\fa \textrm{ Then $P$ and $\neg P = (P \implies F)$}\\
+%		\fa \textrm{Then $F$ by Modus Ponens.}\\
+%		\fa \textrm{$F \implies C$ is vacuously true.}\\
+%		\fa \textrm{We can then conclude $C$ by Modus Ponens.}\\
+%		\textrm{Case 2:  Assume $Q$}\\
+%		\fa \textrm{Then $Q$ and $Q \implies C$}\\
+%		\fa \textrm{So $C$ is true by Modus Ponens}\\
+%		\textrm{Since $C$ is true in either case, we can conclude $C$.}
+%	\end{fitch} 
+%
+%In less formal language we might say ``Case 1 never happens so we do not have to worry about it''.  Here we instead use the principle of  to say that since Case 1 leads to an absurdity, it also leads to $C$.  Then since we can ``legitimately'' derive $C$ in Case 2, we are able to conclude $C$ absolutely by disjunctive elimination.
+
+Here is an example of how this sort of reasoning would arise in practice.  We will need to make use of the intuitively clear statement that among any three consecutive numbers, one of them is divisible by $3$.  While this makes sense, proving this statement relies on mathematical induction, which we will explore in a later chapter.
+
+
+\begin{example}
+		Let's try to prove that if an integer $n$ is not divisible by $3$, then $n^2 -1$ is divisible by $3$.
+		
+		Symbolically
+		
+		\[
+		\forall n \in \mathbb{Z}: \neg(3\divides n) \implies 3 \divides (n^2 - 1)
+		\]
+		
+		\begin{fitch}
+				\textrm{Let $n_1 \in \mathbb{Z}$ be chosen arbitrarily.}\\
+				\textrm{Assume $\neg(3 \divides n)$}\\
+				\fa \textrm{Either $n-1$, $n$, or $n+1$ is divisible by $3$. [Known Theorem.]}\\
+				\fa \textrm{Assume $n$ is divisible by $3$}\\
+				\fa \fa \textrm{Then $3 \divides n$ and $\neg (3 \divides n) = (3 \divides n \implies \F)$.}\\
+				\fa \fa \textrm{By Modus Ponens, we can conclude $\F$.}\\
+				\fa \fa \textrm{$\F \implies (3 \divides (n^2 - 1))$ is vacuously true.}\\
+				\fa \fa \textrm{By Modus Ponens, $3 \divides (n^2 - 1)$ is true.}\\
+				\fa \textrm{Assume $n-1$ is divisible by $3$}\\
+				\fa \fa \textrm{Then there is an integer $k$ for which $n-1 = 3k$.}\\
+				\fa \fa \textrm{So $(n-1)(n+1) = 3k(n+1)$.}\\
+				\fa \fa \textrm{So $n^2- 1 = 3(kn+k)$}\\
+				\fa \fa \textrm{So $3 \divides (n^2 - 1)$, since $kn+k \in \mathbb{Z}$}\\
+				\fa \textrm{Assume $n+1$ is divisible by $3$}\\
+				\fa \fa \textrm{Then there is an integer $k$ for which $n+1 = 3k$.}\\
+				\fa \fa \textrm{So $(n-1)(n+1) = 3k(n-1)$.}\\
+				\fa \fa \textrm{So $n^2- 1 = 3(kn-k)$}\\
+				\fa \fa \textrm{So $3 \divides (n^2 - 1)$, since $kn-k \in \mathbb{Z}$}
+			\end{fitch}
+		
+		Commentary:
+		
+		\begin{enumerate}
+				\item Universal introduction
+				\item Implication introduction
+				\item This is the unproven fact we mentioned we would need.  It is a disjunction.
+				\item On this line, and line (9) and (14), we are initiating a proof of $3 \divides (n_1^2 - 1)$ via disjunctive elimination.
+				\item We have both the assumption at line (2) and (4) active here.
+				\item The assumptions are contradictory.
+				\item This line and the next are reexplaining the ``principle of explosion''.
+				\item Since we have $\F$ and $\F \implies (3 \divides (n_1^2 - 1))$,  Modus Ponens finishes this argument in this case.
+				\item The rest of the proof should be fairly accessible to you at this point.
+			\end{enumerate}
+	\end{example}
+     
+\subsection{Proving negations}
+
+Our definition of negation is $\neg P = (P \implies \F)$.  So our introduction rule for negation will follow the rule for proving an implication:
+
+\begin{fitch*}
+	\textrm{Assume $P$}\\
+	\fa \textrm{Argue $\F$.}\\
+	\textrm{Conclude $\neg P$}
+\end{fitch*}
+
+Often when we ``argue $\F$'', we will be reaching an \textrm{absurdity}, i.e. a statement which must be false for purely logical reasons.  So we might assume $P$, make some arguments relative to that assumption, and eventually conclude something like ``$n$ is an integer and $n$ is not an integer'', or some other statement which must be false.
+
+\begin{example}
+	
+	Lets show that $6$ is not odd.  Symbolically
+	
+	\[
+	\neg( \textrm{$6$ is odd})
+	\]
+	
+	\begin{fitch}
+		\textrm{Assume $6$ is odd.}\\
+		 \fa \textrm{Then $6 = 2k+1$ for some integer $k$.  Pick one such and name it $k_1$.}\\
+		\fa \textrm{Then $6 = 2k_1 + 1$.}\\
+		\fa \textrm{Then $k_1 = 2.5$.}\\
+		\fa \textrm{So $2.5$ is an integer, which is clearly false.}
+		\end{fitch}
+	
+	Commentary:
+	
+	\begin{enumerate}
+			\item To prove the negation of a statement, we must assume the statement and derive a contradiction.  This is negation introduction.
+			\item Under the assumption that $6$ is odd, this is valid. We use existential quantifier elimination when we pick the witness $k_1$.
+			\item ...
+			\item Algebra.
+			\item Starting from the premise that $6$ is odd, we have reached a clearly false conclusion.  So $6$ cannot be odd.
+		\end{enumerate}
+	
+	It is important to realize that this proof structure (assuming a proposition and deriving an absurdity) is the \textbf{only} way to establish a negation.
+	
+	A common incorrect solution to this problem would be to write:
+	
+	\begin{quote}[WARNING: INCORRECT WORK]
+		
+\begin{fitch*}
+	6 = 2(2.5)+1\\
+	\textrm{But an odd number is defined to be a number of the form  $2k+1$ where $k \in \Z$.}\\
+	\textrm{$2.5$ is not  an integer.}\\
+	\textrm{Thus $6$ is not odd.}
+\end{fitch*}
+
+	\end{quote}
+
+This reasoning is faulty.  Let's look at some completely analogous reasoning which leads to an incorrect conclusion.  I will use the same kind of reasoning to show that $2$ is not a rational number!
+
+\begin{fitch*}
+		\textrm{$2 = \frac{2\pi}{\pi}$.}\\
+		\textrm{But a rational number is defined to be a number of the form  $\frac{a}{b}$ where $a,b \in \Z$.}\\
+		\textrm{Neither $2\pi$ nor $\pi$ are integers.}\\
+		\textrm{Thus $2$ is not rational.}
+	\end{fitch*}
+
+Moral of the story:  to prove the negation of a proposition we \textbf{must} assume the proposition and argue an absurdity.
+
+\subsection{Non-examples}
+
+Whenever we meet a definition of a mathematical concept, it is worthwhile to spend some creative effort inventing your own examples and non-examples.  An example is something which satisfies the definition, and a non-example is something which satisfies the negation of the definition.
+
+For instance, if you take a course on number theory you might encounter the following definition:
+
+\begin{definition}
+		A \textbf{perfect number} is an integer greater $1$ which is equal to the sum of its positive divisors, excluding the number itself.
+	\end{definition}
+
+When we meet this definition, it is our duty to hunt for examples and non-examples.  In this case we can just conduct a systematic seach:
+
+\begin{itemize}
+		\item $2$ is not a perfect number.  If it were, then the sum of its divisors would be $2$.  But $2$ only has $1$ as a divisor, and $1 \neq 2$.
+		\item $3$, $4$, $5$ are also not perfect numbers by similar arguments.
+		\item $6$ is a perfect number because the positive divisors of $6$ are $1$, $2$, $3$ and $6$.  So the sum of all of these positive divisors (excluding $6$ itself) is $1+2+3 = 6$.
+	\end{itemize}
+
+As the non-example $2$ shows, when we argue that something is a non-example, we need to follow our strategy for proving negations.
+	
+	
+	
+	
+	
+	
+	\end{example}
 
 
 
 
-erwwre
 
 
 

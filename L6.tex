@@ -1,0 +1,255 @@
+\chapter{L6: Excluded Middle}
+
+The following statement may (or may not) seem self-evident to you:
+
+\begin{theorem}[The Law of the Excluded Middle]
+	For any statement $p$, the statement $p \vee (\neg p)$ is true. 
+\end{theorem}
+
+There is a philosophical divide in the mathematical community.  Most mathematicians think that this statement is self-evident and are happy to include excluded middle as part of their arguments.  I will call these people ``classical mathematicians''.  A smaller community, for a variety of reasons, pay attention to whether their arguments rely on this principle.  For some the reason is practical: for instance they might care about converting their proofs into programs\footnote{\url{https://en.wikipedia.org/wiki/Curry-Howard_correspondence}},or  making sure that their arguments are valid in a topos \footnote{\url{https://en.wikipedia.org/wiki/Topos}}.  Another group has more philosophical issues with excluded middle. \footnote{\url{https://en.wikipedia.org/wiki/Intuitionism}}.
+
+The classical mathematician is comfortable with introducing excluded middle anywhere in their argument.  They would have no issue claiming ``$x = 0$  or $x \neq 0$'' as part of an argument about a real number $x$.  An intuitionist only accepts a disjunction like this if they can actually argue one of the two disjuncts.  Intuitionistic arguments are more demanding for this reason.
+
+You might say ``What is the big deal intuitionists?  It seems obvious to me that either a real number is either $0$ or not $0$!  What problem do you have with this? ''.
+More extreme uses of the Excluded Middle might give you pause.  For instance, there are some conjectures which have been open for hundreds of years (such as the famous ``Riemann Hypothesis''$ =$ RH ).  Imagine you want to argue a conjecture $C$  is true.  You give one argument if the RH is true.  Then you give a completely different argument if RH is false.  Since it is true in both cases, you argue (disjunctive elimination) that the theorem is true irrespective of the validity of the RH.  This feels unsatisfying.  We have shown that two paths lead us to the same place, but we have not justified that either path is open to us.  The intuitionist makes these distinctions very clearly.  They would accept the theorems $\textrm{RH} \implies C$ and $(\neg \textrm{RH}) \implies C$, but would not yet accept $C$ as a theorem until RH is decided.
+
+Most mathematicians adopt a classical perspective in their work.  Whatever your philosophical or practical commitments end up being, I find that it is worthwhile to pay attention to the intuitionistic validity of your arguments.  As a matter of taste, I find that arguments which can be made intuitionistically tend to be ``cleaner'', and often provide more insight. However, for the rest of this text we will adopt a classical perspective.  We may note when a given argument is intuitionistically valid (or not) from time to time.
+
+The next three sections in this chapter explore argument forms which are valid classically, but not intuitionistically.
+
+\section{Proof by Contradiction}
+
+Remember  that $\neg p$ is \textit{defined} to be $p \implies \bot$.   
+
+So $\neg (\neg p)$ could also be written $(\neg p) \implies \bot$ or $(p \implies \bot) \implies \bot$.
+
+
+It is intuitionistically valid that $p \implies [\neg (\neg p)]$:
+
+\begin{fitch}
+	\textrm{Assume $p$} & $\implies$-intro\\
+	\fa \textrm{Assume $\neg p$} & $\neg$-intro\\
+	\fa \fa p \wedge \neg p & $\wedge$-intro (1), (2)\\
+	\fa \fa \bot & $\neg$-elim (3)\\
+	\fa \neg( \neg p) & $\neg$-intro (2)\\
+	 p \implies (\neg (\neg p)) & $\implies$-intro (1)
+	\end{fitch}
+
+Intuitionistically we do not have $\neg (\neg p) \implies p$, but this is classically valid.
+
+\begin{fitch}
+	\textrm{Assume $\neg (\neg p) $}\\
+	\fa \textrm{$p \vee (\neg p)$}\\
+	\fa \textrm{Assume $p$}\\
+	\fa \fa \textrm{Then $p$}\\
+	\fa \textrm{Assume $\neg p$}\\
+	\fa p \wedge \neg p\\
+	\fa \fa \bot \\
+	\fa \fa p\\
+	\fa p\\
+     \neg (\neg p) \implies p
+\end{fitch}
+
+So the classical mathematician is able to make arguments using \index{proof by contradiction}\textbf{proof by contradiction}:
+
+\begin{principle}[Proof by Contradiction]
+		To argue $p$ we can instead argue that $\neg p \implies \bot$.
+		
+		In other words, to argue $p$ we may assume $\neg p$ and argue a contradiction.
+\end{principle}
+
+It is quite hard to actually come up with examples where proof by contradiction (rather than proof of negation) is actually needed.  Here is one example which relies on some knowledge from your Calculus:
+
+\begin{example}
+
+The function $f:\mathbb{R} \to \mathbb{R}$ defined by $f(x) = x^3+x-2$ has one and only one root.
+
+
+\begin{proof}
+We can see that $f(1) = 0$ so $f$ has at least one root.
+Assume to the contrary that $f$ has an additional root $z$.  Then, by the mean value theorem for derivatives, there is a $c$ between $1$ and $z$ so that $f'(c) = 0$.  However, $f'(c) = 3c^2 + 1 > 1$.  We have arrived at a contradiction, so the hypothesis that $f$ has more than $1$ root false.  Thus $f$ has one and only one root.
+\end{proof}
+	\end{example}
+
+\section{Proof by Contraposition}
+
+Intuitionistically, if we know $p \implies q$, we can derive $ \neg q \implies \neg p$:
+
+\begin{fitch}
+	\fj	\textrm{Assume $p \implies q$} &  $\implies$-intro\\ %1
+	\fa \fh \textrm{Assume $\neg q$} & $\implies$-intro \\ %2
+	\fa \fa \fh \textrm{Assume $p$} & $\neg$-intro \\ %3
+	\fa \fa \fa \fa  \textrm{$q$} & $\implies$-elim (1), (3)\\ %4
+	\fa \fa \fa \fa \bot & $\neg$-elim (2), (4)\\ %5
+	\fa \fa \fa \neg p & $\neg$ intro, (3)\\ %6
+	\fa \fa  \neg q \implies \neg p & $\implies$-intro (2), (6)\\ %7
+	 \fa [ p \implies q] \implies [(\neg q) \implies (\neg q)] & $\implies$-intro (1)\\ %8
+\end{fitch}
+
+If we know $(\neg q) \implies (\neg p)$  and we accept the Law of the Excluded Middle, then we can also derive $p \implies q$:
+
+\begin{fitch}
+	\fj \textrm{Assume $(\neg q) \implies (\neg p)$ } & \\ %9
+	\fa \fh \textrm{Assume $p$} & \\ %10
+	\fa \fa \fa q \vee \neg q & Excluded middle \\ %11
+	\fa \fa \fa \textrm{Assume $q$}  & \\ %12
+	\fa \fa \fa \fa q & by (12) \\ %13
+	\fa \fa \fa \textrm{Assume $\neg q$} \\  %14
+	\fa \fa \fa \fa \neg p & $\implies$ elim, (9) and (14)\\ %15
+	\fa \fa \fa \fa \bot & (15) and (10) \\ %16
+	\fa \fa \fa \fa q & (16) and principle of explosion \\ %17
+	\fa \fa \fa  q& $\vee$ elim (11), (12)--(13), and (14)--(17) \\ %18
+	\fa \fa p \implies q & $\implies$ intro (10), (11)--(18)\\ %19
+	\fa [(\neg q) \implies (\neg p)] \implies (p \implies q) & $\implies$ intro (9), (10)--(19)\\ %20
+	 \ftag{~}{\fs [(\neg q) \implies (\neg p)] \implies [ p \implies q] } & $\bi$ introduction (1) and (20) %21
+	\end{fitch}
+
+\begin{definition}
+		The \index{Contrapositive}\textbf{contrapositive} of the implication  $p \implies q$ is the implication $(\neg q) \implies (\neg p)$ .  
+	\end{definition}
+
+Warning:  The statement $p \implies q$ is \textbf{not} equivalent to either $q \implies p$ or  $(\neg p) \implies (\neg q)$.  However, $q \implies p$ is equivalent to   $(\neg p) \implies (\neg q)$,  since the second is the contrapositive of the first.
+
+\begin{definition}
+		The \index{Converse}\textbf{converse} of the implication $p \implies q$ is the implication $q \implies p$.  The \index{Inverse}\textbf{inverse} of the implication $p \implies q$ is the implication $(\neg q) \implies (\neg q)$.  
+	\end{definition}
+
+Note:  An implication is not logically equivalent to either its converse or inverse.  However, the converse and inverse of an implication are logically equivalent to each other.  Also, while the term ``inverse'' is standard in the literature, my personal experience is that this term is not used often.  The terms ``contrapositive'' and ``converse'' are both in widespread use.
+
+Let's see an example of how proving the contrapositive of a given implication can be easier than proving the original implication:
+
+\begin{example}
+		If $n^2$ is even, then $n$ is also even.
+		
+		\begin{proof}
+				More formally we are saying that 
+				
+				\[
+				\forall n \in \Z: (n^2 \textrm{ is even} \implies (n \textrm{ is even}))
+				\]
+				
+				If we attempted to prove this directly, we might start by writing $n^2 = 2k$ for some integer $k$.  Unfortunately there is no easy way to manipulate this equation to isolate $n$ in this expression in a way that ``keeps us'' within the realm of integers.  It is much easier to prove the converse:
+				
+				\[
+				\forall n \in \Z: (n\textrm{ is not even} \implies (n^2 \textrm{ is not even}))
+				\]
+				
+				Since we already know that a number is not even if and only if it is odd, we can rephrase what we are now trying to prove as
+				
+				\[
+				\forall n \in \Z: (n \textrm{ is odd} \implies (n^2 \textrm{ is odd}))
+				\]
+				
+				At this point the proof is clear.
+				
+				\begin{fitch}
+				\textrm{Let $n \in \Z$ be chosen arbitrarily.}\\
+				\textrm{Assume $n$ is odd.}\\
+				\fa \textrm{ Then we can find an integer $k$ with $n = 2k+1$}\\
+				\fa \textrm{  So $n^2 = 4k^2 +4k+1 = 2(2k^2+2k) + 1$}\\
+				\fa \textrm{ So $n^2$ is also odd.}
+				\end{fitch}
+				
+			\end{proof}
+	\end{example}
+
+\section{Proving Disjunctions using Implications}
+
+It is intuitionistically valid that $p \vee q$ implies $(\neg p) \implies q$:
+
+\begin{fitch}
+		\textrm{Assume $p \vee q$} & $\implies$-intro\\
+		\fa \textrm{Assume $\neg p$} & $\implies$-intro\\
+		\fa \fa \textrm{Case 1:  $p$ is true} & $\vee$-elim\\
+		\fa \fa \fa p \wedge \neg p\\
+		\fa \fa \fa \bot\\
+		\fa \fa \fa q\\
+		\fa \fa \textrm{Case 1:  $q$ is true} & $\vee$-elim\\
+		\fa \fa \fa q\\
+		\fa \fa q\\
+		\fa (\neg p) \implies q\\
+		(p \vee q) \implies [(\neg p) \implies q]
+	\end{fitch}
+
+Classically we also have the converse that $(\neg p) \implies q$ implies $p \vee q$:
+
+\begin{fitch}
+		\textrm{Assume $(\neg p) \implies q$}\\
+		\fa p \vee (\neg p)\\
+		\fa \textrm{Case 1:  $p$}\\
+		\fa \fa p \vee q\\
+		\fa \textrm{Case 2:  $\neg p$}\\
+		\fa \fa q\\
+		\fa \fa p \vee q\\
+		\fa p \vee q\\
+		(\neg p) \implies q \implies (p \vee q)
+	\end{fitch}
+
+So, at least in classical mathematics, we may prove a disjunction by instead proving that the negation of one disjunct implies the other.
+
+This is a fairly normal way to reason in everyday life as well.  Most people would consider the following two sentences to have the same meaning:
+
+\begin{itemize}
+		\item You will either do your homework or you will suffer the consequences.
+		\item If you do not do your homework, then you will suffer the consequences.
+	\end{itemize}
+
+The following example should be familiar from high school algebra:
+
+\begin{xca}
+	Prove that if a real number $x$ satisfies $x^2 + 5x + 6 = 0$ then either $x=-2$ or $x=-3$.
+	\end{xca}
+
+
+\begin{proof}
+		Pick $x \in \mathbb{R}$ arbitrarily. Assume $x^2 + 5x + 6 =0$.  We want to show that either $x=-2$ or $x=-3$.
+		
+		So assume $x \neq -2$.
+		
+		Then
+		
+		\begin{align}
+			x^2 + 5x + 6 &=0\\
+			(x+2)(x+3) &=0\\
+			\frac{1}{x+2} \cdot (x+2)(x+3) &=\frac{1}{x+2} \cdot 0\\
+			 x + 3 = 0\\
+			 x = -3
+		\end{align}
+	
+	Note that on line $3$ we use the fact that $x \neq -2$ to utilize the multiplicative inverse of $x+2$.
+	
+	So if $x \neq -2$ then $x=3$.  So we can conclude either $x = -2$ or $x = -3$.
+	
+	Notice that we have not shown the converse of the implication (that if $x = -2$ or $x=-3$ then $x^2 +5x + 6 = 0$) although this is also true.
+	\end{proof}
+
+\newpage
+
+\section{L6 Homework}
+
+ These problems are \textbf{very similar} to the kinds of problems you will be expected to be able to solve to demonstrate mastery of $L6$.
+ 
+ \begin{xca}
+ 	
+ 	Each exercise
+ \begin{enumerate}
+ 	\item 	 The following theorem statement contains only one implication.  Rewrite the theorem statement (in plain English) in contrapositive form, and then prove the theorem.
+ 	
+ 	\begin{quote}
+ 		For all integers $a,b$, and $c$, if $a^2+b^2 = c^2$ then $a$, $b$, and $c$ cannot all be odd.
+ 	\end{quote}
+ 
+\item Assume $x$ and $y$ are integers with $xy \cong 3 \mod 7$.  Use a proof by contradiction to argue that $x$ is not divisible by $7$.
+
+Note:  this will feel ``redundant'' compared to the regular proof of negation.  If this distinction is too subtle, just give the proof by negation and have a conversation with your instructor or a classmate about the difference.
+
+\item The following theorem statement includes only one disjunction.  Rewrite the theorem statement (in plain English) using an implication instead of a disjunction.
+
+\begin{theorem}[Euclid's Lemma]
+	Let $p$ be a prime number.  Let $a,b \in \Z$.  If $p \divides ab$ then $p \divides a$ or $p \divides$ b.
+	\end{theorem}
+
+You do not need to prove the theorem, just restate it without using the words ``not'' and ``implies'' but not the word ``or''.
+
+ 	\end{enumerate}
+ 	\end{xca}

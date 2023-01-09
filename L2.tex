@@ -1,0 +1,1126 @@
+\chapter{L2:  Quantifiers and Connectives}
+
+\begin{quote}
+		\begin{center}
+			Standard L2
+			\end{center}
+		
+		I know the \textbf{elimination} and \textbf{introduction} rules for each of the following \textbf{quantifiers} and \textbf{connectives}:  
+		\begin{itemize}
+		\item ``for all'' $=\forall$
+		\item ``there exists'' $ = \exists$
+		\item `and'' $=\wedge$
+		\item ``implies'' $= \vee$
+		\item ``if and only if'' $=\bi$
+		\item ``not'' $=\neg$
+		\item  ``or'' $=\vee$.
+		\end{itemize}
+		
+		I can use these introduction and elimination rules to write proofs of basic theorems about equalities, inequalities, parity, and divisibility. 
+	\end{quote}
+
+\section{Propositions and Predicates}
+In the last chapter we started using some logical language with the hope that it was intuitive enough for you to understand it.  In this section we will learn to be more precise about what these logical phrases mean and how to argue using them.
+
+First we will make a distinction between sentences which are \index{proposition} \textbf{propositions} and sentences which are not statements:
+
+\begin{definition}
+		A \textbf{proposition} is a sentence which makes a definite claim. 
+	\end{definition}
+
+Note:  We will often use the letters $p$, $q$, and $r$ to represent propositions.
+
+\begin{xca}
+	Which of the following sentences are propositions?  If the sentence is a proposition decide whether or not it is true..  If the sentence is not a proposition, explain why not.
+	\begin{enumerate}
+		\item ``$7$ is a prime number.''
+		\item ``$6$ is a prime number."
+		\item ``What is an axolotl?"
+		\item ``An axolotl is a small amphibian."
+		\item ``Every integer is a prime number."
+		\item ``Some integers are prime numbers."
+		\item  $4 \in \mathbb{Z}$
+		\item ``Fetch me some water."
+		\item ``Here is some water."
+		\item ``I got this water for you."
+		\item ``$2+2 = 4$."
+		\item ``$6 \cdot 7$."
+		\item ``One billion is the largest number."
+		\item ``George Washington (the U.S. president) was alive on September 5th, 1923."
+		\item ``The sentence `$2+2 = 5$ is a proposition.'''
+	\end{enumerate}
+\end{xca}
+
+\begin{solutions}
+	\begin{enumerate}
+		\item[] \mbox{}\\
+		\item ``$7$ is a prime number.'' -  This is true proposition.
+		\item ``$6$ is a prime number." -  This is a false proposition.
+		\item ``What is an axolotl?" - This is not a proposition, since it is not true or false.  It is a question.
+		\item ``An axolotl is a small amphibian." -  This is a true proposition.
+		\item ``Every integer is a prime number." -  This is a false proposition.
+		\item ``Some integers are prime numbers." - This is a true proposition.
+		\item  ``$4 \in \mathbb{Z}$'' - This is a true proposition.  It makes the claim that $4$ is an integer.
+		\item ``Fetch me some water." -  This is not a proposition, since it is not true or false.  It is a command.
+		\item ``Here is some water." -  This is not a proposition.  It is an offer, which is not true or false.
+		\item ``I got this water for you." -  This is a proposition.  It could be true or false depending on my real intentions.
+		\item ``$2+2 = 4$." -  This is a true proposition.  It is a sentence which makes the claim that two plus two is equal to four, which is true.
+		\item ``$6 \cdot 7$." -  This is not a proposition.  It is the number $42$, which is just a number, not a claim which is true or false.
+		\item ``One billion is the largest number." -  This is a false proposition.
+		\item ``George Washington (the U.S. president) was alive on September 5th, 1923." -  This is a false proposition.
+		\item ``The sentence `$2+2 = 5$' is a proposition.'' - This is a true proposition.  It makes a claim that the sentence `$2+2 = 5$' is a proposition.  Since `$2+2 = 5$' is a proposition (a false one), the sentence is true.
+	\end{enumerate}
+\end{solutions}
+
+Consider
+
+\begin{center}
+	``$x$ is a prime number''
+\end{center}
+
+This is not a proposition because we cannot tell if it is true or false until we know what $x$ is.  If $x$ is $5$, then this is a true sentence.  If $x$ is $4$, then the sentence is false.  The letter ``$x$'' is being used as a \index{variable}\textbf{variable} here.  
+
+\begin{definition} 
+	A \index{predicate}\textbf{predicate} is a sentence which has variables, but which becomes a proposition when values are substituted in for all the variables.
+\end{definition}
+
+We will use upper case letters to stand for predicates.   We might write
+
+\[
+P(x,y) =  \textrm{``$x+ y$ is greater than $y$''} 
+\]
+
+Then $P(1,3)$ is true (since $1+3$ is greater than $3$) while $P(-1,3)$ is false (since $-1+3$ is less than $3$).
+
+We could also write this predicate entirely with symbols as 
+
+\[
+P(x,y) =  \textrm{``$x+ y > y$ ''} 
+\]
+
+
+\begin{xca} In this exercise, allow the variables to stand for people who are currently living.  For each of the following statements, decide which are predicates.  For those which are predicates find some assignments of the variables which yield a true statement and some assignments of the variables which yield a false statement.  You may need to conduct an internet search to find examples of people satisfying the criteria.
+	\begin{enumerate}
+		\item ``$x$ is more than $110$ years old.'' - 
+		\item $x$ and Bob.
+		\item $y$ is able to sprint at $20$ miles per hour.
+		\item Tell $z$ to go to the store.
+		\item $x$ is taller than $y$.
+		\item Where is $x$?
+		\item $x$ is the mother of $y$.
+	\end{enumerate}
+	
+\end{xca}
+
+\begin{solutions}
+	
+	
+	\begin{enumerate}
+		\item[] \mbox{}
+		\item ``$x$ is more than $110$ years old.'' - This is a predicate.  It is true when $x$ is Kane Tanaka, at of this writing (May 17th, 2021).  It is currently false when $x$ is the author of this textbook.
+		\item ``$x$ and Bob.'' - This is not a predicate.  If we substitute a person for $x$, we obtain a sentence which is neither true nor false.
+		\item ``$y$ is able to sprint at $20$ miles per hour.'' - This is a predicate.  It is true when $y$ is Usain Bolt, and is currently false when $y$ is the author of this textbook.
+		\item ``Tell $z$ to go to the store.'' - This is not a predicate.  When $z$ is a person, the sentence is a command, not a true or false statement. 
+		\item ``$x$ is taller than $y$.'' - This is a predicate.  It is true when we let $x$ be Forest Whitaker (6'2"), and $y$ is Halle Berry (5'5").  It is false if we let $x$ be Halle Berry and $y$ be Forest Whitaker.
+		\item ``Where is $x$?'' - This is not a predicate.
+		\item ``$x$ is the mother of $y$.'' - This is true when $x$ is Judith Cohen (Nasa engineer and author) and $y$ is Jack Black (Comedian and musician).  It is false when we reverse their roles.
+	\end{enumerate}
+	
+\end{solutions}
+
+\begin{xca}	
+	In this exercise, allow the variables to stand for real numbers. For each of the following statements, decide which are predicates. For those which are  predicates, find some assignments of the variables which yield a true statement and some assignments of the variables which yield a false statement.
+	
+	\begin{enumerate}
+		\item ``$x \geq 110$''
+		\item ``$2x+y$''
+		\item ``$y^2  = 100$''
+		\item ``$x + y = 20 + y$''
+		\item ``$x+4 = $''
+		\item ``$x$ is more than twice $y$.''
+		\item ``$x$ is in between $y$ and $z$.''
+	\end{enumerate}
+\end{xca}
+
+\begin{solutions}
+	
+	\begin{enumerate}
+		\item[] \mbox{}
+		\item ``$x \geq 110$'' - This is a predicate.  It is true when $x = 111$ and false when $x = 109$.
+		\item ``$2x+y$'' - This is not a predicate.  If we substitute numbers for $x$ and $y$ (like $x  = 3$  and $y=1$) then we obtain a number (like $7$), not a proposition.  A number is not making a claim which is true or false. 
+		\item ``$y^2  = 100$'' - This is a predicate.  It is true when $y = -10$.  It is false when $y = 3$.
+		\item ``$x + y = 20 + y$'' - This is a predicate.  It is true when $x = 20$ and $y=4$.  It is false when $x = 19$ and $y=4$.
+		\item ``$x+4 = $'' - This is not a predicate.  It is kind of a sentence fragment.  If we substitute a number, we get something like ``3 plus 4 is....''. 
+		\item ``$x$ is more than twice $y$.'' - This is a predicate.  It is true when $x = 10$ and $y=1$.  It is false when $x = y = 7$. 
+		\item ``$x$ is in between $y$ and $z$.'' - This is a predicate.  It is true when $x = 2$, $y=1$, and $z = 3$.  It is false when $x = 100$, $y = 1$, and $z = \pi$.
+	\end{enumerate}
+	
+\end{solutions}
+
+\section{Motivation for Quantifiers and Connectives}
+
+Recall the definition of an even number:
+
+``An integer $n$ is called \textbf{even} if there exists an integer $k$ so that $n = 2k$.''
+
+The phrase ``There exists ...'' is an example of a \index{quantifier} \textbf{quantifier}.  We will not be extremely precise about the definition of a quantifier since this is not a text on formal mathematical logic, but a good intuition is that a quantifier is part of a statement which says something about ``how many'' things make something true.
+
+For instance if I said ``There are at least 5 doughnuts in this box which I want to eat'' the phrase ``There are at least 5'' is a quantifier.
+
+If I said ``I would like to eat all but one of these doughnuts'' the phrase ``all but one'' would be the quantifier.  
+
+These phrases are called quantifiers because they ``quantify'' something about the expression:  they make a claim about what quantity of things make the sentence true.
+
+In mathematics we mostly use two quantifiers:  the \index{existential quantifier} \textbf{existential quantifier} ``There exists ...''  and the \index{universal quantifier} \textbf{universal quantifier} ``For all ...''.
+
+These quantifiers are used often enough that we have invented special symbols for them.  We use the symbol $\exists$ to stand for the phrase ``there exists'' and we use the symbol $\forall$ to stand for the phrase ``for all''.  It might help you to remember that ``$\exists$'' is a backwards ``\textbf{E}'' as in \textbf{E}xists while ``$\forall$'' is an upside down ``\textbf{A}'' as in ``For \textbf{A}ll''.
+
+So we could rephrase the definition of an even number as follows:
+
+``An integer $n$  is said to be \textbf{even} if $\exists k \in \mathbb{Z}: n = 2k$''
+
+It is worth picking this apart.
+
+\begin{itemize}
+\item We read $\exists k$ as ``there exists a $k$''.
+\item We read $ \in \mathbb{Z}$ as ``in the integers''.  Here $\in$ is the symbol for ``element of'' and $\mathbb{Z}$ is the symbol for the natural numbers.\footnote{The German word for integer is zahlen}
+\item We read the symbol $:$ as ``such that''
+\end{itemize}
+
+Putting it all together the symbols  $\exists k \in \mathbb{Z}: n = 2k$ read ``There exists a $k$ in the integers such that $n=2k$''. You could read this in a slightly more natural way as ``There exists an integer $k$ with $n=2k$''.
+
+We could use this notation to give more condensed definitions of ``odd'' and ``divisible'' as well:
+
+``An integer $n$ is said to be \textbf{odd} if $\exists k \in \mathbb{Z}: n = 2k+1$''
+
+``We say that the integer $d$  \textbf{divides} the integer $n$ if $\exists q \in \mathbb{Z}: n = qd$.''
+
+Similarly the universal quantifier $\forall$ can be used to make statements such as the following:
+
+\[
+\forall x \in \mathbb{Z}:  4x \textrm{ is even}.
+\]
+
+This reads in regular English: ``For ever integer $x$, $4x$ is even''.  This should certainly be a believable claim! 
+
+Notice that the sentence ``$4x$ is even'' is a predicate while the sentence ``For all integers $x$, $4x$ is even'' is a proposition.  When we quantify each variable in a predicate we get a proposition.
+
+In addition to these two commonly used quantifiers we also have symbols for some logical connectives.  A logical connective is a phrase which is used to link together two propositions/predicates or to modify a single proposition/predicate.  If the connective links two propositions/predicates it is called a \index{binary} \textbf{binary} connective, while if it modifies a single proposition/predicate it is called a \index{unary} \textbf{unary} connective.
+
+
+\begin{itemize}
+		\item The word ``and'' is a binary connective.  We write  $p \wedge q$ to mean ``$p$ and $q$''.   
+		\item The word ``or'' is a binary connective.  We write  $p \vee q$ to mean ``$p$ or $q$''.   
+		\item The word ``implies'' is a binary connective.  We write  $p \implies q$ to mean ``$p$ implies $q$'' or (equivalently) ``If $p$ then $q$''.
+		\item The phrase ``if and only if'' is a binary connective.  We write  $p \bi q$ to mean ``$p$ if and only if $q$'' or (equivalently) ``$p$ is equivalent to $q$''.
+		\item The word ``not'' is a unary connective.  We write  $\neg p$ to mean ``not $p$.
+	\end{itemize}
+
+We have already used many of these words in Chapter 1.  For example conjecture 1 near the end of that chapter was
+
+``Let $a,b$ and $c$ be integers.  If $a$ divides $b$ and $a$ divides $c$, then $a$ divides $b+c$.''
+
+We can now write this in symbolic form using the symbols for the logical quantifiers and connectives as follows:
+
+\[
+\forall a \in Z : \forall b \in Z : \forall c \in Z \left[ (a \divides b) \wedge (a \divides c) \right] \implies (a \divides (b+c))
+\] 
+
+We will now give more precise meaning to each of the connectives and quantifiers.  For us, the meaning of these phrases will be determined entirely by how they are \textbf{used in arguments}.
+
+For each quantifier and connective we will give an \index{elimination rule} \textbf{elimination rule} which describes how you can use a piece of information given by that quantifier or connective in an argument if you already know it is true.
+
+We will also give an \index{introduction rule} \textbf{introduction rule} which describes what we need to do to establish the truth of a claim which uses the given quantifier or connective.
+
+This idea of structuring our reasoning about each quantifier and connective using introduction and elimination rules for each quantifier is called \index{natural dedction} \textbf{natural deduction}.  In particular this book uses a variant of \index{Fitch style natural deduction} \textbf{Fitch style natural deduction} named after the logician Frederic Fitch.
+
+For example look at the following arguments:
+
+``I know that every dog is a mammal.  Rufus is a dog.  So Rufus is a mammal''.
+
+Here we already \textbf{know} that every dog is a mammal.  We are \textbf{using} that fact to conclude that this particular dog (Rufus) is a mammal.  We will see that this is an example of the \textbf{elimination} rule for universal quantifiers.
+
+``Rufus is a mammal and Rufus cannot fly''
+
+If I want to convince someone that Rufus is a mammal \textbf{and} that Rufus cannot fly, then I will have to argue each fact independently.  I will need to argue that Rufus is a mammal.  Then I will need to argue that Rufus cannot fly.  We will see that this is an example of the \textbf{introduction} rule for the logical connective ``and''.
+
+\section{``For all'' Elimination}
+
+Let $P(x)$ be a predicate, where the variable $x$ ranges over the set $\mathcal{U}$.  If you know (somehow) that the sentence $\forall x \in \mathcal{U}, P(x)$ is true and if you have a particular element $a$ of $\mathcal{U}$, then you also know that $P(a)$ is true. 
+
+For example, if you know somehow that ``For every integer $x$, $6x$ is even'', for instance, if your professor proved this in class,  and at some point in your argument you need that $6 \cdot 101$ is even, you can  quote the theorem using $x = 101$ to support your argument.  You do not need to prove the theorem again:  you are just \textbf{using} the universally quantified statement you know to be true.
+
+It is called ``universal elimination'' since you started with the statement $\forall x \in \mathbb{Z}: 6x \textrm{ is even}$ and ended up with the statement ``$6 \cdot 101$ is even''.  The quantifier was ``used up'' or ``eliminated''.
+
+\begin{fitch*}
+	\textrm{Outline for $\forall$-elimination:  using $\forall x \in \mathcal{U}: P(x)$}\\
+	 \hspace{1 cm}\textrm{Given:  $\forall x \in \mathcal{U}: P(x)$}\\
+	\hspace{1 cm}\textrm{Given:  $a \in U$}\\
+	\hspace{1 cm}\textrm{Conclude:  $P(a)$} & $\forall$-elim with $x = a$.
+\end{fitch*}
+
+\section{``For all'' Introduction}
+
+If your $U$ is a finite set, then you can prove $\forall x \in U: P(x)$ by just checking each element.  If $P(x)$ is true for every single input $x$, then the universally quantified statement is true.  If there is even a single value of $x$ which makes $P(x)$ false, then $\forall x: P(x)$ is false.
+
+However, if $U$ is infinite, we cannot prove a universally quantified sentence by manually checking all of the cases.  
+
+What we do is to choose a ``generic'' or ``arbitrary'' element of our universe of discourse, give it a name, and then argue that $P$ is true for that generic element. 
+
+Say you want to prove that ``Everyone who has a beard gets crumbs in it sometimes''.  This could be argued by saying ``Imagine someone who has a beard. Let's just call them Bob.  Then [arguments].  So we can conclude that Bob sometimes gets crumbs in their beard.  There was nothing special about Bob.  Therefore everyone with a beard sometimes gets crumbs in it''.
+
+The natural deduction outline for the universally quantified sentence  $\forall x: P(x)$ is:
+
+\begin{fitch*}
+	\textrm{Outline for $\forall$-introduction:  proving $\forall x \in \mathcal{U}: P(x)$}\\
+	\hspace{1 cm}\textrm{Let $x_1 \in U$ be chosen arbitrarily} & start $\forall$-intro\\
+	\hspace{1 cm}\textrm{Argue $P(x_1)$}\\
+	\hspace{1 cm}\textrm{Conclude $\forall x \in U:  P(x)$} & finish $\forall$-intro
+\end{fitch*}
+
+This is called an ``introduction rule'' because at the beginning of our argument we didn't know the truth of the statement, but now we have ``introduced'' $\forall x \in U:  P(x)$ as a statement we know to be true in our argument!
+
+Note:  it is important to avoid variable name conflicts!  If you have already named the variable $x_1$ earlier in the argument, and that name is still ``in use'', then reusing it is confusing.  Imagine you were telling a story about your friends and you said
+
+\begin{quote}
+``My one friend, lets just call them Joe, started going out with my other friend, lets just call them Keith.  What Joe didn't know is that Keith was going out with my other friend.  Let's just call this other friend Joe.  So Joe found out about Joe, and you can imagine the kind of upset that caused!''
+\end{quote}
+
+Accidentally calling two different friends by the same name has caused the potential for real confusion in your story.  Similar dangers are possible in the mathematical stories you try to tell.  Calling two different mathematical objects the same name can lead you to make logical errors.  This issue came up when ``student 4'' tried to prove the conjecture at the end of section $1.1$ and used the same letter $k$ to stand for two potentially different integers.
+
+\section{``There exists'' Elimination}
+
+If you know (somehow) that the sentence $\exists x \in \mathcal{U}, P(x)$ is true, then you know there is at least one value which makes the predicate true, but you do not know which one.  So you can choose one of the things which makes it true, and give it a name (like $a$) so you can refer to it later, but you may not make any other assumptions about the nature of $a$. 
+
+A typical example of this is that if you know that $a$ is odd, that means (by definition) that $\exists k \in \mathbb{Z}: a=2k+1$.  So you can choose such an element, and call it (say) $k_1$.  Then you know that $a=2k_1+1$, but you do not know anything else about $k_1$.  
+
+Similar remarks about variable conflicts apply here:  do not choose a variable name which is already is use.  If $b$ is an even number, and you already know $a=2m+1$, do not say $b = 2m$, because you are using the same variable $m$ to reference two potentially different constants.  Instead choose a variable name you have not used yet, like $n$.  So if we know $a$ is odd and $b$ is even, we can declare integers $m$ and $n$ so that $a=2m+1$ and $b = 2n$.
+
+\begin{fitch*}
+	\textrm{Outline for $\exists$-elim:  using $\exists x \in \mathcal{U}: P(x)$}\\
+	\hspace{1 cm} \textrm{Given $\exists x \in \mathcal{U}: P(x)$}\\
+	\hspace{1 cm}\textrm{Choose a witness $a \in \mathcal{U}$ so that $P(a)$ is true} & $\exists$-elim
+	\end{fitch*}
+
+
+\section{``There exists'' Introduction}
+
+To prove an existentially quantified sentence $\exists x \in U: P(x)$ you need to find a candidate element $x_1$ of the universe of discourse for which you believe that $P(x_1)$ is true, and then supply a proof that $P(x_1)$ is actually true.  We only need to find a single such $x_1$.  A choice of $x_1$ is sometimes called a ``witness'' of the existentially quantified statement.
+
+The natural deduction style proof outline for $\exists x:  P(x)$ looks like this:
+
+\begin{fitch*}
+	\textrm{Outline for $\exists$-intro:  proving $\exists x: P(x)$}\\
+	\hspace{1 cm} \textrm{Construct a candidate $a$ in the universe of discourse.} & start $\exists$-intro\\
+	\hspace{1 cm} \textrm{Give a proof that $P(a)$ is true.}\\
+	\hspace{1 cm} \textrm{Conclude $\exists x: P(x)$.} & finish $\exists$-intro
+\end{fitch*} 
+
+Note:  Existentially quantified sentences are a bit funny.  The construction of a witness is often more important than the statement that the witness exists.  It is much more useful to know that $1729$ is an integer which is expressible as sum of two cubes in two different ways ($1729 = 1^3+12^3 = 9^3+10^3$ ) than it is to merely know that there is \textit{some} integer which is expressible as a sum of two cubes in two different ways. \footnote{ See ``Why is the number 1729 hidden in Futurama episodes?'' by Simon Singh \cite{sin13} for some interesting anecdotes about this fact.}
+
+\section{Nested quantifiers}
+
+To use and prove statements with nested quantifiers, you just apply the rules we have already introduced recursively.  To prove $\forall x \in \mathcal{U}: \exists y \in \mathcal{V}: P(x,y)$ we would:
+
+\begin{fitch*}
+	\textrm{Let $x_1 \in \mathcal{U}$ be arbitrary.} & $\forall$-intro\\
+	\textrm{Give a proof that $\exists y \in \mathcal{V}: P(x_1,y)$ is true.}\\
+	\textrm{Conclude $\forall x \in \mathcal{U}: \exists y \in \mathcal{V}: P(x,y)$.} & finish $\forall$-intro
+\end{fitch*} 
+
+However, what does a proof that $\exists y \in \mathcal{V}: P(x_1,y)$ look like?  Let's fill it in!
+
+\begin{fitch*}
+	\textrm{Let $x_1 \in \mathcal{U}$ be arbitrary.} & start $\forall$-intro\\
+	\textrm{Construct a candidate $y_1 \in \mathcal{V}$ which might depend on $x_1$. } & start$\exists$-intro\\
+	\textrm{Give a proof that $P(x_1,y_1)$ is true.}\\
+	\textrm{Conclude $\exists y: P(x_1,y)$ is true.}  & finish $\exists$-intro\\
+	\textrm{Conclude $\forall x \in \mathcal{U}: \exists y \in \mathcal{V}: P(x,y)$.} & finish $\forall$-intro\\
+\end{fitch*} 
+
+Note that since we are trying to find a $y_1 \in \mathcal{V}$ for which $P(x_1,y)$ is true when $y = y_1$, we might need to choose a different value of $y_1$ for each value of $x_1$.  For this reason we sometimes say that $y_1$ might depend on $x_1$. 
+
+\begin{xca}	
+	\begin{enumerate}
+		\item[]\mbox{}
+		\item It is true that $\forall n \in \mathbb{N}: 6 \divides (7^n-1)$.  Use this fact to argue that $6 \divides 342$.
+		\item Argue that $\forall n \in \mathbb{Z}:  4 \divides (12n)$.
+		\item Argue that $\exists n \in \mathbb{Z}: (n-3) \divides n$.
+		\item Say you know (somehow) that $x$ is an even number.  Argue that $3x$ is also even.
+		\item Say you know (somehow) that both $12|x$ and $15|y$.  Argue that $3|(x+y)$.
+		\item Argue that $\forall \epsilon \in (0,1) \exists \delta \in (0,1): 4(3+\delta)-4(3) < \epsilon$.
+		\item Argue that $\exists x \in \mathbb{Z}: \forall y \in \mathbb{Z}:  y \divides x$.
+		\end{enumerate}
+	\end{xca}
+
+\begin{solutions}	
+	\begin{enumerate}
+		\item[] \mbox{}
+		\item Since we know $\forall n \in \mathbb{N}: 6 \divides (7^n-1)$ is true (we were told to assume this), we also know that $6 \divides (7^3-1)$ is true. Since $7^3-1 = 342$, we know that $6$ divides $342$ without even needing to check!  We could check that in fact $342 = 6 \cdot 57$, but this check is not necessary if we believe the theorem that$\forall n \in \mathbb{N}: 6  \divides  (7^n-1)$. 
+		
+		\item Choose an integer arbitrarily and call it $n_1$.  We want to argue that $4 \divides (12n_1)$.  In other words, we need to find an integer $k_1$ for which $12n_1 = 4k_1$.  We can check that $k_1 = 3n_1$ works:  $12n_1 = 4(3n_1) = 4k_1$.
+
+		\item We just need to find an $n_1$ which works.  Choosing $n_1 = 4$, we see that $n_1 - 3 = 1$, and it is clear that $1 \divides  4$.  We could have also verified this using $6$  to witness the proposition.  You might enjoy trying to find all of the solutions to this equation, and trying to justify that you have them all!
+		
+		\item Since $x$ is even we know that there is an integer $n$ with $x =2n$.  Use existential elimination to produce a particular $n_1 \in \mathbb{Z}$ with $x =2n_1$.  Then $3x  =3(2n_1) = 2(3n_1)$.  Since $3n_1$ is an integer, then $3x$ is even.  Notice that we are using existential introduction here:  we have argued that $3x$ is even (which means $\exists k \in \Z : x = 2k$) by constructing a candidate $k=3n_1$ and arguing that $x=2k$ is actually true for this choice.
+		
+		\item Since $12|x$ and $15|y$ we know that there exist integers $j$ and $k$ so that $x = 12j$ and $y=15k$.  Use existential elimination to produce particular $j_1 \in \Z$ and $k_1 \in \Z$ with $x = 12j_1$ and $y=15k_1$.  Then $x+y = 12j_1+15k_1 = 3(4j_1+5k_1)$.  Since $(4j_1+5k_1)$ is an integer, we have shown that $3|(x+y)$.  Notice that we are using existential introduction here:  we have argued that $3|(x+y)$ (which means $\exists t \in \Z: x+y = 3t$) by constructing a candidate $t = 4j_1+5k_1$ and showing that $x+y = 3t$ is actually true for this choice.
+		 
+		\item Let $\epsilon_1 \in (0,1)$ be arbitrary.  We are trying to construct a $\delta \in (0,1)$ for which $4(3+\delta)-4(3) < \epsilon$.  This inequality is equivalent to the inequality $4\delta < \epsilon$.  So we just need to choose a $\delta$ which is less than $\epsilon_1/4$.  To be explicit about it, lets choose $\delta_1 = \epsilon_1/8$.  Then 
+		\begin{align*}
+			4(3+\delta_1)-4(3) &= 4\delta_1 \\
+			&= 4(\epsilon_1/8)\\
+			&=\epsilon_1/2\\
+			&<\epsilon
+		\end{align*}
+		
+		Note the logic here:  for an arbitrarily chosen $\epsilon$, we were able to cook up a $\delta$ (dependent on $\epsilon$) which satisfied the inequality.
+		\item We need a witness for this existentially quantified statement.  I will choose $x=0$.  So we are trying to argue that $\forall y \in \mathbb{Z}:  y \divides 0$.  Let $y_1$ be an arbitrary integer.  We want to show that $y_1 \divides 0$.  So we need to find an integer $k$ for which $0 = y_1 \cdot k$.  $k=0$ works!  Thus there is an integer (namely zero) which is divisible by all other integers.
+	\end{enumerate}
+\end{solutions}
+
+
+
+
+\section{``And'' Elimination}
+
+In a proof, if we know that $p \wedge q$ is true, then we may cite that fact that $p$ is true or that $q$ is true whenever we want in our argument.  This is called \textbf{$\wedge$-elimination} because it takes a hypothesis which includes a $\wedge$ and ``eliminates'' it to obtain a new hypothesis without the $\wedge$.
+
+\begin{fitch*}
+	\textrm{Outline for $\wedge$-elimination:  using $p \wedge q$}\\
+	\hspace{1 cm}\textrm{Given: $p \wedge q$}\\
+	\hspace{1 cm}\textrm{Conclude $p$} & $\wedge$-elim left\\
+	\hspace{1 cm}\textrm{Conclude $q$}& $\wedge$-elim right\\
+	\end{fitch*}
+
+\section{``And'' Introduction}
+
+To prove $p \wedge q$ we just need to prove $p$, then prove $q$:
+
+\begin{fitch*}
+	\textrm{Outline for $\wedge$-introduction:  proving $p \wedge q$ is true)}\\
+	\hspace{1 cm}\textrm{Put a proof of $p$ here.}\\
+	\hspace{1 cm}\textrm{Put a proof of $q$ here.}\\
+	\hspace{1 cm}\textrm{Conclude that $p \wedge q$ is true.} & $\wedge$-intro\\
+\end{fitch*}
+
+This is called ``$\wedge$-introduction'', because it allows us to introduce $p \wedge q$ as a known statement in our arguments.
+
+There is some ``fancier language'' you might see in other sources: $p \wedge q$ is also called the \index{conjunction} \textbf{conjunction}\footnote{\url{https://www.youtube.com/watch?v=4AyjKgz9tKg}} of $p$ and $q$.  One can also  refer to $p$ as the \index{conjunct} \textbf{left conjunct} and $q$ as the \textbf{right conjunct} of $p \wedge q$.
+
+\begin{xca}
+
+	Argue each of the following:
+	
+	\begin{enumerate}
+		\item $(6 < 7 ) \wedge (6\divides 18)$ is true.
+		\item $(6 \textrm{ is even }) \wedge (7 \textrm{ is odd})$ is true.
+		\item $\forall x: [(x \cdot 0 = 0) \wedge (x \cdot 1 = x)]$ is true.
+		\item $\exists x: [(2x+1 = 5) \wedge (3x+3 = 5)]$ is not true.
+		\item $[\exists x: (2x+1 = 5)] \wedge [\exists x: (3x+3 = 5)]$ is true.
+	\end{enumerate}
+\end{xca}
+
+\begin{solutions}
+	
+	\begin{enumerate}
+		\item[] \mbox{}
+		\item $(6 < 7 ) \wedge (6 \divides 18)$  This is true because both conjuncts are true, so the conjunction is true.  Note the ``recursive'' nature of the evaluation of the truth value here:  to be explicit, I would need to verify that $6\divides 18$ is true by producing the witness $k= 3$ for the existentially quantified statement $\exists k : 18 = 6k$.
+		\item $(6 \textrm{ is even }) \wedge (7 \textrm{ is odd})$ Again, both conjuncts are true so this is true.  
+		\item $\forall x: [(x \cdot 0 = 0) \wedge (x \cdot 1 = x)]$ - This is a true proposition. 
+		
+		\begin{fitch*}
+			\hspace{-1 cm}\textrm{Let $x_1  \in \mathbb{R}$ be arbitrary.} & start $\forall$-intro\\
+				\hspace{-1 cm} x_1 \cdot 0 = 0 & algebra\\
+			\hspace{-1 cm}	x_1 \cdot 1 = x_1 & algebra\\
+			\hspace{-1 cm}	(x_1 \cdot 0 = 0) \wedge (x_1 \cdot 1 = x_1)& $\wedge$-intro\\
+			\hspace{-1 cm}	\forall x \in \mathbb{R} [(x \cdot 0 = 0) \wedge (x \cdot 1 = x) ]& finish $\implies$-intro\\
+
+		\end{fitch*}
+	
+		\item $\exists x \in \mathbb{R}: [(2x+1 = 5) \wedge (3x+3 = 5)]$ - This is a false.  There is no number $x$ which will make $2x+1 = 5$ and $3x+3 = 5$ both true statements.  The reason is that if $2x+1  = 5$, then $x$ must be $2$.   However if $3x+3 = 5$, then $x$ must be $\frac{2}{3}$.  There is no number which is both equal to $2$ and $\frac{2}{3}$, since $2 \neq \frac{2}{3}$.  We will formalize how to make this kind of argument about something \textbf{not} being true when we get to the introduction rule for negation later.
+		\item $[\exists x \in \mathbb{R}: (2x+1 = 5)] \wedge [\exists x \in \mathbb{R}: (3x+3 = 5)]$ - This is a true proposition. $[\exists x: (2x+1 = 5)] $ is true since $x=2$ witnesses the truth of it.   $[\exists x: (3x+3 = 5)]$ is true since $x= \frac{2}{3}$ witness the truth of it. Since both conjuncts are true, the conjunction is true.
+	\end{enumerate}
+	
+	
+	
+\end{solutions}
+
+
+\section{``Implies'' Elimination}
+
+Knowing that the implication $p \implies q$ is true does not tell us whether $p$ is true or $q$ is true.  It only tells us that \textbf{if} $p$ is true, \textbf{then} $q$ must be true as well.
+
+The elimination rule for implication is that if we know both that $p$ is true and $p \implies q$ is true, then we can conclude that $q$ is true.  This rule is also called \index{``modus ponens''}\textbf{modus ponens} (from ``modus ponendo ponens'' which is Latin for "mode that by affirming affirms").
+
+\begin{fitch*}
+	\textrm{Outline for $\implies$-elimination:  using $p \implies q$}\\
+	\hspace{1 cm}\textrm{Given: $p \implies q$}\\
+	\hspace{1 cm}\textrm{Given: $p$}\\
+	\hspace{1 cm}\textrm{Conclude $q$} & $\implies$-elim
+	\end{fitch*}
+
+\begin{example}
+	Here is a theorem which should be familiar to you form high school:
+	
+	\begin{theorem}[Linear Factors Theorem]
+		Let $p(x)$ be a polynomial with real coefficients and let $a$ be a real number.  If $p(a) = 0$, then there exists another polynomial $g(x)$ with real coefficients such that $p(x) = (x-a)g(x)$. 
+	\end{theorem}
+	
+	Maybe I am interested in the behaviour of the rational function $f(x) = \frac{x^7+x-2}{x-1}$ near $x=1$ as either a standalone problem in a Calculus course, or as a small part of some real mathematical work I am doing.
+	
+	Let $p(x) = x^7+x-2$ The linear factors theorem says that the implication $(p(1) = 0) \implies \exists g: [p(x) = (x-1)g(x)]$ is true.  $p(1) = 0$ is actually true because $p(1) = 1^7+1-2 = 0$.  So, by implication elimination we know that there is a polynomial $g$ with $p(x) = (x-1)g(x)$.
+	
+	The theorem doesn't actually tell me how to find $g$ \footnote{There is an algorithm which you should remember from high school called ``polynomial long division'' which lets you find $g$}, but that might not be necessary for my problem.  The very fact that $g$ exists allows me to conclude that
+	
+	$$f(x) = \frac{(x-1)g(x)}{x-1} = g(x)$$
+	
+	when $x \neq 1$, and so we can tell (for instance) that $f$ has a removable discontinuity at $x=1$.
+	
+\end{example}
+
+\section{``Implies'' Introduction}
+
+If we want to convince someone that an implication $p \implies q$ is true, what do we need to do?
+
+To prove an implication $p \implies q$ we should \textbf{assume} (or pretend) that $p$ is true, and try to argue that $q$ must be true relative to that assumption.
+
+In our proof outline, we will record the fact that we have made an \textbf{assumption} by initiating a vertical bar with an indent.  Every part of the argument within the scope of that vertical bar is made relative to the assumption (so we can always pretend that the assumption is true for those parts of the argument).  We cannot assume that the assumption is true in other places of our argument!  When we have finished proving the implication, we end the vertical bar, and unindent.
+
+So our proof outline looks like this:
+
+\begin{fitch*}
+	\textrm{Outline for $\implies$-intro:  proving  $p \implies q$}\\
+	\hspace{1 cm}\textrm{Assume $p$ is true.} & start $\implies$-intro\\
+	\hspace{1 cm}\fa \textrm{ Argue $q$ \textbf{assuming} $p$}\\
+	\hspace{1 cm}\textrm{Conclude $p \implies q$} & finish $\implies$-intro\\
+\end{fitch*}
+
+Note:  you \textbf{cannot} use that either $p$ or $q$ are true outside of the ``imaginary world'' inside that indented region, where we are pretending that $p$ is true..  We only proved that if $p$ is true, then $q$ is.  We didn't actually argue that either one was true.
+
+\begin{example}
+	Let's prove that if $n$ is an odd integer, then $n+7$ is an even integer.
+	
+	Symbolically, we are saying
+	
+	\[
+	\forall n \in \mathbb{Z}: (\textrm{$n$ is odd}) \implies (\textrm{$n+7$ is even})
+	\]
+	
+	\begin{fitch}
+		\textrm{Let $n_1$ be an arbitrary integer.} & start $\forall$-intro\\
+		\textrm{Assume $n_1$ is odd.}& start $\implies$-intro\\
+		\fa \textrm{There is an integer $k$ so that $n_1  = 2k+1$.} & Def. of odd  \\
+		\fa \textrm{Choose one such $k$ and call it $k_1$. } & $\exists$-elim\\
+		\fa \textrm{Then $n_1+7 = (2k_1+1)+7$}\\
+		\fa \textrm{So $n_1+ 7 = 2k_1 +8$}\\
+		\fa \textrm{So $n_1+ 7 = 2(k_1+4)$}\\
+		\fa \textrm{So $\exists j: n_1+ 7 = 2j$} & $\exists$-intro with $j=k_1+4$\\
+		\fa \textrm{So $n_1 + 7$ is even.} & Def. of even\\
+		(n_1 \textrm{ is odd}) \implies (n_1 + 7 \textrm{ is even}) & finish $\implies$-intro, 2\\
+	\forall n \in \mathbb{Z}: (\textrm{$n$ is odd}) \implies (\textrm{$n+7$ is even}) & end $\forall$-intro, 1
+	\end{fitch}
+	
+	Commentary:
+	
+	\begin{enumerate}
+		\item We are introducing an arbitrarily chosen integer to introduce the universal quantifier.  If we can argue that the theorem is true for this  ``totally random'' integer $n_1$, then we can be sure it is true of all integers.
+		\item Here we are assuming our hypothesis.  Everything in the indented space below is an ``imaginary world'' where we get to pretend that $n_1$ is odd.  Remember that $n_1$ was an arbitrary integer, so we are really not sure whether it actually is odd or not!
+		\item Here we are stating the definition of what it means for $n_1$ to be even.  \item Since the definition of even is an existentially quantified statement, when we use it (eliminate the existential quantifier) we obtain a witness $k_1$ which we know nothing about except for the fact that it is a witness.
+		\item Algebra
+		\item Algebra
+		\item Algebra
+		\item Since we have demonstrated that $n_1+7 = 2(k_1+4)$, we have shown that $j = k_1+4$ is a witness for the existentially quantified statement $\exists j : (n_1+7) = 2j $.  
+		\item The previous statement is the definition of what it means for $n_1+7$ to be even.
+		\item Since we proved that $n_1 + 7$ is even \textit{relative} to the assumption that $n_1$ was odd, we can conclude $(n_1 \textrm{ is odd}) \implies (n_1 + 7 \textrm{ is even})$.  We started the argument for implication introduction on line 2 and we finish it here, with this conclusion, on line 8.
+		\item Since $n_1$ was chosen arbitrarily we can conclude that 	$\forall n \in \mathbb{Z}: (\textrm{$n$ is odd}) \implies (\textrm{$n+7$ is even})$.  We started the argument for universal introduction on line 1 and we finished it here on line 9.
+	\end{enumerate}
+
+\textbf{Important Note}:  Mathematicians do not, generally write their proofs in such a structured way.  We are doing this to expose the logical subtleties which you, as a apprentice, may be struggling with.  A mathematician will usually write their proofs in paragraphs.  From this point forward we will generally give structured proofs and then follow them with a paragraph proof which is more like a proof a mathematician would write.  The \textbf{goal} of this book is to enable you to write paragraph proofs \textbf{without} making these outlines first.  You can view the outline as a scaffolding which will eventually be unnecessary once you are comfortable enough making logical arguments.
+
+Here is what a ``paragraph proof'' for this theorem would look like:
+
+\begin{proof}
+Let $n$ be an arbitrary odd number.  Then $n=2k+1$ for some integer $k$.  So $n+7 = 2k+8 = 2(k+4)$.  Since $k+4$ is also an integer we can see that (by definition) $n+7$ is even.
+\end{proof}
+
+I urge you to compare/contrast the two proofs.  This paragraph proof contains all of the essential ideas, but it leaves many subtle steps implicit.
+\end{example}
+
+\section{``If and Only If'' Definition}
+
+Consider the following three sentences:
+
+\begin{enumerate}
+	
+	\item ``If you do your homework, then you will get a good grade in the course.''
+	
+	\item  ``You can only get a good grade in the course if you do your homework.''
+	
+	\item ``You will get a good grade in the course if and only if you do your homework.''
+	
+\end{enumerate}
+
+Let $H(x)$ be the predicate ``$x$ does their homework'' and $G(x)$ be the predicate ``$x$ will get a good grade in the course''.
+
+Then these sentences correspond to the following symbolic propositions:
+
+\begin{enumerate}
+	\item $\forall x: H(x) \implies G(x)$
+	\item $\forall x: G(x) \implies H(x)$
+	\item $\forall x: [(H(x) \implies G(x)) \wedge (G(x) \implies H(x))]$
+\end{enumerate}
+
+\begin{xca}
+	Kira is a student in the class.  For each of the following statements, determine whether they are consistent with (1), (2), or (3) being true.  Explain.
+	
+	\begin{enumerate}
+		\renewcommand{\theenumi}{\alph{enumi}}
+		\item ``Kira did their homework and got a good grade.''
+		\item ``Kira did their homework and didn't get a good grade.''
+		\item ``Kira didn't do their homework and got a good grade.''
+		\item ``Kira didn't do their homework and they didn't get a good grade.''
+	\end{enumerate}
+\end{xca}
+
+\begin{solutions}
+	\begin{enumerate}
+		\item[] \mbox{}
+		\renewcommand{\theenumi}{\alph{enumi}}
+		\item ``Kira did their homework and got a good grade.'' - This is consistent with all three sentences.
+		\item ``Kira did their homework and didn't get a good grade.'' - This is consistent with sentence (2) since (2) only tells you what happens if you do get a good grade.  It doesn't say anything about what happens if you do not get a good grade.  It is inconsistent with both (1) and (3), which both claim that if someone does their homework then they must get a good grade.
+		\item ``Kira didn't do their homework and got a good grade.'' - This is consistent with sentence (1) since (1) only tells you what happens if you do your homework.  It doesn't say anything about what happens if you do not do your homework. It is inconsistent with both (2) and (3), which both claim that if someone gets a good grade, then they must have done their homework.
+		\item ``Kira didn't do their homework and they didn't get a good grade.''  - This is consistent with all three propositions.
+	\end{enumerate}
+\end{solutions}
+
+The third sentence is an example of a \textbf{biconditional} statement.  It makes two conditional claims  (implications) at the same time. 
+
+\begin{definition}
+	Let $p$ and $q$ be two statements.  We define the biconditional of $p$ and $q$ by the following formula:
+	
+	\[
+	p \bi q := (p \implies q) \wedge (q \implies p)
+	\]
+	
+	We read ``$p \bi q$'' as ``$p$ if and only if $q$''.
+\end{definition}
+
+\section{``If and Only If'' Elimination} 
+
+If we know (somehow) that the biconditional $P \bi Q$ is true, then by definition we also know that $(P \implies Q) \wedge (Q \implies P)$ is true.  So we can use that $P \implies Q$ is true, and that $Q \implies P$ is true.  
+
+\begin{example}
+	The Pythagorean theorem is one of the most famous theorems in the world:
+	
+	\begin{theorem}[Pythagorean Theorem]
+		A triangle with side lengths $a$, $b$, $c$ satisfies $a^2+b^2 = c^2$ if and only if one of the interior angles of the triangle is a right angle.
+	\end{theorem}
+	
+	Since we know that this biconditional statement is true for any triangle, we can use both the forwards and backwards implications freely in our reasoning.  In forwards direction we can say that if a triangle has side lengths $5$, $12$, and $13$, then since $5^2 + 12^2 = 25+144 = 169$ and $13^2 = 169$, then we can be sure that this triangle is a right triangle.  This is useful if you want to make a right angle but do not have a square tool available:  take a long nonstretchy rope of length $5+12+13 = 30$ feet.  Tie it in a loop.  Mark off $5'$, $12'$, and $13'$ distances around the loop.  When you pull this tight at the markings to make a triangle, you can be sure that the angle opposite the longest side is a right angle.
+	
+	In the backwards direction, if you are cutting a $2''$ by $4''$ piece of lumber along a diagonal, and you need the diagonal to be $5''$ long, then the you know that you will need to cut $3''$ off of one side.  The reason is that if we let $x$ be the number of inches to be cut, then the backwards implication of the theorem tells us that $x^2+4^2  =5^2$.  We can solve this equation to see that $x=3$.
+\end{example}
+
+\section{``If and Only If'' Introduction}
+
+Since we have defined $p \bi q$ as  $(p \implies q) \wedge (q\implies p)$, the proof outline for biconditional statements is just to prove $p \implies q$ and then prove $q \implies p$.
+
+\begin{fitch}
+\ftag{~} \textrm{\hspace{-1 cm}Outline for $\bi$-introduction:  proving $p \bi q$}\\
+	\hspace{1 cm}\textrm{Assume $p$} & start forward $\bi$-intro\\
+	\hspace{1 cm}\fa \textrm{Prove $q$}\\
+	\hspace{1 cm}\textrm{Assume $q$}& start backward $\bi$-intro\\
+	\hspace{1 cm}\fa \textrm{Prove $p$}\\
+	\hspace{1 cm} \textrm{Conclude $p \bi q$} &  finish $\bi$-intro
+\end{fitch}
+
+
+Note:  Sometimes mathematicians will refer to lines 1 and 2 as the ``forward" or ``only if" part of the argument, and lines 3 and 4 as the ``backward'' or ``if'' part of the argument.  These names make sense because the implication arrows are either pointing forward from $P$ to $Q$, or backwards from $Q$ to $P$.  If we write ``$P$ if and only if $Q$'', then ``$P$ only if $Q$'' represents $P \implies Q$ and ``$P$ if $Q$'' represents $Q \implies P$.
+
+It is a very common mistake for students to forget the backward part of the argument when proving a biconditional. 
+
+\newpage
+
+\begin{example}
+	Lets prove that $0$ divides an integer if and only if that integer is $0$.
+	
+	Symbolically we are trying to show
+	
+	\[
+	\forall n \in \mathbb{Z}: [ (0 \divides n) \bi (n=0)]
+	\]
+	
+	Here is the structured proof:
+	
+	\begin{fitch}
+		\textrm{Choose an arbitrary integer and call it $n_1$} & $\forall$-intro\\
+		\textrm{ Assume $(0 \divides n)$} & forward $\bi$-intro\\
+		\fa \textrm{Then $n_1 = 0k$ for at least one integer $k$.} & Def. of divisibility\\
+		\fa \textrm{Call one such integer $k_1$.} & $\exists$-elim\\
+		\fa \textrm{Then $n_1= 0k_1$.}\\
+		\fa \textrm{So $n_1=0$}\\
+		\textrm{Assume $n_1=0$} & backwards $\bi$-intro\\
+		\fa \textrm{Then $n_1 = 0 \cdot 1$}\\
+		\fa \textrm{So $\exists k: n_1 = 0 \cdot k$} & $\exists$-intro with $k=1$\\
+		\fa \textrm{So $0 \divides n_1$} & definition of divides\\
+		(0 \divides n) \bi (n=0) & finish $\bi$-intro, 2, 7\\
+		\forall n \in \mathbb{Z}: [ (0 \divides n) \bi (n=0)] & finish $\forall$-intro, 1
+	\end{fitch}
+	
+	Here is the paragraph proof:
+	
+	\begin{proof}
+	Assume $0$ divides  $n$.  Then $n = 0k$ for some integer $k$.  So $n=0$.  On the other hand if $n=0$ then $0 \divides 0$ since $0=0\cdot1$.  So $0$ divides $n$ if and only if $n=0$.
+	\end{proof}
+\end{example}
+
+
+\section{Absurdity and Negation}
+
+In section 1.1 we informally discussed how to convince someone that a given statement is not true.  For example we gave the following argument that $6$ is not odd:
+
+\begin{fitch}
+		\textrm{Assume $6$ is odd.}\\
+		\fa \textrm{Pick an integer $k$ so that $6 = 2k+1$.}\\
+		\fa \textrm{So $k = \frac{5}{2}$.}\\
+		\fa \textrm{So $k$ is both an integer and not an integer.  This is absurd.}\\
+		\textrm{We can conclude that $6$ is not odd.}
+		\end{fitch}
+	
+On line $4$ we reached an \index{absurdity} \textbf{absurdity}.  The claim that $k$ is both an integer and not an integer can be rejected automatically.
+
+We now introduce a new symbol $\bot$.  You should think of this symbol as representing a ``generic absurdity'' rather than a particular absurdity like ``$1 \neq 1$'' or ``I know that I know nothing''.
+
+Dually we introduce $\top$ to represent a ``generic truth'' such as $1 = 1$.
+
+We will accept the following as a basic principle:
+
+\begin{principle}[Principle of Explosion]
+		For any statement $p$, we will accept that $\bot \implies p$ is a true statement.
+		
+		In other words we will accept that we can argue \textit{any} conclusion from an absurd premise.
+	\end{principle}
+
+This is called the ``principle of explosion'' because it means that believing a single false statement will ``explode'' your entire belief system.  As soon as you accept one false belief there will be valid arguments leading you to accept every claim, no matter how fantastic.
+
+Let's see that this is reasonable.  Consider the following argument:
+
+\begin{fitch*}
+	\textrm{Assume $0=1$}\\
+	\fa \textrm{Then adding $1$ to both sides we have $1=2$}\\
+	\textrm{We can conclude that $(0=1) \implies (1=2)$.}
+\end{fitch*}
+
+Here we were able to derive an absurd conclusion from an absurd premise.    If you interrogate your own beliefs you may occasionally find that you no longer agree with one of these beliefs.  In that case it is important to investigate which of your other beliefs depend on the one you know longer follow, since it is very possible that they are false as well.
+
+However it is also possible to derive correct conclusions from absurd premises!
+
+\begin{fitch*}
+	\textrm{Assume $0=1$}\\
+	\fa \textrm{Then multiplying both sides by $0$  we have $0=0$}\\
+	\textrm{We can conclude that $(0=1) \implies (0=0)$.}
+\end{fitch*}
+
+This happens a lot.  If you interrogate your own beliefs you might find, on occasion, that you believe some correct things for ``the wrong reasons''.
+
+So we have seen, concretely, that absurdities do imply both false and true statements.  You might be uncomfortable saying that accepting an absurdity as a premise should allow us to reach \textbf{any} conclusion, as the principle of explosion directs us to do.
+
+To steal from philosopher Bertrand Russel can we come up with an actual argument that accepting the absurdity $1 + 1 = 1$ could lead us to the other equally absurd conclusion that ``Bertrand Russel is the pope''? \footnote{\url{http://ceadserv1.nku.edu/longa//classes/mat385_resources/docs/russellpope.html}}  This is more difficult.  It is hard to say whether we could come up with an argument which starts from the hypothesis that $1+1 = 1$ and arrives at the conclusion that Bertrand Russel is the pope, but it is also difficult to say that such an argument is impossible to make.  Here is Bertrand's solution:
+
+\begin{quote}
+	Assume that $1+1 = 1$.
+	
+	The pope is one person, and I am another.
+	
+	Since $1+1 = 1$, then I and the pope together are one.
+	
+	Thus I am the pope.
+\end{quote}
+
+This was a very tricky argument.  It might be even harder to decide whether we could come up with a valid argument in other circumstances.  For instance, can you come up with an argument that if $E = mc^3$ then cows are made of diamonds?  I wouldn't know how to make such an argument, but I also wouldn't rule out such an argument existing.  Without the principle of Explosion we would be in the awkward situation of being unable to evaluate the truth value of this statement unless someone comes around who is clever enough to make the argument.  It would also leave open the possibility that this argument is impossible to make, but for reasons of content, rather than the logical form of the statements.
+
+So accepting the Principle of Explosion is a kind of philosophical compromise we are making to simplify our arguments.  If you do not agree with this idea then you might be interested in learning about \textbf{relevance logic} which you can read more about in \cite{mar22}.
+
+Let us return again to the argument that $6$ is not odd:
+
+\begin{fitch}
+	\textrm{Assume $6$ is odd.}\\
+	\fa \textrm{Pick an integer $k$ so that $6 = 2k+1$.}\\
+	\fa \textrm{So $k = \frac{5}{2}$.}\\
+	\fa \textrm{So $k$ is both an integer and not an integer.  This is absurd.}\\
+	\textrm{We can conclude that $6$ is not odd.}
+\end{fitch}
+
+Notice what we are doing here.  To prove that $6$ is not odd we are assuming that $6$ is odd and deriving an absurdity.  In other words, we are translating the statement ``$6$ is not odd'' into the statement ``$(6 \textrm{ is odd}) \implies \bot$''.
+
+We formalize this intuition in the following definition:
+
+\begin{definition} Let $p$ be a sentence.  We define the \index{negation}\textbf{negation} of $p$ to be the statement that $p \implies \bot$.  We will use the notation $\neg p$ as a shorthand symbol.  It is read ``not $p$'' or ``the negation of $p$''.
+\end{definition}
+
+Our definition of negation might seem more familiar when you think about how you argue a negation in your normal  everyday life.  For instance if someone claims that they ate $100$ pounds of food yesterday, one could argue the negation of that statement by saying ``If you did eat $100$ pounds of food, your stomach would explode and you would die.  However, you are alive before me.  Thus you must not have eaten $100$ pounds of food.''
+
+When we want to argue a negation of a statement, we naturally assume the statement and then make a valid argument to reach a conclusion which we know to be false.  This is the intuition which is captured by our definition.
+
+Since negation is defined in terms of implication, we use and prove it according to those same rules for implication.  Let's spell that out a bit, and see some examples.
+
+\section{``Not'' Elimination}
+
+We already know that modus ponens is elimination rule for implication.   What does modus ponens look like when applied to $\neg P = P \implies \bot$?  It says that if we know $P$ and $\neg P$, then we can derive $\bot$.  This should feel intuitive to you!
+
+This will most often arise in case analysis when we need to ``rule out'' a given case.  We will cover this usage when we treat ``or introduction'' in the next subsection.
+
+\begin{fitch*}
+	\textrm{Outline for $\neg$ elimination:  using $\neg p$}\\
+	\hspace{1 cm}\textrm{Given:  $\neg p$}\\
+	\hspace{1 cm}\textrm{Given: $p$}\\
+	\hspace{1 cm}\textrm{Conclude $\bot$}
+	\end{fitch*}
+
+\section{``Not'' Introduction}
+
+Our definition of negation is $\neg P = (P \implies \bot)$.  So our introduction rule for negation will follow the rule for proving an implication:
+
+\begin{fitch*}
+	\textrm{Outline for $\neg$ introduction:  proving $\neg p$}\\
+	\hspace{1 cm}\textrm{Assume $p$}\\
+	\fa \textrm{Argue $\bot$.}\\
+	\textrm{Conclude $\neg p$}
+\end{fitch*}
+
+\begin{example}
+	
+	Lets show that $9$ is not divisible by $4$.  Symbolically
+	
+	\[
+	\neg(4 \divides 9 )
+	\]
+	
+	We will be extremely methodical here to showcase all of the introduction and elimination rules we are using.  This level of detail is not normal or expected for general mathematical arguments:  we only do it hear to really ``dig into the details''.
+	
+	Structured Proof:
+	
+	\begin{fitch}
+		\textrm{Assume $4 \divides 9$} & start $\neg$-intro\\
+		\fa \textrm{Then $9 = 4k$ for some integer $k$.} & Def. of divides\\
+		\fa   \textrm{Pick one such and name it $k_1$.} & $\exists$-elim \\
+		\fa \textrm{Then $9 = 4k_1$.}\\
+		\fa \textrm{Then $k_1 = 2.25$.}\\
+		\fa \textrm{So $(k_1$ is an integer and  $k_1$ is not an integer}\\
+		\fa \bot
+		\textrm{So $\neg(4 \divides 9)$} & finish $\neg$-intro, 1
+	\end{fitch}
+
+	Paragraph proof:
+	
+	\begin{proof}
+	Assume to the contrary that $4 \divides 9$.  Then $9=4k$ for some integer $k$.  Then $k=2.25$ which is not an integer.  This is absurd.  Thus $4$ does not divide $9$.
+	\end{proof}
+	
+
+
+\end{example}
+	
+	It is important to realize that this proof structure (assuming a proposition and deriving an absurdity) is the \textbf{only} way to establish a negation.
+	
+	A common incorrect solution to this problem would be to write:
+	
+	\begin{quote}[WARNING: INCORRECT WORK]
+		
+		\begin{fitch*}
+			9 = 4(2.25)\\
+			\textrm{But $4 \divides 9$ means  $9 = 4k$ where $k \in \Z$.}\\
+			\textrm{$2.25$ is not  an integer.}\\
+			\textrm{Thus $9$ is not odd.}
+		\end{fitch*}
+		
+	\end{quote}
+	
+	This reasoning is faulty.  Let's look at some completely analogous reasoning which leads to an incorrect conclusion.  I will use the same kind of reasoning to show that $2$ is not a rational number!
+	
+	\begin{fitch*}
+		\textrm{$2 = \frac{2\pi}{\pi}$.}\\
+		\textrm{But a rational number is defined to be a number of the form  $\frac{a}{b}$ where $a,b \in \Z$.}\\
+		\textrm{Neither $2\pi$ nor $\pi$ are integers.}\\
+		\textrm{Thus $2$ is not rational.}
+	\end{fitch*}
+	
+	Moral of the story:  to prove the negation of a proposition we \textbf{must} assume the proposition and argue an absurdity.
+
+\section{``Or'' Motivation}
+
+Our ordinary language use of the work ``or'' is not clear.  
+
+Consider the following sentence:
+
+\begin{quote}
+	``I will go out for pizza or I will go out for ice cream''
+\end{quote}
+
+This sentence is ambiguous.  It is unclear whether the person saying this sentence is allowing for the possibility that they will get both pizza and ice cream, or if they are claiming that they will only get one and not the other.
+
+In mathematics and computer science whenever we use the word ``or'' without clarifying we always mean the \index{Inclusive Or}\textbf{``inclusive or''}, which permits both constituent statements to be true.  We will also use the word \index{disjunction} \textbf{disjunction} for this kind of ``or''.  We will use the symbol $\vee$ to stand for this ``or''.
+
+There is a notion of \index{Exclusive Or}\textbf{``exclusive or''} which is false when both constituent statements are true.  This exclusive version is also called XOR.  We will not have further need of XOR in this text since XOR can be defined in terms of other logical connectives.
+
+The introduction and elimination rules will make clear exactly how we are permitted to use ``or'' statements in our arguments.  These rules fully capture the intended meaning of the word ``or'' for us, and resolve the ambiguity of the word ``or'' in English.
+
+\section{``Or'' Elimination}
+
+If I want to argue that $r$ is true, and I know $p \vee q$ is true, how should we proceed?  An example might help:
+
+\begin{xca}
+	Imagine you are playing a game with your friend.  They have a health score of $3/20$.  You have two cards in your hand, one of which deals $5$ points of damage and the other deals $7$ points of damage.  You know you will be playing at least one card this turn.  You want to convince your friend that they are about to lose the game.  What argument do you make?
+\end{xca}
+
+\begin{solutions}
+	To convince your friend that they are about to lose, you should look at both cases.  \textbf{If} you play the first card, \textbf{then} they will sustain $5$ points of damage and lose the game.  \textbf{If} you play the second card, \textbf{then} they will sustain $7$ points of damage and lose the game.  Since they will lose the game in either case, and at least one card will be played, then they will certainly lose this turn.
+\end{solutions}
+
+Let us model this argument symbolically.  Say $p$ is the statement ``I play the first card'', $q$ is the statement ``I play the second card'' and $r$ is the statement ``My friend loses the game''.  We know $p \vee q$ is true and we are trying to argue $r$.  We did so by arguing that $p \implies r$ \textbf{and} $q \implies r$!
+
+This is the idea behind the argument form called \index{disjunction elimination}\textbf{disjunction elimination} or  \index{case analysis}\textbf{case analysis}:
+
+If we know that $p \vee q$ is true, and we want to argue $r$ is true, then we need to argue $(p \implies r) \wedge (q \implies r)$.   We do that by following the natural deduction proof outline for conjugation and implication. 
+
+\begin{fitch*}
+	\textrm{Outline for $\vee$ elimination:  using $p \vee q$ to argue $r$}\\
+	 \hspace{1 cm}\textrm{Given: $p \vee q$.}\\
+	\hspace{1 cm}\textrm{Case 1:  Assume $p$} & $\vee$-elim case 1\\
+	\hspace{1 cm}\fa \textrm{Argue $r$}\\
+	\hspace{1 cm}\textrm{Case 2:  Assume $q$}& $\vee$-elim case 2\\
+	\hspace{1 cm}\fa \textrm{Argue $r$}\\
+	\hspace{1 cm}\textrm{Conclude that $r$ is true}& finish $\vee$-elim
+\end{fitch*}
+
+\newpage
+
+\begin{example}
+	Lets prove that if $x<-4$ or $x>5$, then $x^2 > 9$.
+	
+	We will do so using a paragraph proof first this time \footnote{Our goal is to eventually transition to write paragraph proofs directly without needing the structured proofs!}
+	
+	Paragraph proof:
+	
+	\begin{proof}
+			If $x<-4$ then $x^2 > 16$.  If $x>5$ then $x^2 > 25$.  In either case $x^2 > 9$.  So if $x<-4$ or $x>5$ we have that $x^2 > 9$.
+		\end{proof}
+	
+	Structured proof:
+	
+	We are trying to show
+	
+	\[
+	\forall x \in \mathbb{R}: [(x< -4) \vee (x>5)] \implies (x^2 >9)
+	\] 
+	
+	\begin{fitch}
+		\textrm{Let $x_1 \in \mathbb{R}$ be arbitrary.} & start $\forall$-intro\\
+		\textrm{Assume $(x_1< -4) \vee (x_1>5)$.} & start $\implies$-intro\\
+		\fa \textrm{Case 1:  Assume $x_1< -4$.}& $\vee$-elim case 1\\
+		\fa \fa \textrm{Then $x_1^2 > 16$, so $x_1^2 > 9$.}\\
+		\fa \textrm{Case 2:  Assume $x_1>5$.}& $\vee$-elim case 2\\
+		\fa \fa \textrm{Then $x_1^2> 25$, so $x_1^2 > 9$.}\\
+		\fa x_1^2 > 9 & finish $\vee$-elim\\
+		\left[(x_1< -4) \vee (x_1>5) \implies (x_1^2 >9)\right] & finish $\implies$-intro, 2\\
+			\forall x \in \mathbb{R}: [(x< -4) \vee (x>5)] \implies (x^2 >9) & finish $\forall$-intro, 1
+	\end{fitch}
+
+\end{example}
+
+
+\section{``Or'' Introduction}
+
+To prove a disjunction it is sufficient to prove just one of the disjuncts.  Since there are two disjuncts, there are two proof outlines (one for the left disjunct, and one for the right disjunct).
+
+
+\begin{fitch*}
+	\textrm{Outline for $\vee$ intro:  proving $p \vee q$ (left)}
+	\hspace{1 cm}\textrm{Argue $p$}\\
+	\hspace{1 cm}\textrm{Conclude $p \vee q$}
+\end{fitch*}
+
+
+\begin{fitch*}
+	\textrm{Outline for $\vee$ intro:  proving $p \vee q$ (right)}
+	\hspace{1 cm}\textrm{Argue  $q$}\\
+	\hspace{1 cm}\textrm{Conclude $p \vee q$}
+\end{fitch*}
+
+Many theorems in mathematics have disjunctions in both the hypothesis and the conclusion.  In these cases, it is frequently true that in some cases we would prove one disjunct of the conclusion, and in other cases we would prove the other.
+
+\begin{example}
+	Lets start with a really basic example and prove that the following sentence is true:
+	
+	\[
+	(\textrm{$6$ is odd}) \vee (\textrm{$6$ is even})
+	\]
+	
+	\begin{proof}
+		$6$ is even because $6 = 2 \cdot 3$. 
+	\end{proof}
+	
+	This is a complete proof!  To prove a disjunction, you need only prove one of the disjuncts.
+	
+\end{example}
+
+\begin{example}
+	Now for a more complicated example.  Lets prove that if $10$ or $15$ divides $n$, then $2$ or $3$ divides $n$. Symbolically 
+	
+	\[
+	\forall n \in \mathbb{Z}: [(10 \divides n) \vee (15 \divides n)] \implies [(2 \divides n) \vee (3 \divides n)]
+	\]
+	
+	Paragraph proof:
+	
+	\begin{proof}
+			Assume $10$ or $15$ divides $n$.  If $10$ divides $n$, then there is a $k$ so that $n=10k = 2(5k)$, so $2$ divides $n$.  If $15$ divides $n$ then there is a $k$ so that $n=15k=3(5k)$ so $3$ divides $n$.  So in either case $2$ or $3$ divides $n$.
+		\end{proof}
+	
+Structured proof:
+
+	\begin{fitch}
+		\textrm{Let $n_1 \in \Z$ be arbitrary} & start $\forall$-intro \\
+		\textrm{Assume  $[(10 \divides n_1) \vee (15 \divides n_1)]$} & start $\implies$-intro\\
+		\fa \textrm{Case 1:  Assume $10 \divides n_1$} & $\vee$-elim case 1\\
+		\fa \fa \textrm{Then $n_1 = 10k$ for some integer $k$} & Def. of divisible\\
+		\fa \fa \textrm{ Choose one such and name it $k_1$} & $\exists$-elim\\
+		\fa \fa \textrm{So $n_1 = 10k_1$}\\
+		\fa \fa \textrm{So $n_1 = 2(5k_1)$}\\
+		\fa \fa \textrm{So $\exists j: n_1 = 2j$} & $\exists$-intro with $j = 5k_1$\\
+		\fa \fa \textrm{So $2 \divides n_1$} & Def. of divisible\\
+		\fa \fa \textrm{So $[(2 \divides n) \vee (3 \divides n)]$} & $\vee$-intro (left)\\
+		\fa \textrm{Case 2:  Assume $15 \divides n_1$} & $\vee$-elim case 2\\
+		\fa \fa \textrm{Then $n_1 = 15k$ for some integer $k$.} & Def. of divisible\\
+		\fa \fa \textrm{Choose one such and name it $k_2$} & $\exists$-elim\\
+		\fa \fa \textrm{So $n_1 = 15k_2$}\\
+		\fa \fa \textrm{So $n_1 = 3(5k_2)$}\\
+		\fa \fa \textrm{So $\exists j: n_1 = 3j$} & $\exists$-intro with $j = 5k_2$\\
+		\fa \fa \textrm{So $3 \divides n_1$}\\
+		\fa \fa \textrm{So $[(2 \divides n) \vee (3 \divides n)]$}& $\vee$ -intro (right)\\
+		\fa \left[(2 \divides n) \vee (3 \divides n)\right] & finish $\vee$-intro, 3, 11\\
+		\left[(10 \divides n) \vee (15 \divides n)\right] \implies [(2 \divides n) \vee (3 \divides n)] & finish $\implies$-intro, 2\\
+		\forall n \in \mathbb{Z}: [(10 \divides n) \vee (15 \divides n)] \implies [(2 \divides n) \vee (3 \divides n)] & finish $\forall$-intro, 1
+	\end{fitch}
+\end{example}
+
+\section{Summary of chapter}
+
+We have established introduction and elimination rules for each quantifier and connective.  These allow us to make structured outlines for proving mathematical theorems.  There is no magic bullet:  following these outlines will not let you prove everything automatically.  Mathematics is a creative process and the creativity lies in completing these outlines.
+
+You should strive to internalize these introduction and elimination rules to the point that they are ``welded'' into your understanding of the phrases ``there exists'', ``for all'', ``and'', ``implies'', ``if and only if'', ``not'', and ``or''.  You shouldn't even need to think about it:  these strategies should be automatically summoned when you read these words in a mathematical context.
+
+On the next page you will find a summary table of all of the introduction and elimination rules.  You might want to use this table as a reference as you begin to write proofs. You should gradually ween yourself off of the table, and produce structured proofs independently.  Then you should gradually ween yourself off of the structured proofs so that you can produce culturally acceptable paragraph proofs without making the structured proof first.  If you accomplish this you will be in a strong position to study mathematics!
+
+
+\newpage
+
+\section{Summary table of Introduction and Elimination rules}
+
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c?p{7 cm}?p{6 cm}}
+		& Eimination Rule (How to use it)& Introduction Rule (How to prove it)	\\ \hline 
+		$\forall x \in U: A(x)$ & If $x_1$ is any element of $U$, you know that $A(x_1)$ is true. &  Let $x_1$ be an arbitrary element of the universe of discourse, and argue that $A(x_1)$ is true. \\ \hline
+		$\exists x \in U: B(x)$ & You know that there is at least one (and potentially only one) element of $U$ which makes $B$ true.  Pick one and call it $x_1$.  You may freely use that $B(x_1)$ is true in your argument.  We call $x_1$ a \textbf{witness} to the fact that $\exists x \in U: B(x)$ is true. &  You need to come up with a candidate $x_1 \in U$ for which you think $B(x_1)$ is true.  Often, this will be a formula in terms of previously declared variables.  Then argue that $B(x_1)$ really is true.  In other words you need to argue that your candidate really is a witness.  \\ \hline
+		$p \wedge q$ & You can conclude that $p$ is true and you can conclude that $q$ is true.  & \begin{fitch*}
+			\textrm{Argue $p$.}\\
+			\textrm{Argue $q$.}
+		\end{fitch*} \\ \hline
+		$p \implies q$ & If you also know $p$ is true, then you know $q$ is true. & \begin{fitch*}
+			\textrm{Assume $p$ is true.} \\
+			\fa \textrm{Argue that $q$ is true.}
+		\end{fitch*}\\ \hline
+		$p \bi q$ & If you know $p$ then you can conclude $q$, and if you know $q$ then you can conclude $p$. &  
+		\begin{fitch*}
+			\textrm{Assume $p$ is true.} \\
+			\fa \textrm{Argue that $q$ is true.}\\
+			\textrm{Assume $q$ is true.} \\
+			\fa \textrm{Argue that $p$ is true.}
+		\end{fitch*}
+		\\ \hline
+		$\neg p$ & If you also know $p$, then you can conclude $\bot$ (hence you can conclude anything by the principle of explosion) &  
+		\begin{fitch*}
+			\textrm{Assume $p$}\\
+			\fa \textrm{Argue $\bot$}
+		\end{fitch*}
+		\\ \hline
+		$p \vee q$ & If you are trying to argue $r$ is true, then you must split your argument into cases.
+		\begin{fitch*}
+			\textrm{Case 1: Assume $p$ is true.}\\
+			\fa \textrm{Argue $r$ is true.}\\
+			\textrm{Case 2:  Assume $q$ is true.}\\
+			\fa \textrm{Argue $r$ is true.}
+		\end{fitch*}
+		&  Argue $p$ is true.
+		
+		
+		\medskip
+		
+		OR
+		
+		\medskip
+		
+		Argue $q$ is true.
+		
+		\medskip
+		
+		You only need to do one of these, not both.
+		
+	\end{tabular}
+\end{table}
+
+\newpage
+
+\section{L2 Homework Problems}
+
+ These problems are \textbf{very similar} to the kinds of problems you will be expected to be able to solve to demonstrate mastery of $L2$.
+
+Proofs about parity:
+
+\begin{xca}
+	\begin{enumerate}
+		\item[] \mbox{}\\
+		\item  If $x$ is even, then $x+5$ is odd. % forall, implies
+		\item  There is no number which is both even and odd.% not, exists, and
+		\item  If $x$ is odd and $y$ is odd, then $x+y$ is even. % forall, implies
+		\item  If $x$ is odd and $y$ is odd, then $xy$ is odd. % forall, implies
+		\item  For all integers $x$, there is an integer $y$ so that $x+y$ is even. %forall, implies, exists
+		\item  If $x$ is even, then $x+2$ is not odd. % not, forall.
+	\end{enumerate}
+\end{xca}
+
+Proofs about divisibility:
+
+\begin{xca}		
+	\begin{enumerate}
+				\item[] \mbox{}\\
+		\item  There is an integer which is divisible by both $3$ and $7$. % exists, and
+		\item  There is an integer $x$ so that for all integers $y$,  $x \divides y$.
+		\item For all integers $x$ and $y$, if $x \divides y$ then $(-x) \divides y$.
+		\item If $2$ does not divide $x$, then $4$ does not divide $x$. 
+\end{enumerate}
+\end{xca}
+
+
+Proofs about equalities and inequalities:
+
+\begin{xca}
+	\begin{enumerate}
+				\item[] \mbox{}\\
+		\item  If $x=1$ or $x=2$, then $\frac{1}{x} \leq 1$  % forall, or
+		\item  For all real numbers $x$, we can find another real number $y$ with $0 < y < \frac{1}{e^x}$% forall, exists
+		\item  $(x^2-3x+2) = 0$ if and only if $x=1$ or $x=2$. %forall, iff, or
+		\item  There is no real number $x$ for which $x^2+2 = 0$. % not, exists
+		\item  If $x=1$ or $x=-1$, then $ \frac{1}{x^2} = 1$  % forall, or
+		\item  $x^2+x>0$ if and only if $x>0$ or $x<-1$.  %forall, iff, or
+		\item  If the real number $x$ is not equal to $0$, then there is a real number $y$ so that $\frac{x}{y+7}  = 4$.
+		\end{enumerate}
+	\end{xca}
+
+
+
+
+

@@ -1,0 +1,239 @@
+\chapter{Induction and Recursion}
+
+\section{Introduction}
+
+Mathematics is, in large part, the study of patterns.  Consider the following facts:
+
+\begin{enumerate}
+		\item $6^1 - 1 = 5$
+		\item $6^2 - 1 = 35$
+		\item $6^3 -1 = 215$
+		\item $6^4 - 1 = 1295$
+	\end{enumerate}
+
+Looking at these four examples seems to suggest a pattern.  It seems that $6^n - 1$ is always a multiple of $5$.  You can continue experimenting to confirm that the pattern continues to hold.  However, no matter how many computations you do, you cannot prove that $6^n-1$ is \textit{always} divisible by $5$ this way.  Even if you test up to $6^{10000} - 1$, there is still a possibility that $6^{10001} - 1$ might not be divisible by $5$.
+
+The ordered list of numbers $5, 35, 215, 1295, \dots$ is an example of a \textbf{sequence}.  We have a formula for this sequence $f(n) = 6^n -1$, for $n \in \{1,2,3,4, \dots\}$.  In other words, a sequence is just a function whose domain is a subset of the set of natural numbers.
+
+In this section we will learn how to work with sequences which are presented explicitly by formulas and recursively by recurrence relations.  We will learn how to use sigma notation to work with sums of sequences.
+
+We will learn a new method of proof called ``Mathematical Induction'' which will allow us to prove theorems about the natural numbers, including the theorem that $6^n - 1$ is always divisible by $5$.    We will also give some proof techniques which are equivalent to mathematical induction called ``strong induction'' and ``the well ordering principle''.
+
+We will also apply mathematical induction to prove three important theorems:  the infinitude of the primes,  the quotient-remainder theorem, and the correctness of the Euclidean Algorithm.
+
+\section{Sequences}
+
+\begin{definition}
+	Let $I$ be a set of consecutive integers.  For instance, we could have a finite set like $I = \{2,3,4,5\}$ or an infinite set like $I = \{5, 6, 7, 8, \dots\}$.  We call a function from $I$ to any set $X$ a \index{Sequence}\textbf{sequence} of elements of $X$ indexed by $I$.  The set $I$ is called the \index{Index Set}\textbf{index set} of the sequence, and the individual elements of $I$ are called \index{Index}\textbf{indices} (singular:  \textbf{index}).
+\end{definition}
+
+Note:  While it is common to use function notation for sequences (such as writing $f: \mathbb{N} \to \mathbb{R}$ defined by $f(n) = n^2$), it is also conventional to use a letter with a subscript for the index variable.  For instance, it is common to write $a_n = n^2, n \in \mathbb{N}$.  It is normal to substitute particular values into the index, as in $a_7  =49$.
+
+One way to present a sequence is to give the index set and a formula (also called a \index{Closed Form Expression}\textbf{closed form expression}) for the value of the sequence at a generic input.
+
+\begin{xca}
+		Write the first four terms of each of the following sequences:
+		
+		\begin{enumerate}
+				\item $a_n = n^2 -1, n \in \{4,5,6,\dots\}$
+				\item $b_n = \cos(\pi n), n \in \mathbb{N}$
+				\item $c_n = (-1)^n, n \in \mathbb{N}$
+				\item $a_n = \frac{n(n+1)}{2}, n \in \mathbb{N}$
+			\end{enumerate}
+	\end{xca}
+
+\begin{xca}
+	Below are the first 4 terms of a sequence.  Try and find a closed form expression which fits.  Note that the index set is given, so that the first element of the index set should map to the first term in the sequence.
+	
+	\begin{enumerate}
+		\item $2, 4, 6, 8$, where  $I = \mathbb{N}$.
+		\item $2, 4, 6, 8$,  where $I = \{5, 6, 7, 8, \cdots\}$
+		\item $3, 8, 15, 24$, where $I = \{1,2,3, \cdots\}$
+	\end{enumerate}
+\end{xca}
+
+We can also give \index{recursive} \textbf{recursive} formulas for sequences.   We give some collection of \index{initial values} \textbf{initial values} together with a \index{recurrence relation} \textbf{recurrence relation} which relates values of the sequence at a higher index to values of the sequence with lower indexes.
+
+\begin{example}
+		Define $f(n): \N \to \N$ by the following:
+		
+		\[
+		\begin{cases}
+				f(0) = 3\\
+				\forall n \in \N: f(n+1) = 2f(n) 
+			\end{cases}
+		\]
+		
+		Then we can calculate
+		
+		\begin{itemize}
+		\item $f(0) = 3$
+		\item $f(1) = f(0+1) = 2f(0) = 2(3) = 6$
+		\item $f(2) = f(1+1) = 2f(1) = 2(6) = 12$
+		\item $f(3) = f(2+1) = 2f(2) = 2(12) = 24$
+		\item \vdots
+		\end{itemize}
+	
+	You might suspect that $f(n) = 3(2^n)$.  This is exactly right!  Actually proving that there is one and only one function with these properties requires mathematical induction, which we will address soon.
+	\end{example}
+
+\section{Sums}
+
+\begin{definition}
+	Let $N$ and $M$ be integers with $N \leq M$.
+	
+	Let $f:  \{N, N+1, N+2, N+3, \dots\}\to \mathbb{R}$ be a sequence of real numbers.  Define 
+	
+	\[
+\sum_{k=N}^{k=M} f(k) := f(N) + f(N+1) + f(N+2) + \dots + f(M)
+\]
+
+\end{definition}
+
+Note:  we could have been a bit more precise and defined the sum recursively as 
+
+\[
+\sum_{k=N}^{k=N} f(k) := f(N)
+\]
+
+and
+
+\[
+\sum_{k=N}^{k=M+1} f(k) := f(M+1) + \sum_{k=N}^{k=M} f(k)
+\]
+
+The symbol $\sum$ is the Greek letter capital sigma.  It is read ``sum''.  The letter $k$ is called the ``index of summation''.  The number $N$ is called the ``lower limit of summation'' and the number $M$ is called the ``upper limit of summation''.
+
+Consider
+ 
+\[
+\sum_{k=3}^{k=9} k^2 
+\]
+
+We would read this expression out loud as ``the sum of $k$ squared from $k$ equals $3$ to $k$ equals $9$''.  
+
+Note that the index of summation is sometimes suppressed in the upper and lower limits if it is clear from context.  For instance we could write
+
+\[
+\sum_{3}^{9} k^2 
+\]
+
+and it would be clear that the index of summation was $k$.  If you have more than one variable you must clarify.  For instance the following two sums mean very different things:
+
+\[
+\sum_{k=1}^{k=4} j^k \textrm{ vs. } \sum_{j=1}^{j=4} j^k
+\]
+
+
+\begin{example}
+	For each of the following, either convert in or out of sigma notation as indicated.  
+
+	\begin{enumerate}
+			\item $\displaystyle\sum_0^4 k^2$
+			\item $\displaystyle\sum_4^7 5$
+			\item Write $1 + \frac{1}{3} + \frac{1}{5} + \dots + \frac{1}{135}$ in sigma notation.
+			\item $\displaystyle\sum_{j=1}^{j=N} 2$
+			\item $\displaystyle\sum_{j=-2}^{j=2} j+N$
+			\item $\displaystyle\sum_{k=1}^{k=4} j^k $
+			\item $\displaystyle\sum_{j=1}^{j=4} j^k$
+			\item Write $\frac{x}{1+x} + \frac{x}{2+x^2} + \frac{x}{3 + x^3} + \dots + \frac{x}{N + x^N} $ in sigma notation.
+		\end{enumerate}
+	\end{example}
+
+\begin{solutions}
+		\begin{enumerate}
+				\item 
+				\begin{align*}
+					\displaystyle\sum_0^4 k^2 
+					&= 0^2+1^2+2^2+3^2+4^2\\
+					&= 0 + 1 + 4 + 9 + 16\\
+					&=30
+				\end{align*}
+				\item 
+\begin{align*}
+	\displaystyle\sum_4^7 5 
+	&=5+5+5+5 \\
+	&=20
+\end{align*}
+
+Note that there is one summand of $5$ for $k=4, 5, 6, 7$.
+
+\item  $1 + \frac{1}{3} + \frac{1}{5} + \dots + \frac{1}{135}$
+
+ I can identify the sequence of terms as $\frac{1}{2k+1}$ for $k=0,1,2,3,...$.
+ 
+ My last term is when $2k+1 = 135$, so $k=67$.
+ 
+ So I can rewrite the sum in sigma notation as
+ 
+ \[
+ \sum_0^67 \frac{1}{2k+1}
+ \]
+
+
+				\item 
+\begin{align*}
+	\displaystyle\sum_1^N 2 
+	&=2+2+2+\dots + 2  \textrm{ ($N$ summands of $2$)}\\
+	&=2N
+\end{align*}
+
+Note that there is one summand of $2$ for $k=1, 2, 3, \dots N$.  
+
+			\item 
+			\begin{align*}
+				\displaystyle\sum_{j=-2}^{j=2} j+N &= (-2+N)+(-1+N)+(0+N)+(1+N)+(2+N)\\
+				&=5N
+				\end{align*}
+			
+			\item $\displaystyle\sum_{k=1}^{k=4} j^k  = j+j^2+j^3+j^4$
+			
+			\item $\displaystyle\sum_{j=1}^{j=4} j^k = 1^k+2^k+3^k+4^k$
+			
+			\item $\frac{x}{1+x} + \frac{x}{2+x^2} + \frac{x}{3 + x^3} + \dots + \frac{x}{N + x^N} = \displaystyle \sum_{k=1}^{k=N} \frac{x}{k+x^k}$ 
+
+			\end{enumerate}
+		
+		
+	\end{solutions}
+	
+\section{Induction}
+
+\begin{xca}
+
+Alice, Bob, and Chelle are three mathematicians. As mathematicians, they have a love of certain numbers. Also, as mathematicians, their love is quite idiosyncratic.
+
+\begin{enumerate}
+\item Alice loves the natural numbers $1$ and $2$. Also, if she loves the natural number $k$, then she also loves the natural number $k+5$. Which natural numbers can you be certain that Alice loves? Are there any natural numbers you can be sure she does not love? Are there any natural numbers you just do not have enough information about to decide this question?
+
+\item Bob loves the natural number $5$. If he loves the natural number $k$, then he also loves the natural number $2k$. Also, if he loves the natural number $j$, he also loves $j-2$. Which natural numbers can you be certain that Bob loves? Are there any natural numbers you can be sure he does not love? Are there any natural numbers you just do not have enough information about to decide this question?
+
+\item Chelle loves the natural number $1$. If she loves the natural number $k$, then she also loves the natural number $k+1$. Which natural numbers can you be certain that Chelle loves? Are there any natural numbers you can be sure she does not love? Are there any natural numbers you just do not have enough information about to decide this question?
+\end{enumerate}
+\end{xca}
+
+\begin{solutions}
+	\begin{enumerate}
+			\item Alice loves $1$, $6$, $11$, $16$,... and $2$, $7$, $12$, $17$,...
+			In other words, Alice loves all natural numbers which are either congruent to $1$ or $2$ modulo $5$.  We do now know whether she loves any other numbers or not.
+			\item Bob loves $5$, so he also loves $3$ and $1$ using the minus $2$ rule.  Then he loves $2$, $4$, $8$, $16$, $32$, $64$... using the doubling rule.  We can make arbitrarily large even numbers this way, and then we know he knows all even numbers less than that.  So we can conclude that Bob loves $1,3,5$ and all of the even numbers.  We cannot conclude anything about his love of odd numbers greater than $5$.
+			\item Chelle loves $1$, so she loves $2$, so she loves $3$,...  Chelle must love all of the natural numbers!
+		\end{enumerate}
+	\end{solutions}
+
+The pattern of reasoning you employed in solving these three problems is \textbf{mathematical induction}.
+
+\begin{principle}[Principle of Mathematical Induction]
+	
+	\end{principle}
+\section{The Quotient-Remainder Theorem}
+
+\subsection{Why every integer is either even or odd}
+
+\section{Strong Induction and the Well Ordering Principle}
+
+\subsection{The Infinitude of Primes}
+
+\section{Infinitude of Primes}
+
+\section{The Euclidean Algorithm}

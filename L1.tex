@@ -1,0 +1,412 @@
+\chapter{L1:  Number Theory Definitions}
+
+In this section we make a few definitions of concepts from number theory.  In particular we will define the words  \textbf{even}, \textbf{odd}, \textbf{divisor}, and \textbf{prime}.
+
+\section{Parity}
+You are probably already familiar with the notion of even and odd numbers.   The even numbers are 
+
+$$
+\dots, -6, -4, -2, 0 , 2, 4, 6,  \dots
+$$
+
+and the odd numbers are 
+
+$$
+\dots,  -5, -3, -1, 1, 3, 5, \dots
+$$
+
+The \index{parity}\textbf{parity} of an integer is whether it is even or odd.  The parity of $8$ is even, while the parity of $9$ is odd.
+
+If we want to reason about the parity of integers, we will need precise definitions.
+
+\begin{stopthink}
+	Try to think up your own definitions of the words ``even'' and ``odd''.  These should be an extremely clear rules for deciding which integers are even and which are odd.  It shouldn't leave any room for confusion or ambiguity.
+	
+	If you are working with a friend, share your definitions with each other.  Try to pick holes in them.  Is there any part of either definition which leaves even the slightest doubt as to whether some number is even or odd?
+\end{stopthink}
+
+\newpage
+
+Here are our official definitions of the words ``even'' and ``odd'':
+
+\begin{definition}[Even Integer]
+	
+	An integer $n$ is called \index{even}\textbf{even} if there is an integer $k$ so that $n = 2k$.
+\end{definition}
+
+\begin{definition}[Odd Integer]
+	An integer $n$ is called \index{odd}\textbf{odd} if  there is an integer $k$ so that $n = 2k+1$.
+\end{definition}
+
+These might not look exactly like the definitions you came up with.  Maybe you came up with some of the following definitions:
+
+\begin{enumerate}
+	\item An integer is even if its ones place is a $0$, $2$, $4$, $6$, or $8$ when written in normal base ten notation.
+	\item An integer is even if you can divide it by $2$ with no remainder.
+	\item An integer is odd if its ones place is a $1$, $3$, $5$, $7$, or $9$ when written in normal base ten notation.
+	\item An integer is odd if you can divide it by $2$ with a remainder of $1$.
+	\item An integer is odd if it is not even.
+\end{enumerate}
+
+In mathematics, we start with our definitions and carefully prove a web of interconnected theorems about the objects we are studying.   In order to be clear about the precise relationships between the theorems we prove we need to start off on solid footing:  we all need to agree to use the same definitions.
+
+In the famous words of Humpty Dumpty \cite{car22}
+
+\begin{quote}
+	``When \textit{I} use a word," Humpty Dumpty said, in rather a scornful tone, ``it means just what I choose it to mean - neither more nor less."
+\end{quote}
+
+We must also be this careful. When we give a definition, that is what the word means:  neither more nor less.  The word might have more meanings for you in a different context, but in the context of the mathematical work we are doing we must practice good logical hygiene.
+
+So when I claim, at this point, that $13$ is odd I \textbf{cannot} justify that by saying ``$13$ is odd because its last digit is $3$''.  I simply do not know that yet.  Until I have proven that this criterion really does ensure oddness, I must go back to our official definition to justify that $13$ is odd.  
+
+Let's look at the definition again:  	an integer $n$ is called \textbf{odd} if  there is an integer $k$ so that $n = 2k+1$.
+
+So how can I decide if $13$ is odd?  I must search for an integer $k$ with $13 = 2k+1$.  A little thought shows us that $k=6$ works:  $13 = 2(6)+1$.  So $13$ really is an odd number according to our definition!
+
+\begin{xca}
+	Argue explicitly from the definitions that each of the following statements is true:
+	
+	\begin{enumerate}
+		\item ``$6$ is even.''
+		\item ``$11$ is odd.''
+		\item ``$0$ is even.''
+		\item ``$1$ is odd.''
+		\item ``$-10$ is even.''
+		\item ``$-7$ is odd.''
+	\end{enumerate}
+\end{xca}
+
+\begin{solutions}
+	
+	\begin{enumerate}
+		\item ``$6$ is even.'' 
+		
+		We need to show that there is at least one integer $k$ with $6 = 2k$.  When $k = 3$, we do have $6 = 2(3)$.  Thus $6$ is even.
+		
+		\item ``$11$ is odd.''
+		
+		We need to show that there is at least one integer $k$ with $11 = 2k+1$.  When $k = 5$, we do have $11 = 2(5)+1$.  Thus $11$ is odd.
+		
+		\item ``$0$ is even.''
+		
+		We need to show that there is at least one integer $k$ with $0 = 2k$.  When $k = 0$, we do have $0 = 2(0)$.  Thus $0$ is even.
+		
+		\item ``$1$ is odd.'' 
+		
+		We need to show that there is at least one integer $k$ with $1 = 2k+1$.  When $k = 0$, we do have $1 = 2(0)+1$.  Thus $1$ is odd.
+		
+		\item ``$-10$ is even.''
+		
+		We need to show that there is at least one integer $k$ with $-10 = 2k$.  When $k = -5$, we do have $6 = 2(-5)$.  Thus $-10$ is even.
+		
+		\item ``$-7$ is odd.''
+		
+		We need to show that there is at least one integer $k$ with $-7 = 2k+1$.  When $k = -4$, we do have $-7 = 2(-4)+1$.  Thus $-7$ is odd.
+	\end{enumerate}
+\end{solutions}
+
+How can I show that an integer is \textbf{not} even or \textbf{not} odd? For instance, what kind of argument must we give to convince someone that $7$ is not even?
+
+You might be tempted to say ``$7$ is not even because it is odd''.  This sounds reasonable, but it assumes that we already know that an integer cannot be both odd and even!  We have not proven this yet.
+
+In mathematics, the way we argue that something is \textbf{not} true is to show that assuming it allows us to \textbf{argue an absurd conclusion}.  Let's see how that plays out here:
+
+Assume $7$ is an even integer.
+Then there must be an integer $k$ with $7 = 2k$.
+Solving this equation for $k$ we get that $k = \frac{7}{2} = 3.5$.
+But $3.5$ is not an integer!
+So I have reached the absurd conclusion that $k$ both is and is not an integer.
+
+Since my initial assumption that $7$ is even lead me to a contradiction, I can conclude that $7$ is not even.
+
+\begin{xca}
+	Argue explicitly from the definitions that each of the following statements is true:
+	
+	\begin{enumerate}
+		\item ``$6$ is not odd.''
+		\item ``$11$ is not even.''
+		\item ``$0$ is not odd.''
+	\end{enumerate}
+\end{xca}
+
+\begin{solutions}
+	
+	\begin{enumerate}
+		\item ``$6$ is not odd.''
+		
+		If we assume that $6$ is odd, then there is an integer $k$ with $6=2k+1$.  Solving for $k$ we obtain $k=2.5$.  We have reached the contradiction that $k$ is both an integer and not an integer. 
+		
+		So $6$ is not odd.
+		
+		\item ``$11$ is not even.''
+		
+		If we assume that $11$ is  even, then there is an integer $k$ with $11=2k$.  Solving for $k$ we obtain $k=5.5$.  We have reached the contradiction that $k$ is both an integer and not an integer. 
+		
+		So $11$ is not even.
+		\item ``$0$ is not odd.''
+		
+		If we assume that $0$ is odd, then there is an integer $k$ with $0=2k+1$.  Solving for $k$ we obtain $k=-0.5$.  We have reached the contradiction that $k$ is both an integer and not an integer. 
+		
+		So $0$ is not odd.
+	\end{enumerate}
+\end{solutions}
+
+\section{Divisibility}
+
+You probably have some prior knowledge of what it means for one integer to be a \textbf{factor} of another integer.  $3$ is a factor of $15$ because $15 = 3(5)$, and $10$ is a factor of $-60$ because $-60 = 10(-6)$.  
+
+You may be less familiar with the word \textbf{divides}.  Intuitively, $a$ divides $b$ if $a$ is a factor of $b$.  So we could rephrase the above examples by saying $3$ divides $15$ and $10$ divides $-60$.  You might be more comfortable if you mentally insert the words ``into'' and ``evenly'' when you read these.  Read:  ``$3$ divides (into) $15$ (evenly)''.  Although these two extra words do clarify what is meant, it is the habit of mathematicians to omit them when speaking and writing, so you should also practice this convention if you want to speak with mathematicians.
+
+In fact, there are a large number of different phrases expressing the same concept.  We will consider all of the following phrases to be equivalent:
+
+\begin{itemize}
+	\item $a$ divides $b$.
+	\item $a$ is a factor of $b$.
+	\item $b$ is a multiple of $a$.
+	\item $b$ is divisible by $a$.
+	\item Symbolically we will write $a \divides b$ for all of these equivalent statements.  It is typical to read this as ``$a$ divides $b$'', but you could also read it as any of the other statements above. This symbol is designed to be similar to the inequality symbol, since when both $a$ and $b$ are positive  if $a \divides b$ then $a \leq b$.  This should help you remember that $4 \divides 12$ and not the other way around.  Our use of $\divides$ is not standard:  most mathematicians use the symbol $|$ where we use $\divides$.  The more standard symbol $|$ is visually symmetric, and this causes students to frequently forget which order is intended.  I hope the choice of $\divides$ for this symbol is helpful to you. \footnote{I learned of the idea to use $\divides$ instead of $|$ from the textbook ``An Illustrated Theory of Numbers" by Martin Weissman \cite{wei17}.} 
+\end{itemize}
+
+We can generalize from these examples to give a formal definition:
+
+\medskip
+
+\begin{definition}[Official Definition]
+	An integer $a$ \index{divides}\textbf{divides} an integer $b$ if there is an integer $k$ such that
+	
+	$$
+	b = ak
+	$$
+\end{definition}
+
+When you first meet a definition, you should find some examples, non-examples, and also explore any potential ``pathological'' or ``unintuitive'' examples.  
+
+\begin{xca}
+	\begin{enumerate}
+		\item[]\mbox{}\\
+		\item Does $3$ divide $12$? 
+		\item Does $12$ divide $3$?  
+		\item Does $7$ divide $7$? 
+		\item Does $(-5)$ divide  $5$  
+	\end{enumerate}
+\end{xca}
+
+\begin{solutions}
+	\begin{enumerate}
+		\item[]\mbox{}\\
+		\item Does $3$ divide $12$?  - Yes!  There is an integer $k$ with $12 = 3k$, namely $k=4$. 
+		\item Does $12$ divide $3$?  - No.  There is no integer $k$ for which $3 = 12k$.  If there were, then $k$ would have to be $\frac{1}{4}$, which is not an integer.
+		\item Does $7$ divide $7$?  - Yes!  There is an integer $k$ with $7 = 7k$, namely $k=1$. 
+		\item Does $(-5)$ divide  $5$  - Yes!  There is an integer $k$ with $5 = (-5)k$, namely $k=-1$.
+	\end{enumerate}
+\end{solutions}
+
+When answering these questions it is important that you use our official definition.  You may have another definition of divisibility which you have learned from another instructor, or just picked up on intuitively.  Many students have the following unofficial definition in mind when they think about divisibility:
+
+\medskip
+
+\begin{definition}[Warning:  Unofficial Definition]
+	An integer $a$ is said to \textbf{divide} an integer $b$ if $\frac{b}{a}$ is an integer.
+\end{definition} 
+
+The official definition and the unofficial one agree for almost all pairs of integers $a$ and $b$.  However, the definitions are not equivalent!  They differ in how they deal with divisibility of $0$.  Explore the following questions using both definitions of divisibility to see how they are the same and how they differ.
+
+\begin{xca}
+	\begin{enumerate}
+				\item[]\mbox{}\\
+		\item Does $0$ divide $2$?  
+		\item Does $2$ divide $0$?  
+		\item Does $0$ divide $0$?
+	\end{enumerate}
+\end{xca}
+
+\begin{solutions}
+	\begin{enumerate}
+				\item[]\mbox{}\\
+		\item Does $0$ divide $2$?
+		
+		\begin{itemize}
+			\item According to our official definition, the answer is no.  There is no integer $k$ for which $2 = 0k$.  $0k = 0$ no matter what $k$ is, and $0 \neq 2$.
+			\item According to the unofficial definition, the answer is unclear.  When we try to perform $\frac{2}{0}$, the answer is not defined.  Should I count undefined as an integer or not?  Probably not, but this is a little ambiguous.
+		\end{itemize}
+		\item Does $2$ divide $0$? 
+		
+		\begin{itemize}
+			\item According to our official definition, the answer is yes.  There is an integer $k$ for which $0 = 2k$, namely $k=0$.
+			\item According to the unofficial definition, the answer is also yes.  $\frac{0}{2} = 0$ which is an integer.
+		\end{itemize}
+		\item Does $0$ divide $0$? 
+		\begin{itemize}
+			\item According to our official definition, the answer is yes.  There is an integer $k$ for which $0 = 0k$, such as $k=11$.
+			\item According to the unofficial definition, the answer is not clear.  $\frac{0}{0}$ is also undefined.  The unofficial definition is ambiguous in this case.
+		\end{itemize}
+	\end{enumerate}
+\end{solutions}
+
+Since these two definitions are not equivalent it is important to only use the official definition when making arguments about divisibility!
+
+When mathematicians encounter a new definition, we like to \textbf{play} with it.  As a budding mathematician, you should learn to do this too!
+
+Here are some questions which immediately come up for me:
+
+\begin{itemize}
+	\item How does divisibility interact with addition?  For example, if $3$ divides two numbers, does it also divide their sum?  What about if $3$ and $5$ both divide the same number?  Does $3+5 = 8$ also have to divide that number?
+	\item How does divisibility interact with multiplication?
+	\item How does divisibility interact with itself?  If I know $a$ divides $b$, and $b$ divides $c$, do I know anything about the divisibility relationship between $a$ and $c$?  What if I know $a$ divides $b$ and $c$ divides $b$?  Do I know anything about the divisibility relationship between $a$ and $c$ in this case?
+	\item It seems like divisibility is related to even and odd numbers somehow.  Can I make that precise?  Could I rephrase the definition of even or odd using the word ``divides'' somehow?
+\end{itemize}
+
+Can you come up with more interesting questions to play with?
+
+One way to play with these questions is just to start making lots of examples, and seeing what happens.  You might notice a pattern.  Once you notice a pattern, you can try to state the pattern you are observing in a logically precise way.  This is a statement which you are guessing might be true.  This kind of statement is called a \textbf{conjecture}.  You can then try to \index{prove} \textbf{prove} your conjecture.  A \textbf{proof} is just an argument we make to convince someone, beyond any doubt, that a statement is true.  You might find that part way through your proof you get stuck.  There are a few reasons you might get stuck proving your conjecture:
+
+\begin{itemize}
+	\item The conjecture is true, but is just too hard for you to prove right now.  Maybe you or someone else can prove it later.
+	\item The conjecture is false, but in a way which can be corrected.  You might discover while trying to prove the theorem that you actually need another hypothesis.  Try to find a counterexample to show that the hypothesis is necessary, and then modify your conjecture to include the hypothesis.  Now try to prove this new conjecture.
+	\item The conjecture is false and there is no way to save it.  Maybe the pattern you found was based on a coincidence in the examples you chose, but doesn't actually hold in general.
+\end{itemize}
+
+To see what this looks like, let's try playing with the first question:  how does divisibility interact with addition?
+
+Let's play:
+
+\begin{itemize}
+	\item $3 \divides 21$ and $3 \divides 15$.  Does $3 \divides (21+15)$? Yes!  $21+15 = 36 = 3(13)$, so $3 \divides (21+15)$.
+	\item $7 \divides 7$ and $7 \divides 7$.  Does $7 \divides (7+7)$?   Yes!  $7+7  =14 = 7(2)$, so $7 \divides (7+7)$.
+	\item Try your own examples here.  Include some weird ones, especially involving $0$.
+\end{itemize}
+
+Did your play always lead to the same conclusion?  If so we can make a conjecture:
+
+\begin{conjecture}
+	Let $a,b$ and $c$ be integers.  If $a$ divides $b$ and $a$ divides $c$, then $a$ divides $b+c$.
+\end{conjecture}
+
+
+\begin{stopthink}
+	Try and give the most convincing argument that you can that this conjecture is true.  Your argument should leave absolutely no doubt!
+\end{stopthink}
+
+Let us examine $5$ different arguments from five different students which are progressively more sophisticated.  
+
+\begin{enumerate}
+	\item The first student says ``The conjecture is false!  $3$ doesn't divide $5$ and $3$ doesn't divide $1$, but $3$ does divide $1+5 = 6$!''
+	
+	\medskip
+	
+	This student is confused.  The conjecture doesn't say that if $a \divides (b+c)$ then $a \divides b$ and $a \divides c$!
+	
+	\item The second student says ``I tried all of these examples:
+	\begin{enumerate}
+		\item $3 \divides 12$ and $3 \divides 9$, and $3$ also divides $9+12 = 21$.
+		\item $5 \divides 10$ and $5 \divides 0$, and $5$ also divides $0+10 = 10$.
+		\item $7 \divides 14$ and $7 \divides -14$, and $7$ also divides $14 + (-14) = 0$.
+		\item I tried lots more and it always worked.  
+	\end{enumerate}
+	
+	Therefore the conjecture is proven!''
+	
+	\medskip
+	
+	This student is doing a little better.  They understand what the conjecture is saying, and they are doing a good job of convincing themselves by trying lots of examples.  The problem is that even after computing millions of examples isn't there still a chance that the next example they try will fail?
+	
+	\item The third student says `` Say we had something like $7 \divides 21$ and $7 \divides 35$.  The \textbf{reason} these statements are true is that $21 = 3(7) $ and $35 = 5(7)$.  So now we can see why $7$ must also divide $21+35$.  The reason is that $21 + 35 = 3(7)+5(7) = (3+5)(7) = 8(7)$.  This would work no matter what!  I will always be able to pull out the common factor like that.''
+	
+	\medskip
+	
+	This student is really on to something!  They are not just trying examples:  they are ``peeking under the hood'' and using the definition of divisibility to try and see \textbf{why} it always happens.  They have a very nice description of why.  This is pretty close to what mathematicians would consider to be a proof, but it falls short.  It relies too much on the ability of the reader to generalize from the reasoning in this particular example to the fully general statement.
+	
+	\item The fourth student says ``Assume that $a \divides b$ and $a \divides c$.  Then $b = ak$ and $c=ak$ by the definition of divisibility.  So $b+c = ak + ak  = 2ak = a(2k)$.  So we can see that $b+c$ has a factor of $a$, which means that $a$ divides $b+c$''.
+	
+	\medskip
+	
+	This student has taken a big leap!  Instead of dealing with particular numerical examples they are attempting to make a general argument which would work in all cases by using variables.
+	
+	Where they get confused is when they use the same letter $k$ in both equations $b = ak$ and $c=ak$.  By doing this they are actually claiming that $b=c$, which is a big limitation on the situations we want this conjecture to cover!  The final student corrects this mistake:
+	
+	\item The fifth student says ``Assume that $a \divides b$ and $a \divides c$.  Then $b = aj$ and $c=ak$  for some integers $j$ and $k$ by the definition of divisibility.  So $b+c = aj + ak  = 2qa = a(j+k)$.  Since $j+k$ is also an integer we can see that $b+c$ is divisible by $a$''.
+	
+	\medskip
+	
+	This student has proven the theorem perfectly!  There is absolutely no flaw in their reasoning.
+\end{enumerate} 
+
+\section{Prime Numbers}
+We conclude this chapter with one final definition:
+
+\begin{definition}
+	An positive integer $p$ is called \index{prime}\textbf{prime} if  $p \neq 1$ and its only positive divisors are $1$ and $p$.
+\end{definition}
+
+\begin{example}
+	$6$ is not prime because $2$ is a divisor of $6$.
+\end{example}
+
+\begin{example}
+	7 is prime. 
+	
+	We can justify this as follows:
+	
+	\begin{itemize}
+		\item $7 \neq 1$.
+		\item $1$ and $7$ are both divisors of $7$.
+		\item You can explicitly argue that $2$, $3$, $4$, $5$, and $6$ are not divisors of $7$.  Try it!
+		\item You can explicitly argue that if  $d$ is a positive integer strictly greater than $7$ then $d$ is not a divisor of $7$ either.
+		
+		If it were then there would be a positive integer $q$ with $7 = dq$.  However $dq$ would then be greater than $d$ which is strictly greater than $7$.  This is a contradiction.
+	\end{itemize}
+\end{example}
+
+\newpage
+
+\section{L1 Homework Problems}
+
+ These problems are \textbf{very similar} to the kinds of problems you will be expected to be able to solve to demonstrate mastery of $L1$.
+
+\begin{xca}
+\begin{enumerate}
+			\item[]\mbox{}\\
+		\item Complete the following definition from memory:  `` An integer $n$ is \textbf{even} if ...''
+		\item Complete the following definition from memory:  `` An integer $n$ is \textbf{odd} if ...''
+		\item Justify that $8$ is even.
+		\item Justify that $7$ is not even.
+		\item Justify that $11$ is odd.
+		\item Justify that $14$ is not odd.
+		\item Complete the following definition from memory:  `` Let $n$ and $d$ be two integers.  We say that  $d$ divides $n$ if...''
+		\item Justify that $3 \divides (-21)$.
+		\item Justify that $5$ does not divide $17$.
+		\item Justify that $7$ divides $0$.
+		\item Justify that $0$ divides $0$.
+		\item Complete the following definition from memory:  `` A positive integer $p$ is \textbf{prime} if ...''
+		\item Justify that $11$ is prime.
+		\item Justify that $12$ is not prime.  
+	\end{enumerate}
+\end{xca}
+
+%\begin{solutions}
+%	\begin{enumerate}
+%		\item Complete the following definition from memory:  `` An integer $n$ is \textbf{even} if  there is an integer $k$ with $n = 2k$.
+%		\item Complete the following definition from memory:  `` An integer $n$ is \textbf{even} if  there is an integer $k$ with $n = 2k+1$.
+%		\item $8$ is even because $8 = 2 \cdot 4$.
+%		\item Assume that $7$ is even.  Then there is an integer $k$ with $7 = 2k$.  So $k = 3.5$.  This is absurd, since $3.5$ is not an integer.  Thus $7$ is not even.
+%		\item $11$ is odd since $11 = 2 \cdot 5 + 1$.
+%		\item Assume that $14$ is odd.  Then there is an integer $k$ with $14 = 2k+1$.  So $k = 6.5$.  This is absurd, since $6.5$ is not an integer.  Thus $14$ is not odd.
+%		\item Complete the following definition from memory:  `` Let $n$ and $d$ be two integers.  We say that  $d$ divides $n$ if there is an integer $k$ with $n = kd$.''
+%		\item $3 \divides (-21)$ because $-21 = 3 \cdot (-7)$.
+%		\item Assume that $5$ does divide $17$.  Then there is an integer $k$ with $17 = 5k$.  So $k = \frac{17}{5} = 3.4$, which is not an integer.  This is absurd.  So $5$ does not divide $17$.
+%		\item $7 \divides 0$ since $0 = 7 \cdot 0$.
+%		\item $0 \divides 0$ since $0 = 11 \cdot 0$.
+%		\item Complete the following definition from memory:  `` A positive integer $p$ is \textbf{prime} if  $p$ is not $1$ and the only positive divisors of $p$ are $1$ and $p$.
+%		\item $11$ is prime since $11 \neq 1$.  We can also check each of the integers between $1$ and $10$ (inclusive) and verify that none of them are divisors of $11$:
+%		
+%		\begin{itemize}
+%				\item $11/2 = 6.5$
+%				\item $11/3 = 3.\bar{6}$
+%				\item $11/4 = 3.25$
+%			\end{itemize}
+%		
+%		Notice that if we test any greater number $k$, $11/k$ will be less than $3.25$.  We already checked the integers less than $3.25$ and they are not divisors.  Thus no number greater than $4$ will be a divisor other than $11$.  So $11$ is prime.
+%		\item $12$ is not prime since $2$ is a divisor of $12$ since $12 = 2 \cdot 6$.
+%	\end{enumerate}
+%	\end{solutions}

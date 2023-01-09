@@ -1,95 +1,99 @@
 \begin{theindex}
 
-  \item ``modus ponens'', 39
+  \item ``modus ponens'', 22
 
   \indexspace
 
-  \item bound variable, 16
+  \item abstract syntax tree, 39
+  \item absurdity, 28
 
   \indexspace
 
-  \item classical, 79
-  \item Complex Numbers, 3
-  \item Conditionally True, 77
-  \item conjunct, 32
-  \item Conjunction, 32
-  \item Contradiction, 77
-  \item Contrapositive, 82
-  \item Converse, 82
+  \item binary, 16
 
   \indexspace
 
-  \item disjunction, 45
-  \item disjunction elimination, 46
-  \item divide, 23
+  \item case analysis, 33
+  \item Closed Form Expression, 90
+  \item Conditionally True, 87
+  \item conjunct, 21
+  \item conjunction, 21
+  \item Contradiction, 87
+  \item Contrapositive, 74
+  \item Converse, 74
 
   \indexspace
 
-  \item Element of a Set, 2
-  \item Even Integer, 21
-  \item Exclusive Or, 45
-  \item Existential Quantifier, 16
+  \item disjunction, 32
+  \item disjunction elimination, 33
+  \item divides, 5
 
   \indexspace
 
-  \item free variable, 16
+  \item elimination rule, 16
+  \item even, 2
+  \item Exclusive Or, 32
+  \item existential quantifier, 15
 
   \indexspace
 
-  \item Inclusive Or, 45
-  \item Integers, 3
-  \item intuitionist, 79
-  \item Inverse, 82
+  \item Fitch style natural deduction, 16
 
   \indexspace
 
-  \item Logically Equivalent, 77
+  \item Inclusive Or, 32
+  \item Index, 90
+  \item Index Set, 90
+  \item initial values, 90
+  \item introduction rule, 16
+  \item Inverse, 74
 
   \indexspace
 
-  \item Natural Numbers, 3
-  \item Negation, 48
-  \item Nested Quantifiers, 18
+  \item natural dedction, 16
+  \item negation, 30
 
   \indexspace
 
-  \item Odd Integer, 22
+  \item odd, 2
 
   \indexspace
 
-  \item parity, 21
-  \item predicate, 7
-  \item Proof by Contradiction, 83
-  \item proposition, 5
+  \item parity, 1
+  \item predicate, 13
+  \item prime, 8
+  \item proof by contradiction, 72
+  \item proposition, 11
+  \item prove, 6
 
   \indexspace
 
-  \item Rational Numbers, 3
-  \item Real Numbers, 3
+  \item quantifier, 14
+  \item quotient, 61
 
   \indexspace
 
-  \item scope, 54
-  \item Set, 2
-  \item substitution, 10
+  \item recurrence relation, 90
+  \item recursive, 90
+  \item remainder, 61
 
   \indexspace
 
-  \item Tautology, 77
-  \item Truth Functionally Equivalent, 77
-  \item type, 7
+  \item scope, 40
+  \item Sequence, 90
 
   \indexspace
 
-  \item Universal Quantifier, 16
+  \item Tautology, 87
+  \item Truth Functionally Equivalent, 87
 
   \indexspace
 
-  \item vacuous truth, 36
-  \item variable, 7
+  \item unary, 16
+  \item universal quantifier, 15
 
   \indexspace
 
-  \item Witness, 16
+  \item variable, 13
 
 \end{theindex}

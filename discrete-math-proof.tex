@@ -3,8 +3,8 @@
 \usepackage{amssymb}
 \usepackage{imakeidx}
 \usepackage{graphicx}
-\usepackage{natbib}
-
+\usepackage[square,sort,comma,numbers]{natbib}
+\usepackage{longdivision}
 
 \usepackage[linguistics]{forest}
 \usepackage{fitch}
@@ -15,9 +15,12 @@
 \newtheorem{theorem}{Theorem}[chapter]
 \newtheorem{conjecture}{Conjecture}
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
 
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
+\newtheorem{stopthink}[theorem]{Stop and Think}
+\newtheorem{principle}[theorem]{Principle}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{xca}[theorem]{Exercise}
 \newtheorem{solutions}[theorem]{Solutions}
@@ -34,11 +37,12 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
-\newcommand{\divides}{\triangleleft}
+\newcommand{\divides}{\trianglelefteq}
 \newcommand{\T}{\textbf{\textrm{T}}}
 \newcommand{\F}{\textbf{\textrm{F}}}
 
 \newcolumntype{?}{!{\vrule width 1pt}}
+
 
 \makeindex
 
@@ -49,7 +53,7 @@
 \title{Discrete Mathematics:  An Introduction to Mathematical Reasoning}
 
 \author{Steven Gubkin}
-\address{Rhodes Tower 1555, Cleveland State University }
+\address{Cleveland State University }
 \email{s.gubkin@csuohio.edu}
 
 %\subjclass[2020]{Primary }
@@ -80,10 +84,15 @@
 
 \mainmatter
 %    Include main chapters here.
-\include{quantifiers}
-\include{connectives}
-\include{fitch}
-\include{equivalence}
+\include{L1} % Number Theory Definitions
+\include{L2} % Intro and Elimination for Quantifiers and Connectives
+\include{L3} % ASTs and Natural Deduction Proof Outlines.
+\include{L4-L5} %Quotient Remainder theorem and Modular Arithmetic.
+\include{L6} % LEM and consequences.
+%\include{L7-old-version} % Logical Equivalences from LEM.
+\include{L7-L8} % Boolean Algebra and Truth Tables
+\include{NN}
+%\include{equivalence}
 %\include{sets}
 %\include{induction}
 %\include{counting}
@@ -98,7 +107,7 @@
 %    Bibliographies can be prepared with BibTeX using amsplain,
 %    amsalpha, or (for author-year style) natbib.
 \bibliographystyle{amsalpha}
-\bibliography{}
+\bibliography{biblio}
 
 %    See note above about multiple indexes.
 \printindex

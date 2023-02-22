@@ -101,6 +101,22 @@ Classical mathematics is a dark art, and like any dark art it demands terrible s
 
 If we put on our intuitionist cap and try to prove the same theorem, we are now restricted to our original introduction and elimination rules without excluded middle.  That means that to prove that  there exist two digits in the decimal expansion of the number $\sqrt{2}$ which occur infinitely often we will need to give an \textbf{explicit example} of two digits (say $3$ and $7$) and then prove that these particular digits occur infinitely often.  This is much harder, but also gives us more explicit knowledge than the classical proof.
 
+This was an example of the sacrifice we make when proving an existence theorem using proof by contradiction.  The following table summarizes the sacrifices we make when proving other types of theorems by contradiction:
+
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l?p{8 cm}} Type of statement
+		& The sacrifice we make  using proof by contradiction\\ \hline 
+		$p \vee q$ &  I know that either $p$ or $q$ is true, but I cannot tell you which one. \\ \hline
+        $p \wedge q$ &  I don't have a direct argument for $p$ and $q$ independently.\\ \hline
+        $\neg p$ & There is no sacrifice.  $\neg p$ is equivalent to $\neg (\neg (\neg p))$ in intuitionist logic as well.  A bit weird to do though.\\ \hline
+		$p \implies q$ & If you hand me an argument that $p$ is true, I do not actually have a way to use that data to argue $q$.  All I can do is tell you that there should be such an argument. \\ \hline
+		$\exists x \in U: A(x)$ &  While I know that \textbf{some} $x_1 \in U$ makes $A(x_1)$ true, I do not know how to actually show you one.\\ \hline
+		$\forall x \in U: A(x)$ &  If you hand me a particular $x_1 \in U$ I don't have a direct argument that $A(x_1)$ is true.  I can only show you that assuming it is not true leads to contradiction.  In other words, whatever type of  statement $A(x_1)$ is, I will pay the associated price for that statement.\\ \hline
+	\end{tabular}
+\end{table}
+
 \newpage
 
 \section{Proof by Contraposition}

@@ -52,24 +52,56 @@ Intuitionistically we do not have $\neg (\neg p) \implies p$, but this is classi
 
 So the classical mathematician is able to make arguments using \index{proof by contradiction}\textbf{proof by contradiction}:
 
-\begin{principle}[Proof by Contradiction]
-		To argue $p$ we can instead argue that $\neg p \implies \bot$.
+\begin{theorem}[Proof by Contradiction]
+		In classical mathematics $p$ is equivalent to $\neg (\neg p)$, which can also be written  $\neg p \implies \bot$.
 		
-		In other words, to argue $p$ we may assume $\neg p$ and argue a contradiction.
-\end{principle}
+		In other words, to argue $p$ we may assume $\neg p$ and argue a contradiction.  This style of argument is called \index{proof by contradiction} \textbf{proof by contradiction}.
+\end{theorem}
 
-It is quite hard to actually come up with examples where proof by contradiction (rather than proof of negation) is actually needed.  Here is one example which relies on some knowledge from your Calculus:
+Note:  Most mathematicians only pay attention to classical logic.  We are making a distinction between ``proof of negation'' (a.k.a. negation introduction) and ``proof by contradiction''.  
+
+This is the form of proof of negation:
+
+\begin{fitch}
+		\textrm{Assume $p$} & start $\neg$-intro\\
+			\fa \textrm{Argue $\bot$}\\
+			\textrm{Conclude $\neg p$.} & finish $\neg$-intro
+	\end{fitch}
+
+This is the form of proof by contradiction:
+
+\begin{fitch}
+		\textrm{Assume $\neg p$}\\
+		\fa \textrm{Argue $\bot$}\\
+		\textrm{Conclude $p$}.
+	\end{fitch}
+
+Most mathematicians would call both of these arguments ``proof by contradiction''.  We are being a bit more nuanced.  I learned about this distinction from a blog post of Andrej Bauer \cite{bau10}.
+
+It is quite hard to actually come up with examples where proof by contradiction (rather than proof of negation) is actually needed.  Here is one example which relies on some knowledge of rational and irrational numbers:
 
 \begin{example}
 
-The function $f:\mathbb{R} \to \mathbb{R}$ defined by $f(x) = x^3+x-2$ has one and only one root.
-
+At least two digits in the decimal expansion of the number $\sqrt{2}$ occurs infinitely often. 
 
 \begin{proof}
-We can see that $f(1) = 0$ so $f$ has at least one root.
-Assume to the contrary that $f$ has an additional root $z$.  Then, by the mean value theorem for derivatives, there is a $c$ between $1$ and $z$ so that $f'(c) = 0$.  However, $f'(c) = 3c^2 + 1 > 1$.  We have arrived at a contradiction, so the hypothesis that $f$ has more than $1$ root false.  Thus $f$ has one and only one root.
+Assume to the contrary that less than two digits occur infinitely often.
+
+If no digits occur infinitely often, then each digit occurs finitely often.  This is impossible since there are infinitely many place values to fill!  Here I am following the convention that I have ``filled in'' all of the trailing zeros.
+
+If only one digit $j$ occurs infinitely often, then all of the other digits occur only finitely often.  Say that the last time a digit other than j appears is in the $k^{th}$ slot.  Then the decimal would be of the form $1.d_1d_2d_3\cdots d_kjjjjj...$.  However any such ``repeating'' decimal expansion is known to be rational, while $\sqrt{2}$ is known to be irrational.    Thus this also leads to a contradiction.
+
+Therefore at least two digits in the decimal expansion of the number $\sqrt{2}$ occurs infinitely often. 
 \end{proof}
 	\end{example}
+
+Note:  This proof establishes the fact that at least two digits in the decimal expansion of the number $\sqrt{2}$ occur infinitely often.  However, it gives us no clue as to \textbf{which} two digits will appear infinitely often.  
+
+Classical mathematics is a dark art, and like any dark art it demands terrible sacrifices.  When we invoke the law of the excluded middle we are able to prove things more easily, but the price we pay is the \textbf{constructive} character of the proof.  
+
+If we put on our intuitionist cap and try to prove the same theorem, we are now restricted to our original introduction and elimination rules without excluded middle.  That means that to prove that  there exist two digits in the decimal expansion of the number $\sqrt{2}$ which occur infinitely often we will need to give an \textbf{explicit example} of two digits (say $3$ and $7$) and then prove that these particular digits occur infinitely often.  This is much harder, but also gives us more explicit knowledge than the classical proof.
+
+\newpage
 
 \section{Proof by Contraposition}
 
@@ -104,9 +136,9 @@ If we know $(\neg q) \implies (\neg p)$  and we accept the Law of the Excluded M
 	 \ftag{~}{\fs [(\neg q) \implies (\neg p)] \implies [ p \implies q] } & $\bi$ introduction (1) and (20) %21
 	\end{fitch}
 
-\begin{definition}
-		The \index{Contrapositive}\textbf{contrapositive} of the implication  $p \implies q$ is the implication $(\neg q) \implies (\neg p)$ .  
-	\end{definition}
+\begin{theorem}
+		The \index{Contrapositive}\textbf{contrapositive} of the implication  $p \implies q$ is the implication $(\neg q) \implies (\neg p)$ .  In classical mathematics an implication is equivalent to its contrapositive.
+	\end{theorem}
 
 Warning:  The statement $p \implies q$ is \textbf{not} equivalent to either $q \implies p$ or  $(\neg p) \implies (\neg q)$.  However, $q \implies p$ is equivalent to   $(\neg p) \implies (\neg q)$,  since the second is the contrapositive of the first.
 
@@ -153,7 +185,10 @@ Let's see an example of how proving the contrapositive of a given implication ca
 			\end{proof}
 	\end{example}
 
-\section{Proving Disjunctions using Implications}
+\newpage
+
+
+\section{Proving Disjunctions using the Disjunctive Syllogism}
 
 It is intuitionistically valid that $p \vee q$ implies $(\neg p) \implies q$:
 
@@ -184,6 +219,12 @@ Classically we also have the converse that $(\neg p) \implies q$ implies $p \vee
 		\fa p \vee q\\
 		(\neg p) \implies q \implies (p \vee q)
 	\end{fitch}
+
+so we have proven the following theorem:
+
+\begin{theorem}
+	In classical mathematics $p \vee q$ is equivalent to $(\neg p) \implies q$.  This is called the \index{disjunctive syllogism} \textbf{disjunctive syllogism}.
+	\end{theorem}
 
 So, at least in classical mathematics, we may prove a disjunction by instead proving that the negation of one disjunct implies the other.
 
@@ -230,9 +271,36 @@ The following example should be familiar from high school algebra:
  These problems are \textbf{very similar} to the kinds of problems you will be expected to be able to solve to demonstrate mastery of $L6$.
  
  \begin{xca}
+ 		\begin{enumerate}
+ 			\item[]
+ 				\item Create the proof outline for proving each of the following theorems \textbf{by contradiction}.
+ 				\begin{enumerate}
+ 						\item $p \vee q$
+ 						\item $p \implies q$
+ 						\item $\exists x \in U: P(x)$
+ 					\end{enumerate}
+ 				\item Each of the following statements contains exactly one implication.  Rewrite that implication in contrapositive form.  Don't change anything else!
+ 				
+ 				\begin{enumerate}
+ 						\item $\forall x\in U: P(x) \implies (Q(x) \vee R(x)) $
+ 						\item $ p \implies (r \wedge \exists x \in U: P(x))$
+ 						\item $p \vee (q \implies r)$
+ 					\end{enumerate}
+ 				
+ 				\item Each of the following statements contains exactly one disjunction (``or'' statement).  Rewrite the disjunction using the disjunctive syllogism.   Don't change anything else!
+ 				
+ 				\begin{enumerate}
+ 						\item $(p \wedge q) \vee (\forall x: R(x))$
+ 						\item $(p \vee q) \implies r$
+ 						\item $p \implies (q \vee r)$
+ 					\end{enumerate}
+ 			\end{enumerate}
+ 	\end{xca}
+ 
+ \begin{xca}
  	
- 	Each exercise
  \begin{enumerate}
+ 	\item[]
  	\item 	 The following theorem statement contains only one implication.  Rewrite the theorem statement (in plain English) in contrapositive form, and then prove the theorem.
  	
  	\begin{quote}

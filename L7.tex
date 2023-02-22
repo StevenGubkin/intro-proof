@@ -1,0 +1,507 @@
+\chapter{L7 and L8: Boolean Algebra and Truth Tables}
+
+\section{L7: Boolean Arithmetic}
+The classical mathematicians believes the law of the excluded middle: $p$ or not $p$.  There is no grey zone.  If the intuitionist cannot actually prove one of $p$ or $\neg p$, then they remain agnostic about the truth of the statement $p \vee (\neg p)$.
+
+The ``black and white'' thinking of classical mathematics simplifies things in logic.  We can determine the truth of a compound statement, built out of atomic propositions like $p$, $q$, $r$, etc together with the  logical connectives $\wedge$, $\implies$, $\bi$, $\neg$, $\vee$ from the truth value of the atomic propositions \textbf{without} actually forming an argument!  We say that, in classical logic, these connectives are \textbf{truth functional}.
+
+Letting $1$ stand for true and $0$ stand for false (instead of our usual $\top$ and $\bot$), we can see that 
+
+\begin{table}[h!]
+	\begin{center}
+		\caption{Truth Table for conjunction}
+		\begin{tabular}{c|c} 
+			$p$  & $\neg p$ \\
+			\hline
+			$0$ & $1$ \\ 
+			$0$ & $0$ \\ 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[h!]
+	\begin{center}
+		\caption{Truth Table for conjunction}
+		\begin{tabular}{c|c|c} 
+			$L$ & $R$ & $L \wedge R$ \\
+			\hline
+			$0$ & $0$ & $0$ \\ 
+			$0$ & $1$ & $0$ \\ 
+			$1$ & $0$ & $0$ \\ 
+			$1$ & $1$ & $1$ \\ 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[h!]
+	\begin{center}
+		\caption{Truth Table for implication}
+		\begin{tabular}{c|c|c} 
+			$L$ & $R$ & $L \wedge R$ \\
+			\hline
+			$0$ & $0$ & $1$ \\ 
+			$0$ & $1$ & $1$ \\ 
+			$1$ & $0$ & $0$ \\ 
+			$1$ & $1$ & $1$ \\ 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[h!]
+	\begin{center}
+		\caption{Truth Table for biconditional}
+		\begin{tabular}{c|c|c} 
+			$L$ & $R$ & $L \bi R$ \\
+			\hline
+			$0$ & $0$ & $1$ \\ 
+			$0$ & $1$ & $0$ \\ 
+			$1$ & $0$ & $0$ \\ 
+			$1$ & $1$ & $1$ \\ 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[h!]
+	\begin{center}
+		\caption{Truth Table for disjunction}
+		\begin{tabular}{c|c|c} 
+			$L$ & $R$ & $L \wedge R$ \\
+			\hline
+			$0$ & $0$ & $0$ \\ 
+			$0$ & $1$ & $1$ \\ 
+			$1$ & $0$ & $1$ \\ 
+			$1$ & $1$ & $1$ \\ 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\newpage
+
+\begin{example} Evaluate the truth value of 
+	$((1 \wedge (0 \implies (0 \implies 0))) \vee (1 \bi 0))$
+	\end{example}
+
+		\begin{align*}
+		& ((1 \wedge (0 \implies (0 \implies 0))) \vee (1 \bi 0))\\
+		 \equiv &  ((1 \wedge (0 \implies 1)) \vee 0\\
+		 \equiv &  ((1 \wedge 1) \vee 0\\
+		 \equiv &  1 \vee 0\\
+		 \equiv & 1
+	\end{align*}
+
+You can get more practice doing this kind of ``arithmetic of logic'' here:
+
+\begin{center}
+ \url{https://infinitesque.net/logic-eval/}.
+ \end{center}
+
+
+\newpage
+
+These kinds of computations are useful.
+
+We often want the computer to execute some command depending on whether a set of different conditions are satisfied.  Consider the simple problem of instructing a computer to sum all of the numbers between $1$ and $100$ which are divisible by $2$ or $3$ but not both.
+
+In psuedocode, we might write
+
+\begin{lstlisting}[language=Python]
+	set SUM = 0
+	for k in {1, 2, 3, ..., 100}:
+	If ((k%2==0) OR (k%3==0)) AND (NOT((k%2==0) AND (k%3==0))):
+	SUM := SUM + k 
+	return SUM
+\end{lstlisting}
+
+We cannot write functional code like this without understanding the precise truth functional behaviour of the connectives OR, AND, and NOT.
+
+Many authors start with these truth functional definitions of the connectives and build logic up from there.  We have not chosen that path in this book primarily to keep the focus of logic on \textbf{making valid arguments}, which the truth functional approach does not do.
+
+These kinds of computations can also be used to decide the truth value of quantified statements, but only when we are quantifying over finite sets.  The reason is that if you want to decide the truth value of a statement like $\forall x \in U: P(x)$ you can actually check all of the possible options of $U$ is finite.  However, it $U$ is infinite you cannot.
+
+	\begin{xca}
+	
+	Given the following table of values for the predicate $P$, decide whether the propositions below are true or false.  Explain your reasoning.
+	
+	\begin{table}[h!]
+		\begin{center}
+			\label{tab:table1}
+			\begin{tabular}{c|c|c|c|}
+				$P(x,y)$ &$x=3$ & $x=4$ & $x=5$  \\
+				\hline
+				$y=1$    &   $0$        &     $1$       &     $1$      \\
+				\hline
+				$y=2$   &    $0$       &     $1$        &    $1$      \\
+				\hline
+				$y=3$   &    $0$       &      $0$        &   $1$       \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{table}
+	
+	\begin{enumerate}
+		\item $P(4,1)$
+		\item $P(4,2)$
+		\item $\exists y \in \{1,2,3\}: P(3,y)$
+		\item $\exists y  \in \{1,2,3\}: P(4,y)$
+		\item $\forall y  \in \{1,2,3\}: P(4,y)$
+		\item $\forall y  \in \{1,2,3\}: P(5,y)$
+		\item $\forall x  \in \{3,4,5\}: P(x, 1)$
+		\item $\exists x  \in \{3,4,5\}: P(x,1)$
+		\item $\exists b  \in \{3,4,5\}: P(b, 3)$
+		\item $\exists t  \in \{3,4,5\}: P(t, t-2)$
+		\item $\exists y  \in \{3,4,5\}: P(y,1)$
+	\end{enumerate}
+	
+	
+\end{xca}
+
+\begin{solutions}
+	
+	\begin{enumerate}
+		\item $P(4,1) = 1$
+		\item $P(4,2) = 1 $
+		\item $\exists y \in \{1,2,3\}: P(3,y) = 0$.  $P(3,1)$, $P(3,2)$, and $P(3,3)$ are all false.  So there is no value of $y$ from the set $\{1,2,3\}$ which makes $P(3,y)$ true.
+		\item $\exists y  \in \{1,2,3\}: P(4,y) = 1$.  Setting $y=2$ gives $P(4,2) = 1$, so there is at least one value of $y$ from the set $\{1,2,3\}$ which makes $P(4,y)$ true.
+		\item $\forall y  \in \{1,2,3\}: P(4,y) = 0$. Setting  $y = 3$ gives $P(4,3) = 0$, so $P(4,y)$ is not true for every value of $y$ in $\{1,2,3\}$ (even though it is true for some of them).
+		\item $\forall y  \in \{1,2,3\}: P(5,y) = 1$.  $P(5,1)$, $P(5,2)$, and $P(5,3)$ are all true.  So the statement that $P(5,y)$ is true for every $y$ in $\{1,2,3\}$ is true.
+		\item $\forall x  \in \{3,4,5\}: P(x, 1) = 0$.  When $x = 3$, $P(3, 1) = 0$, so it isn't true that $P(x,1)$ is true for all values of $x$ in \{1,2,3\}.
+		\item $\exists x  \in \{3,4,5\}: P(x,1) = 1$.  $P(4,1) = 1$ for instance.
+		\item $\exists b  \in \{3,4,5\}: P(b, 3) = 1$.  When $b = 5$, we obtain the true proposition $P(5,3)$.
+		\item $\exists t  \in \{3,4,5\}: P(t, t-2) = 1$.  When $t = 4$, we obtain the true proposition $P(4,2)$.  
+		\item $\exists y  \in \{3,4,5\}: P(y,1) = 1$.  Remember not to get caught up in variable names here!  Despite being called $y$, this variable is in the first slot.  A value of $y$ which works is $y = 4$, since $P(4,1) = 1$. 
+	\end{enumerate}
+	
+\end{solutions} 
+
+	\begin{xca}
+	
+	Given the following table of values for the predicate $P$, decide whether the propositions below are true or false.  Explain your reasoning.
+	
+	\begin{table}[h!]
+		\begin{center}
+			\label{tab:table1}
+			\begin{tabular}{c|c|c|c|}
+				$P(x,y)$ &$x=1$ & $x=2$ & $x=3$  \\
+				\hline
+				$y=1$    &   $0$        &     $1$       &     $1$      \\
+				\hline
+				$y=2$   &    $0$       &     $1$        &    $1$      \\
+				\hline
+				$y=3$   &    $0$       &      $1$        &   $0$       \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{table}
+	
+	\begin{enumerate}
+		\item $\exists t: P(t,t)$
+		\item $\forall t: P(t,t)$
+		\item $\exists a: \forall b: P(a,b)$
+		\item $\exists a: \forall b: P(b,a)$
+		\item $\forall t: \exists s: P(t,s)$
+		\item $\forall t: \exists s: P(s,t)$
+	\end{enumerate}
+	
+	
+\end{xca}
+
+\begin{solutions}
+	\begin{enumerate}
+		\item $\exists t: P(t,t)$ - This is a true.  $t = 2$ is a witness since $P(2,2) = 1$
+		\item $\forall t: P(t,t)$ - This is false.  For instance, setting $t =1$, $P(1,1) = 0$.
+		\item $\exists a: \forall b: P(a,b)$ - This is true.  When $a = 1$, we have the statement $\forall b: P(1,b)$.  This is a true statement since $P(1,1)$, $P(1,2)$, and $P(1,3)$ are all true.
+		\item $\exists a: \forall b: P(b,a)$ - This is a false statement.  
+		\begin{itemize}
+			\item If we try $a = 1$, we have the statement $\forall b: P(b,1)$.  However, $P(1,1)$ is false.
+			\item If we try $a = 2$, we have the statement $\forall b: P(b,2)$.  However, $P(1,2)$ is false.
+			\item If we try $a = 3$, we have the statement $\forall b: P(b,3)$.  However, $P(3,3)$ is false.
+		\end{itemize}
+		
+		So there is no value of $a$ which makes the predicate $\forall b: P(b,a)$ true.
+		\item $\forall t: \exists s: P(t,s)$ - This is a false statement.  When $t  =1$, we have the proposition $\exists s: P(1,s)$.  This is false since $P(1,1)$, $P(1,2)$, and $P(1,3)$ are all false.
+		\item $\forall t: \exists s: P(s,t)$  - This is a true statement.  
+		
+		\begin{itemize}
+			\item If we try $t = 1$, we have the statement $\exists s: P(s,1)$.  There is such an $s$, namely $s = 2$ or $s = 3$.
+			\item If we try $t = 2$, we have the statement $\exists s: P(s,2)$.  There is such an $s$, namely $s = 2$ or $s = 3$
+			\item If we try $t = 3$, we have the statement $\exists s: P(s,3)$.  There is such an $s$, namely $s = 2$.
+		\end{itemize}
+	\end{enumerate}
+\end{solutions}
+
+\section{L7: Boolean Algebra}
+We can use the rules we have already learned for logical equivalences to do ``algebra'' with logical expressions.
+
+\begin{example}
+		\begin{align*}
+			p \vee \neg(q \vee r) & \equiv p \vee (\neg q \wedge \neg r)\\
+			&\equiv (p \vee (\neg q)) \wedge (p \vee (\neg r))
+			\end{align*}
+	\end{example}
+
+Here we have put the statement in \textbf{conjunctive normal form} \footnote{\url{https://en.wikipedia.org/wiki/Conjunctive_normal_form}} which you may be interested in reading more about.
+
+Here is a more complicated example:
+
+
+		\begin{align*}
+		&\neg( p \vee \forall k: ( (\neg q) \implies ( \exists x: R(x, k)) ) ) \\
+		&\equiv (\neg p) \wedge \neg [\forall k: ( (\neg q) \implies ( \exists x: R(x, k)) ) ]\\
+		&\equiv (\neg p) \wedge  \exists k:  \neg [( (\neg q) \implies ( \exists x: R(x, k)) ) ]\\
+		&\equiv (\neg p) \wedge  \exists k:    (\neg q) \wedge \neg ( \exists x: R(x, k))  \\
+		&\equiv (\neg p) \wedge  \exists k:    (\neg q) \wedge   \forall x: \neg R(x, k) \\
+		&\equiv \exists k \forall x (\neg p) \wedge( (\neg q) \wedge \neg R(x,k))
+	\end{align*}
+
+This is now in \textbf{prenex conjunctive normal form}\footnote{\url{https://en.wikipedia.org/wiki/Prenex_normal_form}}  which you may also be interested in reading more about.
+
+
+\section{L8:  Enumerating Truth Assignments}
+
+In this chapter we will be concerned with all the possible truth values which a proposition like $P \vee (Q \implies R)$ could take depending on the truth value of each \textbf{atomic proposition}  $P$, $Q$, and $R$ in the expression.  Figuring out all of the distinct available choices is difficult.  We could just start writing them down ``willy nilly''
+
+\begin{table}[h!]
+	\begin{center}
+		\caption{``Willy Nilly'' truth assignments}
+		\begin{tabular}{c|c|c} 
+			$P$ & $Q$ & $R$ \\
+			\hline
+			$0$ & $0$ & $1$ \\ 
+			$0$ & $1$ & $0$ \\ 
+			$1$ & $0$ & $0$ \\ 
+			$0$ & $1$ & $1$ \\ 
+			$\vdots$ & $\vdots$ & $\vdots$ \\ 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+This strategy has several shortcomings:
+
+\begin{enumerate}
+	\item It is hard to know that you have listed all possibilities.
+	\item It is hard to check that you have not accidentally listed a combination more than once.
+	\item Even if you get all of them exactly once, the particular ordering you come up with will not be easily reproducible in the future.
+\end{enumerate}
+
+These shortcomings indicate that we might be better off \textbf{organizing} the way we are listing these truth assignments.
+
+Since each atomic proposition can be either true or false, we have $2$ choices for $P$.  Each of those $2$ choices for $P$ leads to $2$ choices for $Q$.  This is $4$ total so far.  Each of these $4$ assignments leads to $2$ choices for $R$, for a total of $8$ possibilities.  Let's try to list them all out in an organized, reproducible manner.  We will start by making a table with 8 rows:
+
+\begin{table}[h!]
+	\begin{center}
+		\caption{Starting to organize the truth assignments}
+		\begin{tabular}{c|c|c} 
+			$P$ & $Q$ & $R$ \\
+			\hline
+			&  &  \\  \hline
+			&  &  \\  \hline
+			&  &  \\  \hline
+			&  &  \\  \hline
+			&  &  \\  \hline
+			&  &  \\  \hline
+			&  &  \\  \hline
+			&  &  \\  \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+We know that half of the assignments will have $P$ false, and the rest will have $P$ true.  We will list the false assignments first.
+
+
+\begin{table}[h!]
+	\begin{center}
+		\caption{Sorting by $P$ first}
+		\begin{tabular}{c|c|c} 
+			$P$ & $Q$ & $R$ \\
+			\hline
+			0 &  &  \\  \hline
+			0 &  &  \\  \hline
+			0 &  &  \\  \hline
+			0 &  &  \\  \hline
+			1 &  &  \\  \hline
+			1 &  &  \\  \hline
+			1 &  &  \\  \hline
+			1 &  &  \\  \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+If $P$ is false, then there are $4$ choices.  Of these, half should have $Q = 0$ and the rest should have $Q = 1$.  Similar remarks apply if $P$ is true.
+
+
+\begin{table}[h!]
+	\begin{center}
+		\caption{Sorting by $Q$ second}
+		\begin{tabular}{c|c|c} 
+			$P$ & $Q$ & $R$ \\
+			\hline
+			0 & 0 &  \\  \hline
+			0 & 0 &  \\  \hline
+			0 & 1 &  \\  \hline
+			0 & 1 &  \\  \hline
+			1 & 0 &  \\  \hline
+			1 & 0 &  \\  \hline
+			1 & 1 &  \\  \hline
+			1 & 1  &  \\  \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+Finally, look at the rows in groups of two.  In each group of two, the truth value of $P$ and $Q$ are identical, and we have exactly two choices for the truth value of $R$.  Let's fill those in:
+
+
+\begin{table}[h!]
+	\begin{center}
+		\caption{Sorting by $R$ last}
+		\begin{tabular}{c|c|c} 
+			$P$ & $Q$ & $R$ \\
+			\hline
+			0 & 0 & 0  \\  \hline
+			0 & 0 & 1 \\  \hline
+			0 & 1 & 0 \\  \hline
+			0 & 1 & 1 \\  \hline
+			1 & 0 & 0 \\  \hline
+			1 & 0 &  1\\  \hline
+			1 & 1 &  0\\  \hline
+			1 & 1  &  1 \\  \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+This way of building this collection of possible truth assignments has mitigated all of our concerns about the ``willy nilly'' approach:
+
+\begin{enumerate}
+	\item It is easy to know that you have listed all possibilities.
+	\item It is easy to check that you have not accidentally listed a combination more than once.
+	\item This ordering is easily reproducible in the future.
+\end{enumerate}
+
+
+\begin{xca}
+	
+	Make a table showing all possible truth value assignments for $4$ atomic propositions $A$, $B$, $C$, $D$.  Use the same organizing principles we agreed on when creating the three column table.
+	
+\end{xca}
+
+\begin{solutions}
+	We can think of each choice of truth value for $A$, $B$, $C$ and $D$ as creating a fork in the road, doubling our number of possible ``paths''.
+	
+	\begin{center}
+		\scalebox{0.5}{
+			\begin{forest}
+				[[${A = 0}$ [${B = 0}$ [${C = 0}$[${D = 0}$][${D = 1}$]][${C = 1}$[${D = 0}$][${D = 1}$]]][${B = 1}$ [${C = 0}$[${D = 0}$][${D = 1}$]][${C = 1}$[${D = 0}$][${D = 1}$]]]][ ${A = 1}$[${B = 0}$ [${C = 0}$[${D = 0}$][${D = 1}$]][${C = 1}$[${D = 0}$][${D = 1}$]]][${B = 1}$ [${C = 0}$[${D = 0}$][${D = 1}$]][${C = 1}$[${D = 0}$][${D = 1}$]]]]]
+			\end{forest}
+		}
+	\end{center}
+	
+	Then reading from left to right we obtain
+	
+	\begin{table}[h!]
+		\begin{center}
+			\begin{tabular}{c|c|c|c} 
+				$A$ & $B$ & $C$  & $D$ \\
+				\hline
+				$0$ & $0$ & $0$  & $0$ \\ \hline
+				$0$ & $0$ & $0$  & $1$ \\ \hline
+				$0$ & $0$ & $1$  & $0$ \\ \hline
+				$0$ & $0$ & $1$  & $1$ \\ \hline
+				$0$ & $1$ & $0$  & $0$ \\ \hline
+				$0$ & $1$ & $0$  & $1$ \\ \hline
+				$0$ & $1$ & $1$  & $0$ \\ \hline
+				$0$ & $1$ & $1$  & $1$ \\ \hline
+				$1$ & $0$ & $0$  & $0$ \\ \hline
+				$1$ & $0$ & $0$  & $1$ \\ \hline
+				$1$ & $0$ & $1$  & $0$ \\ \hline
+				$1$ & $0$ & $1$  & $1$ \\ \hline
+				$1$ & $1$ & $0$  & $0$ \\ \hline
+				$1$ & $1$ & $0$  & $1$ \\ \hline
+				$1$ & $1$ & $1$  & $0$ \\ \hline
+				$1$ & $1$ & $1$  & $1$ \\ 
+			\end{tabular}
+		\end{center}
+	\end{table}
+	
+\end{solutions}
+
+These ``truth assignment tables'' bear some similarity to lists of numbers. To make these lists we are really just counting in binary!
+
+For the purposes of reading the rest of this book, you do not need to know anything about binary or other bases.  You \textbf{do}need to be able to produce a truth assignment table for a set of atomic propositions in the way we have discussed in this section.
+
+Understanding other bases is a rite of passage in mathematics and computer science culture.  Understanding the binary (base $2$)  and hexidecimal (base $16$) systems are important for computer scientists because (at its heart) a computer is ``really'' doing all of its computations using binary (``off"/``on'') circuitry.  So number systems based on powers of $2$ are important to computer scientists.
+
+For these reasons, we provide an appendix on these other number systems.
+
+\section{L8:  Tautologies and Equivalence}
+
+\begin{xca}
+	Consider the following four statements:  $P \implies Q$,  $(\neg P) \vee Q$, $P \vee (\neg Q)$, and $(\neg Q) \implies (\neg P)$. 
+	
+	A few entries of this table have been filled our correctly as a model.  Complete the rest of the table.
+	
+	\begin{table}[h!]
+		\begin{center}
+			\begin{tabular}{c|c|c|c|c|c|c|c} 
+				$P$ & $Q$ & $\neg P$ & $\neg Q$  & $P \implies Q$ & $(\neg P) \vee Q$ &  $P \vee (\neg Q)$ & $(\neg Q) \implies (\neg P)$ \\
+				\hline
+				$0$& $0$ & $1$ &         &          &            &  $1$   &   \\ \hline
+				$0$& $1$ &         & $0$ &          &            &            &  $1$  \\ \hline
+				$1$& $0$ &         &         &  $0$ &            &            &     \\ \hline
+				$1$& $1$ &         &         &          &  $1$   &            &      \\ 
+			\end{tabular}
+		\end{center}
+	\end{table}
+	
+\end{xca}
+
+\begin{solutions}
+	
+	\begin{table}[h!]
+		\begin{center}
+			\begin{tabular}{c|c|c|c|c|c|c|c} 
+				$P$ & $Q$ & $\neg P$ & $\neg Q$  & $P \implies Q$ & $(\neg P) \vee Q$ &  $P \vee (\neg Q)$ & $(\neg Q) \implies (\neg P)$ \\
+				\hline
+				$0$& $0$ & $1$ & $1$ & $1$ & $1$ & $1$  &  $1$  \\ \hline
+				$0$& $1$ & $1$ & $0$ & $1$ & $1$ & $0$  &  $1$  \\ \hline
+				$1$& $0$ & $0$ & $1$ & $0$ & $0$ & $1$  &  $0$   \\ \hline
+				$1$& $1$ & $0$ & $0$ & $1$ & $1$ & $1$ &  $1$    \\ 
+			\end{tabular}
+		\end{center}
+	\end{table}
+\end{solutions}
+
+Notice that the columns for $P \implies Q$,  $(\neg P) \vee Q$, and $(\neg Q) \implies (\neg P)$ are all identical.  That means that no matter what the truth value of $P$ or $Q$, the truth value of these three expressions will always agree! 
+
+\begin{definition}
+	Two expressions involving $n$ letters (standing for atomic propositions) and the logical connectives $\wedge$, $\implies$, $\bi$, $\neg$, and $\vee$ are called \index{Truth Functionally Equivalent}\textbf{truth functionally equivalent} if the two expressions evaluate to the same truth value for all of the $2^n$ assignments of the atomic propositions.
+	
+	In other words, they are equivalent if when we make a truth table involving all $2^n$ rows the columns corresponding to the two expressions are identical.
+	
+	If $S_1$ and $S_2$ are two statements, we will write $S_1 \equiv S_2$ to indicate that they are truth functionally equivalent.
+\end{definition}
+
+
+\begin{definition}
+	An expression $S$ involving $n$ letters (standing for atomic propositions) and the logical connectives $\wedge$, $\implies$, $\bi$, $\neg$, and $\vee$ is called a \index{Tautology}\textbf{tautology} if it is truth functionally equivalent to $T$.  
+	
+	Example:  $p \vee (\neg p)$ is a tautology.
+	
+	It is called a \index{Contradiction}\textbf{contradiction} if it is truth functionally equivalent to $F$.
+	
+	Example:  $p \wedge (\neg p)$ is a contradiction.
+	
+	It is called  \index{Conditionally True}\textbf{conditionally true} if it is neither a tautology nor a contradiction.
+	
+	Example:  $p \vee q$ is conditionally true since $0 \vee 0 = 0$ and $1 \vee 0 = 1$.
+	
+	In other words, $S$ is a tautology if its column in a truth table has only $1$, it is a contradiction if this column consists only of $0$, and it is conditionally true if there is a mix of $1$ and $0$ entries.
+	
+\end{definition}
+
+Note:  We could have defined tautology first, and then defined $S_1 \equiv S_2$ if $S_1 \bi S_2$ is a tautology.  Think about why!
+
+
+
+
+
+
+

@@ -14,18 +14,19 @@
   \indexspace
 
   \item case analysis, 33
-  \item Closed Form Expression, 90
-  \item Conditionally True, 87
+  \item Closed Form Expression, 92
+  \item Conditionally True, 89
   \item conjunct, 21
   \item conjunction, 21
-  \item Contradiction, 87
-  \item Contrapositive, 74
-  \item Converse, 74
+  \item Contradiction, 89
+  \item Contrapositive, 75
+  \item Converse, 75
 
   \indexspace
 
   \item disjunction, 32
   \item disjunction elimination, 33
+  \item disjunctive syllogism, 77
   \item divides, 5
 
   \indexspace
@@ -37,16 +38,17 @@
 
   \indexspace
 
+  \item Fibonacci numbers, 93
   \item Fitch style natural deduction, 16
 
   \indexspace
 
   \item Inclusive Or, 32
-  \item Index, 90
-  \item Index Set, 90
-  \item initial values, 90
+  \item Index, 92
+  \item Index Set, 92
+  \item initial values, 92
   \item introduction rule, 16
-  \item Inverse, 74
+  \item Inverse, 75
 
   \indexspace
 
@@ -62,7 +64,7 @@
   \item parity, 1
   \item predicate, 13
   \item prime, 8
-  \item proof by contradiction, 72
+  \item proof by contradiction, 72, 73
   \item proposition, 11
   \item prove, 6
 
@@ -73,19 +75,19 @@
 
   \indexspace
 
-  \item recurrence relation, 90
-  \item recursive, 90
+  \item recurrence relation, 92
+  \item recursive, 92
   \item remainder, 61
 
   \indexspace
 
   \item scope, 40
-  \item Sequence, 90
+  \item Sequence, 92
 
   \indexspace
 
-  \item Tautology, 87
-  \item Truth Functionally Equivalent, 87
+  \item Tautology, 89
+  \item Truth Functionally Equivalent, 89
 
   \indexspace
 

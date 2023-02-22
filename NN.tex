@@ -21,7 +21,7 @@ We will learn a new method of proof called ``Mathematical Induction'' which will
 
 We will also apply mathematical induction to prove three important theorems:  the infinitude of the primes,  the quotient-remainder theorem, and the correctness of the Euclidean Algorithm.
 
-\section{Sequences}
+\section{NN1 Sequences}
 
 \begin{definition}
 	Let $I$ be a set of consecutive integers.  For instance, we could have a finite set like $I = \{2,3,4,5\}$ or an infinite set like $I = \{5, 6, 7, 8, \dots\}$.  We call a function from $I$ to any set $X$ a \index{Sequence}\textbf{sequence} of elements of $X$ indexed by $I$.  The set $I$ is called the \index{Index Set}\textbf{index set} of the sequence, and the individual elements of $I$ are called \index{Index}\textbf{indices} (singular:  \textbf{index}).
@@ -46,9 +46,9 @@ One way to present a sequence is to give the index set and a formula (also calle
 	Below are the first 4 terms of a sequence.  Try and find a closed form expression which fits.  Note that the index set is given, so that the first element of the index set should map to the first term in the sequence.
 	
 	\begin{enumerate}
-		\item $2, 4, 6, 8$, where  $I = \mathbb{N}$.
-		\item $2, 4, 6, 8$,  where $I = \{5, 6, 7, 8, \cdots\}$
-		\item $3, 8, 15, 24$, where $I = \{1,2,3, \cdots\}$
+		\item $2, 4, 6, 8, \dots$, where  $I = \mathbb{N}$.
+		\item $2, 4, 6, 8, \dots$,  where $I = \{5, 6, 7, 8, \cdots\}$
+		\item $3, 8, 15, 24, \dots$, where $I = \{1,2,3, \cdots\}$
 	\end{enumerate}
 \end{xca}
 
@@ -77,7 +77,28 @@ We can also give \index{recursive} \textbf{recursive} formulas for sequences.   
 	You might suspect that $f(n) = 3(2^n)$.  This is exactly right!  Actually proving that there is one and only one function with these properties requires mathematical induction, which we will address soon.
 	\end{example}
 
-\section{Sums}
+\begin{example}
+		A famous example of a recursively defined sequence are the \textbf{Fibonacci numbers} \index{Fibonacci numbers}.  These are defined recursively by 
+		
+		\begin{align*}
+			&F_0 = 0\\
+			&F_1 = 1\\
+			&F_{n+1} = F_{n}+F_{n-1} \textrm{ if $n \geq 2$}
+		\end{align*}
+	
+	\begin{itemize}
+			\item $F_2 = F_1 + F_0 = 1+0 = 1$
+			\item $F_3 = F_2 + F_1 = 1 + 1 = 2$
+			\item $F_4 = F_3 + F_2 = 1+2 = 3$
+			\item $F_5 = F_4 + F_3 = 3+2 = 5$
+			\item $F_6  =F_5 + F_4 = 5+3 = 8$
+			\item $\vdots$
+		\end{itemize}
+	
+	The Fibonacci numbers have a lot of interesting patterns.  We will be able to prove that these patterns hold universally using mathematical induction.
+	\end{example}
+
+\section{NN1: Sums}
 
 \begin{definition}
 	Let $N$ and $M$ be integers with $N \leq M$.
@@ -197,7 +218,7 @@ Note that there is one summand of $2$ for $k=1, 2, 3, \dots N$.
 		
 	\end{solutions}
 	
-\section{Induction}
+\section{NN2: Induction}
 
 \begin{xca}
 
@@ -224,16 +245,327 @@ Alice, Bob, and Chelle are three mathematicians. As mathematicians, they have a 
 The pattern of reasoning you employed in solving these three problems is \textbf{mathematical induction}.
 
 \begin{principle}[Principle of Mathematical Induction]
+	Let $P$ single variable predicate whose domain of discourse is the natural numbers.  If we can prove:
 	
+	\begin{itemize}
+			\item $P(0)$
+			\item $\forall k \in \N  \, P(k) \implies P(k+1)$
+		\end{itemize}
+	
+	then we can conclude $\forall n \in \N \, P(n)$
 	\end{principle}
-\section{The Quotient-Remainder Theorem}
 
-\subsection{Why every integer is either even or odd}
+We cannot prove this principle.  In a more careful treatment this would be one of the axioms which \textbf{define} the natural numbers.
 
-\section{Strong Induction and the Well Ordering Principle}
+We can motivate it though.
 
-\subsection{The Infinitude of Primes}
+Pretend we know $P(0)$, $P(0) \implies P(1)$, $P(1)\implies P(2)$, $P(2) \implies P(3)$, ...
 
-\section{Infinitude of Primes}
+Then if you give me a particular $n$ such as $n=50$ I can provide you with an argument that $P(50)$ is true: 
 
-\section{The Euclidean Algorithm}
+\begin{enumerate}
+		\item Since $P(0)$ and $P(0) \implies P(1)$ we have $P(1)$.
+		\item Since $P(1)$ and $P(1) \implies P(2)$ we have $P(2)$.
+		\item Since $P(2)$ and $P(2) \implies P(3)$ we have $P(3)$.
+		\item $\vdots$
+		\item Since $P(49)$ and $P(49) \implies P(50)$ we have $P(50)$.
+	\end{enumerate}
+
+Here we are repeatedly using $\implies$-elimination.
+
+The subtle point is that while we can construct such an argument for any fixed $n$ (like $50$) we do not yet have a logical principle which will allow us to conclude $\forall n \in \N \, P(n)$ without the Principle of Mathematical Induction.
+
+Let's see how to use this theorem to prove that the pattern we noticed at the beginning of this chapter continues to hold.
+
+\begin{theorem}
+		For any natural number $n$, $5$  divides $6^n-1$.
+	\end{theorem} 
+
+\begin{proof}
+Symbolically we are trying to prove
+
+\[
+\forall n \in \N \, 5 \divides (6^n -1)
+\]
+
+We will \textbf{not} prove this by following the proof outline which would call for us to use universal introduction first.  Instead, we will use mathematical induction which is \textbf{another way} to prove universally quantified statements (but which only works for universally quantified statements about the integers).  
+
+Mathematical induction says that instead of proving our original statement we can instead prove
+
+\[
+5 \divides (6^0-1) \wedge \forall k \in \N \, [(5 \divides (6^k -1)) \implies (5 \divides (6^{k+1} -1)) ]
+\]
+
+We now follow the proof outline.  Since this is a conjunction, we need to prove both conjuncts.  The left conjunct is easy:
+
+\textbf{Base Case}:  Since $6^0 - 1 = 1- 1 = 0 = 0 \cdot 5$, we see that $5 \divides (6^0-1) $.
+
+The left conjunct is harder:
+
+\textbf{Inductive Step}:
+
+\begin{fitch}
+		\textrm{Let $k \in \N$ be chosen arbitrarily} & $\forall$-intro\\
+		\textrm{Assume $5 \divides (6^k -1)$} & $\implies$-intro\\
+		\fa \textrm{Choose $j$ with $6^k-1 = 5j$} & Defn. of $\divides$ and $\exists$-elim\\
+		\fa 6^{k+1} - 6 = 30j & multiplied by $6$\\
+		\fa 6^{k+1}-1 = 30j + 5 & added $5$\\
+		\fa 6^{k+1}-1 = 5(6j + 1)\\
+		\fa 5 \divides 6^{k+1}-1 & Defn. of $\divides$  and $\exists$-intro with witness $6j+1$.
+	\end{fitch}
+
+	\end{proof}
+
+Notice that this proof also gives a bit more information which is contained in the mere theorem statement.  It actually gives you the ``recipe'' for finding the quotient of $6^{k+1}-1$ divided by $5$ given the quotient of $6^{k}-1$ divided by $5$.  For instance
+
+$6^3-1 = 215 = 5 \cdot 43$.
+
+According to the proof we should have  $6^4 - 1 = 5 \cdot (6\cdot 43 + 1)$.  In fact this is true!
+
+If you want a giant list of interesting induction problems to practice with check out this collection developed by Peter Haggstrom:
+
+\url{https://www.gotohaggstrom.com/Induction%20Problem%20Set%2011%20November%202010.pdf}
+
+\subsection{NN2 Homework}
+
+\begin{xca}
+Summation Problems:
+
+\begin{enumerate}
+	\item For all $n \in \mathbb{N}^+$, and for all $a \in \mathbb{R}$, $\displaystyle \sum_{k=1}^n a = na $
+	
+	\item For all $n \in \mathbb{N}$, $ \displaystyle \sum_{k=0}^n (2k+1) = (n+1)^2	$
+	
+	\item For all $n \in \mathbb{N}$, $ \displaystyle	\sum_{k=-n}^n k = 0$
+	
+	\item For all $n \in \mathbb{N}$,$ \displaystyle \sum_{k=0}^{2n} (-1)^k = 1 $
+	
+	\item For all $n \in \mathbb{N}$,$ \displaystyle \sum_{k=0}^{2n+1} (-1)^k = 0 $
+	
+	\item For all $n \in \mathbb{N}^+$, $ \displaystyle \sum_{k=1}^n \frac{1}{k(k+1)} = 1 - \frac{1}{n+1}$
+	
+	\item For all $n \in \mathbb{N}^+$, $ \displaystyle \sum_{k=1}^n \frac{2}{k^2+2k} = \frac{3}{2} - \frac{2n+3}{(n+1)(n+2)}$
+\end{enumerate}
+\end{xca}
+
+\begin{xca}
+Divisibility Problems:
+
+\begin{enumerate}
+	\item For all $n \in \mathbb{N}$ , $n^2+n$ is divisible by $2$. 
+	\item For all $n \in \mathbb{N}$, $n^3-n$ is divisible by $3$.
+	\item For all $n \in \mathbb{N}$, $7^n - 2^n$ is divisible by $5$.
+	\item For all $n \in \mathbb{N}$, $7^n - 1$ is divisible by $6$.
+	\item For all $n \in \mathbb{N}$, $7^n - 4^n$ is divisible by $3$.
+	\item For all $n \in \mathbb{N}$, $15^n - 8^n$ is divisible by $7$.
+\end{enumerate}
+\end{xca}
+
+\begin{xca}
+Inequality Problems:
+
+\begin{enumerate}
+	\item For all integers $n$ with $n \geq 4$,  we have $n^2 \leq 2^n$ [Note:  this one is hard].
+	\item For all integers $n  \geq 4$, we have $2^n < n!$
+	\item For all integers $n$, $n! \geq n^n$
+	\item For all integers $n$, $5^n \geq n2^n$
+\end{enumerate}
+\end{xca}
+
+\begin{xca}
+Fibonnaci sequence problems:
+
+Remember we define the Fibonnaci sequence by
+
+\begin{align*}
+	&F_0 = 0\\
+	&F_1 = 1\\
+	&F_{n+1} = F_{n}+F_{n-1} \textrm{ if $n \geq 2$}
+\end{align*}
+
+\begin{enumerate}
+	\item For all integers $n$, $\displaystyle \sum_{k=1}^n F_k = F_{n+2} - 1$
+	\item For all integers $n$, $\displaystyle \sum_{k=1}^n F_{2k-1} = F_{2n}$
+	\item For all integers $n$, $\displaystyle \sum_{k=1}^n F_{2k} = F_{2n+1} - 1$
+	\item For all integers $n$, $F_{n+1}^2-F_{n}F_{n+2} = (-1)^n$
+	\item For all integers $n$, $2$ divides $F_{3n}$.
+	\item For all integers $n$, $3$ divides $F_{4n}$.
+\end{enumerate}
+\end{xca}
+
+\begin{xca}
+More advanced problems:
+
+\begin{enumerate}
+	\item Try differentiating $f(x) = e^{2x}$ over and over again.  Find a formula for $f^{(n)}(x)$.  Prove your formula using induction.
+	\item Take a piece of paper.  What is the most number of pieces you can cut the paper into using $n$ cuts?  Experiment by trying $n=0, 1,2,3,4,5$.  Make a conjecture at a formula.  Prove your formula using induction.
+	\item Prove that for all integers $n$, and for all real numbers $x$ and $y$, we have
+	
+	\[
+	x^{n+1} - y^{n+1} = \sum_{k=0}^{n} x^k y^{n-k}
+	\]
+	\item Let $I_n(x) = \displaystyle \int_0^x t^n e^{-t} \textrm{d}t$.  Prove that
+	
+	\[
+	I_n(x) = n! \left(1-e^{-x}(1+x+\frac{x^2}{2!}+ \dots + \frac{x^n}{n!})\right)
+	\]
+	
+	\item The Gamma function is defined by $ \Gamma(x) = \displaystyle \int_0^\infty t^{x-1}e^{-t} \textrm{d}t $.
+	
+	Prove that for all integers $n$, we have $\Gamma(n+1) = n!$
+	
+\end{enumerate}
+\end{xca}
+
+\section{NN2: Strong Induction and the Well Ordering Principle}
+
+We can reformulate the principle of mathematical induction in a ``stronger'' form.  
+
+In the ``weak'' inductions we have done so far we prove $P(0)$, assume $P(k)$ and attempt to argue $P(k+1)$ relative to that assumption.
+
+In ``strong'' induction we prove $P(0)$, assume that $P(k)$ is true for any $k<n$, and attempt to argue $P(n)$ relative to that assumption.  
+
+You can view weak induction as a special case of strong induction where only one of the assumptions is needed (the claim about the immediate predecessor rather than \textbf{all} predecessors ).
+
+We can formalize the principle of strong induction as follows:
+
+\begin{principle}[Principle of Strong Induction]
+	Let $P$ single variable predicate whose domain of discourse is the natural numbers.  If we can prove:
+	
+	\begin{itemize}
+		\item $P(0)$
+		\item $\forall n \in \N  \,[\forall k \in \N: k < n \implies P(k)] \implies P(n)$
+	\end{itemize}
+	
+	then we can conclude $\forall n \in \N \, P(n)$
+\end{principle}
+
+\begin{theorem}
+	Every natural number greater than or  equal to $2$ has a factorization into a product of primes.
+	\end{theorem}
+
+\begin{proof}
+		First of all $2$ is prime, so it is already factored into a product of primes.  This is the base case.
+		
+		Now let $n$ be an arbitrary integer which is greater than or equal to $2$.
+		
+		Assume that if $k<n$ then $k$ can be factored into a product of primes.
+		
+		We want to argue that $n$ can be factored into a product of primes.
+		
+		If $n$ is prime, we are done.
+		
+		If $n$ is composite then $n$ factors as $n = jk$ with both $j,k \geq 2$.
+		
+		By inductive hypothesis, both $j$ and $k$ factor into products of primes.
+		
+		So we can see that $n$ also factors into a product of primes. 
+	\end{proof}
+
+Although strong induction seems more powerful, we can actually derive it using induction.  This is a bit technical and the argument is left to an appendix for those interested.
+
+Another form of argument which is equivalent to induction but has a different ``flavor'' is the Well-Ordering Principle:
+
+\begin{principle}[Well-Ordering Principle]
+		Any non-empty subset of the Natural Numbers has a least element.
+	\end{principle}
+
+We can rephrase the proof of theorem 7.18 above using the well-ordering principle:
+
+\begin{proof}
+	Let $S$ be the set of all natural numbers greater than or equal to $2$ which \textbf{cannot} be factored into a product of primes.
+	
+	We will show that $S$ must be an empty set by contradiction.
+	
+	Assume that $S$ is non-empty.
+	
+	Then there must be a least element $n \in S$.
+	
+	$n$ cannot be prime since then it would already be factored into a product of primes, and hence could not be part of $S$.
+	
+	If $n$ is composite then $n = jk$ for some integers $2 \leq j,k < n$.  Since $n$ was chosen to be the \textbf{least} element of $S$ we have that $j,k \notin S$.  So $j$ and $k$ both factor into a product of primes.  However we have reached a contradiction again, as now $n = jk$ can be factored into a product of primes.
+	\end{proof}
+
+This is very typical of how one could use either strong induction or the well-ordering principle to prove the same theorem.  A formal proof of equivalence is left to an appendix.
+
+One important consequence of the ability to factor into primes is the infinitude of primes:
+
+\begin{theorem}[NN5:  The infinitude of primes]
+	There are infinitely many prime numbers.
+	\end{theorem}
+
+\begin{proof}
+	
+		We will argue that given any finite list of prime numbers, we can find another prime number which is not already listed.
+		
+		Let $p_1,p_2, p_3, ..., p_n$ be any finite list of prime numbers.
+		
+		Let $N = p_1p_2p_3...p_n + 1$.
+		
+		Then $N$ can be factored into a product of primes.  Let $q$ be one of the prime factors of $N$.
+		
+		Note that since $N \% p_i = 1$ for all $i$ while $N \% q = 0$ we cannot have $q = p_i$ for any $i$.
+		
+		Hence $q$ is a new prime number which did not appear in our initial list.
+	\end{proof}
+
+Note:  If my finite list of primes was $2$, $3$ then $N = 2*3 + 1 = 7$ which is prime.  In that case my $q$ would just be $7$ as well.
+
+If my finite list of primes was $2$, $3$, $19$ then $N = 2*3*19 + 1  = 115 = 5 \cdot 23$.  So I would get $5$ and $23$ as my ``new'' primes.
+
+\subsection{NN6: The Quotient-Remainder Theorem}
+
+Recall the statement of the Quotient-Remainder Theorem, which was introduced in chapter $4$:
+
+\begin{theorem}[Quotient-Remainder Theorem]
+Let $n$ be any integer and $d$ be any positive integer. Then there are unique integers $q$ and $r$ satisfying
+
+\[
+n = qd + r \textrm{ with  $0 \leq r < d$}
+\]
+
+We call $q$ the \textbf{quotient} and $r$ the \textbf{remainder}.
+	\end{theorem}
+
+We are now finally in a position to give a rigorous proof of this fact.
+
+\begin{proof}
+		Let $n \in \Z$ and $d \in \Z^+$ be chosen arbitrarily.
+		
+		We will form a set $S$ of ``possible remainders''.
+		
+		Let $S = \{ r \in \N: \exists q \in Z \, n = qd + r\}$.
+		
+		 If $n \geq 0$ then $n = 0d+|n|$ so $|n| \in S$ which shows that $S$ is non-empty.  If $n \leq 0$ then $n= nd + |n|(d-1) $, so $|n|(d-1) \in S $ again showing that $S$ is non-empty.
+		 
+		 Since $S$ is non-empty is has a least element $r_1$.  We know $r_1$ is non-negative by definition of $S$.  We want to show that $r_1$ is less than $d$.
+		 
+		 Assume to the contrary that $r_1 \geq d$.  
+		 
+		 Then $n = q_1d + r_1$, so $n = (q_1+1)d +  (r_1-d)$.  If $r_1 \geq d$ then $r_1 - d \in S$ violating the minimality  of $r_1$.
+		 
+		 So we know that $ 0 \leq r_1 < d$.
+		 
+		 This shows the existence of a quotient-remainder pair satisfying the conclusion of the theorem
+
+		Now let us show uniqueness.
+		
+\begin{fitch}
+	\textrm{Let $n \in \mathbb{Z}$ be arbitrarily chosen.}\\
+	\textrm{Let $d \in \mathbb{Z}^+$ be arbitrarily chosen.}\\
+	\textrm{Let $q_1,q_2,r_1,r_2 \in \mathbb{Z}$ be chosen arbitrarily.}\\
+	\textrm{Assume $n  = q_1d+r_1$ and $n = q_1d + r_2$ and $0 \leq r_1 < d$ and $0 \leq r_2 < d$}\\
+	\fa  q_1d + r_1 = q_2d + r_2\\
+	\fa (q_1-q_2)d = r_2 - r_1\\
+	\fa |q_1 - q_2|d = |r_2 - r_1|\\
+	\fa 0 \leq |r_2 - r_1| < d \textrm{ since $0 \leq r_1 < d$ and $0 \leq r_2 < d$}\\
+	\fa \textrm{Assume $|r_2- r_1| \neq 0 $}\\
+	\fa \fa \textrm{Then $|q_1 - q_2|d \neq 0$, so $|q_1 - q_2| \neq 0$}\\
+	\fa \fa \textrm{Then $|q_1 - q_2|d  \geq d$ since $|q_1 - q_2|$ is at least $1$}\\
+	\fa \fa \textrm{This is absurd:  we cannot have $|q_1 - q_2|d = |r_2 - r_1|$ when $|q_1 - q_2|d \geq d$ and $|r_2 - r_1| < d$}\\
+	\fa \textrm{So $|r_2 - r_1| = 0$, which implies $r_2 = r_1$}\\
+	\fa \textrm{So $(q_1 - q_2)d = 0$, which implies $q_2 = q_1$}\\
+\end{fitch}
+	\end{proof}
+
+\section{Greatest Common Divisors and The Euclidean Algorithm}
